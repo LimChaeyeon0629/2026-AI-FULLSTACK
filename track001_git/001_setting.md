@@ -44,9 +44,10 @@ day001
  
 5. 작업 파일 올리기
    git add .
-   git commit -m "README"
+   git commit -m "README" ("첫 커밋 메시지")
    git push origin main
    ( 깃허브 새로고침 README.md 파일 확인 )
+   // git commit -m "track001-github-setting"
 
    2026-AI-FULLSTACK 파일 안에
    - track001_git
