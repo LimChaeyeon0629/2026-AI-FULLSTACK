@@ -10,6 +10,7 @@ day002
 ## Part001
 - TODO1 : GITHUB - FULL
 
+1. git pull origin main
 
 
 ## Part002
