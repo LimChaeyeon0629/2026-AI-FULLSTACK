@@ -21,7 +21,7 @@
 | NAME | 임채연 |
 |-|-|
 | EMAIL | ssjm0629@gmail.com |
-| GITHUB | https://github.com/LimChaeyeon0629/fullstack_20250825 |
+| GITHUB | https://github.com/LimChaeyeon0629/2026-AI-FULLSTACK |
 
 
 ---
