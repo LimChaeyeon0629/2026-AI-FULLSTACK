@@ -26,5 +26,7 @@ public class Basic003 {
 		// System.out.println(10 + 3 = 10 + 3);
 		// 1) 오류 없애기	2) 결과물: 10 + 3 = 13
 		System.out.println("10 + 3 = " + (10 + 3));
+		
+		
 	}
 }

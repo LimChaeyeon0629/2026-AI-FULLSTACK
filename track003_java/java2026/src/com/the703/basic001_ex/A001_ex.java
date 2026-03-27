@@ -6,6 +6,7 @@ public class A001_ex {
 		System.out.println("내 이름은 임채연");
 		System.out.print("내 이름은 임채연");
 		System.out.printf("\n%s", "내 이름은 임채연");
+		System.out.println();
 		
 	}
 	
