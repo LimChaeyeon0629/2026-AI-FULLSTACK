@@ -31,7 +31,7 @@ day002
 
 		1. 다음에 해당하는 git 명령어를 쓰시오.
 		1) 변경된 파일추가  ( git add . )
-		2) 저장-메시지 남기기   ( git commit -m "" )
+		2) 저장-메시지 남기기   ( git commit -m " " )
 		3) 로컬에서 원격으로 업로드 ( git push origin main )
 		4) 원격에서 로컬로 최신내용가져오기 ( git pull origin main )
 
