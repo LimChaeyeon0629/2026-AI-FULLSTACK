@@ -45,6 +45,7 @@ public class DataTypeEx005 {
 		System.out.println("\n평균: " + avg); // 소숫점 14자릿수까지 출력
 											 // double 15자리에서 반올림
 		
+		System.out.print("\n평균: " + avg);
 		System.out.printf("\n총점: %d \n평균: %.2f", total, avg);
 	}
 
