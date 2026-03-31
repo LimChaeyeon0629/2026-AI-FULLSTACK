@@ -14,7 +14,7 @@ public class BankMain {
 		id = sc.next();
 		pw = sc.next();
 		age = sc.nextInt();
-		cash = sc.nextInt();
+		money = sc.nextInt();
 
 		System.out.println("WELCOME!");
 		System.out.println("=");
@@ -30,7 +30,8 @@ public class BankMain {
 
 		// 1. 추가
 		// 2. 조회 ~ 5. 삭제 추가 안 했으면 continue;
-		// 배열, 
+		// 9. 종료 break;
+		// 아이디 여러 개 입력 = 배열 사용
 		
 		for(;;) {
 			
