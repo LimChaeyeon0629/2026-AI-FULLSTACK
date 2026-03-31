@@ -55,3 +55,5 @@ day002
 		5. 다음을 10+3=13으로 출력하시오.
 		int a = 10, b = 3;
 		System.out.printf("%d + %d = %d", a, b, a+b);
+
+
