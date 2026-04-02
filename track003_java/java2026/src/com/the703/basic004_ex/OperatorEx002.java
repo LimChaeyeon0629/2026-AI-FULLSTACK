@@ -6,7 +6,7 @@ public class OperatorEx002 {
 		// () 값(++ -- + - * / %) 비교(> <) 조건(&& || ?:) 대입(=)
 //		q1-1 int형 변수 x가 3보다 크고 10보다 작을때 true인 조건식 
 		int x = 5;
-		System.out.println(x >= 3 && x < 10);
+		System.out.println(x > 3 && x < 10);
 		
 //		q1-2 char형 변수 ch가 'a' 또는 'A'일때   true인 조건식    
 		char ch = '\u0000';
@@ -19,6 +19,10 @@ public class OperatorEx002 {
 		System.out.println(ch >= 'A' && ch <= 'Z' || ch >= 'a' && ch <= 'z');
 		// A=65, B=66, C=67 ...
 		// &&가 ||보다 우선순위가 높음
+		
+		for(int i = 1; i < 3; i++) {
+			System.out.println(i);
+		}
 	}
 
 }

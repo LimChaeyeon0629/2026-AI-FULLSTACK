@@ -13,6 +13,7 @@ public class CastingEx003 {
 		System.out.println("3. " + "ABC".charAt(2)); // "C" 문자열
 		
 		// - 대문자입력받아서 소문자로 변경프로그램을 작성하시오.
+		
 		// 변수
 		Scanner sc = new Scanner(System.in);
 		char ch = '\u0000', lower = '\u0000'; // 초기화
