@@ -2,7 +2,7 @@ package com.the703.v1;
 
 import java.util.Scanner;
 
-public class BankProjectV1_lcy {
+public class BankProjectV2_lcy {
 
 	public static void main(String[] args) {
 
@@ -38,21 +38,16 @@ public class BankProjectV1_lcy {
 				balance = sc.nextInt();
 				
 			} else if (num == 2) { // [2] 🔍 계좌 조회
-				if (id == -1) {
-					System.out.println("계좌 추가 요망");
-					continue; 
-				}
+				BankTemp tempId = new BankTemp();
+				tempId.Id(); // BankTemp class에서 입력받은 tempId 호출
 				
-				int tid = -1, tpw = -1;
-				System.out.print("아이디 입력: ");
-				tid = sc.nextInt();
-				System.out.print("비밀번호 입력: ");
-				tpw = sc.nextInt();
+				BankTemp tempPw = new BankTemp();
+				tempId.Pw(); // BankTemp class에서 입력받은 tempPw 호출
 				
 				if (tid != id || tpw != pw) {
 					System.out.println("다시 입력해주세요");
-					continue;
 				} else if (tid == id && tpw == pw) {
+					/////////////////////////////////////////////////	
 					System.out.println("🔍 계좌 조회");
 					System.out.println("아이디: " + id);
 					System.out.println("비밀번호: " + pw);
@@ -60,12 +55,9 @@ public class BankProjectV1_lcy {
 				}
 				
 			} else if (num == 3) { // [3] 💵 입금하기
-				if (id == -1) {
-					System.out.println("계좌 추가 요망");
-					continue; 
-				}
-				
+				/////////////////////////////////////////////////	
 				int tid = -1, tpw = -1;
+				
 				System.out.print("아이디 입력: ");
 				tid = sc.nextInt();
 				System.out.print("비밀번호 입력: ");
@@ -73,8 +65,9 @@ public class BankProjectV1_lcy {
 				
 				if (tid != id || tpw != pw) {
 					System.out.println("다시 입력해주세요");
-					continue;
+					//continue; 
 				} else if (tid == id && tpw == pw) {
+					/////////////////////////////////////////////////	
 					System.out.print("입금: ");
 					money = sc.nextInt();
 					balance += money;
@@ -83,12 +76,9 @@ public class BankProjectV1_lcy {
 				}
 				
 			} else if (num == 4) { // [4] 💸 출금하기
-				if (id == -1) {
-					System.out.println("계좌 추가 요망");
-					continue; 
-				}
-				
+				/////////////////////////////////////////////////	
 				int tid = -1, tpw = -1;
+				
 				System.out.print("아이디 입력: ");
 				tid = sc.nextInt();
 				System.out.print("비밀번호 입력: ");
@@ -96,8 +86,9 @@ public class BankProjectV1_lcy {
 				
 				if (tid != id || tpw != pw) {
 					System.out.println("다시 입력해주세요");
-					continue;
+					//continue;
 				} else if (tid == id && tpw == pw) {
+					/////////////////////////////////////////////////	
 					System.out.print("출금: ");
 					money = sc.nextInt();
 					balance -= money;
@@ -106,12 +97,9 @@ public class BankProjectV1_lcy {
 				}
 				
 			} else if (num == 5) { // [5] 🗑️ 계좌 삭제
-				if (id == -1) {
-					System.out.println("계좌 추가 요망");
-					continue; 
-				}
-				
+				/////////////////////////////////////////////////	
 				int tid = -1, tpw = -1;
+				
 				System.out.print("아이디 입력: ");
 				tid = sc.nextInt();
 				System.out.print("비밀번호 입력: ");
@@ -119,8 +107,9 @@ public class BankProjectV1_lcy {
 				
 				if (tid != id || tpw != pw) {
 					System.out.println("다시 입력해주세요");
-					continue;
+					//continue;
 				} else if (tid == id && tpw == pw) {
+					/////////////////////////////////////////////////	
 					System.out.println("계좌를 삭제하시겠습니까? (y/n)");
 					answer = sc.next();
 					
@@ -144,4 +133,28 @@ public class BankProjectV1_lcy {
 		
 	}
 
+	private static void tempId() {
+		Scanner sc = new Scanner(System.in);
+		int tid = -1;
+		
+		System.out.print("아이디 입력: ");
+		tid = sc.nextInt();
+		
+		int id;
+		if (tid != id) {
+			System.out.println("다시 입력해주세요");
+			
+		}
+
+	private static void tempPw() {
+		Scanner sc = new Scanner(System.in);
+		int tpw = -1;
+
+		System.out.print("비밀번호 입력: ");
+		tpw = sc.nextInt();
+	}
+
 }
+
+
+//2~5메뉴사이에 겹치는 부분 줄이기- 도전~!
