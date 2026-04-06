@@ -1,0 +1,72 @@
+package com.the703.days;
+
+import java.util.Scanner;
+
+public class Day008 {
+
+	public static void main(String[] args) {
+		// 3-1) int형 변수 x가 60이상일 때 조건식
+		// x >= 60
+
+		// 3-2) char형 변수 ch가 'a' 또는 'A'일 때 true인 조건식
+		// ch == 'a' || ch == 'A'
+		
+		// 3-3) char형 변수 ch가 숫자('0'~'9')일 때 조건식
+		// ch >= '0' && ch <= '9'
+		
+		// 3-4) char형 변수 ch가 영문자(대문자)일 때 조건식
+		// ch >= 'A' && ch <= 'Z'
+		
+//		   패키지명 : com.the703.days
+//		   클래스명 :  Day008
+//		   출력내용 :  성적처리 프로그램입니다.
+//		   1. 총점 구하기
+//		   2. 평균 구하기
+//		   3. 평균이 60점이상이고  각과목이 40점 미만이면 아니라면 합격/ 아니면 불합격
+//		   4. 평균이 95점이상이면 장학생
+//		   5. 평균이  90점이상이면 수, 80점이상이면 우, 70점이상이면 미, 60점이상이면 양, 아니라면 가 
+//
+//		   학번 입력 > std111
+//		   국어점수 입력 > 100
+//		   수학점수 입력 > 100
+//		   영어점수 입력 > 99
+//		   ======================================================== 
+//		   학번   국어   영어   수학   총점   평균   합격여부   레벨   장학생
+//		   ======================================================== 
+//		   std111   100   100   99   299   99.67   합격   수   장학생
+		
+		Scanner sc = new Scanner(System.in);
+		int kor = -1, math = -1, eng =-1, total;
+		String num = "", pnp = "", i = "", lv = "";
+		double avg;
+		
+		System.out.print("학번 입력: ");
+		num = sc.next();
+
+		System.out.print("국어 점수 입력: ");
+		kor = sc.nextInt();
+
+		System.out.print("영어 점수 입력: ");
+		eng = sc.nextInt();
+
+		System.out.print("수학 점수 입력: ");
+		math = sc.nextInt();
+
+		total = (kor + math + eng);
+		avg = (double) total / 3;
+
+		pnp = (avg < 60 ? "불합격" : kor <= 40 || math <= 40 || eng <= 40 ? "불합격" : "합격");
+
+		i = (avg < 95 ? "" : "장학생");
+
+		lv = (avg >= 90 ? "수" : avg >= 80 ? "우" : avg >= 70 ? "미" : avg >= 60 ? "양" : "가");
+		
+		System.out.println("================================================");
+		System.out.println("학번\t국어\t영어\t수학\t총점\t평균\t합격여부\t레벨\t장학생");
+		System.out.println("================================================");
+		System.out.printf("%s\t%d\t%d\t%d\t%d\t%.2f\t%s\t%s\t%s",
+							num, kor, eng, math, total, avg, pnp, lv, i);
+		
+	}
+
+}
