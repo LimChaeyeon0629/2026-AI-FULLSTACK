@@ -133,25 +133,20 @@ public class BankProjectV2_lcy {
 		
 	}
 
-	private static void tempId() {
+	public static void tempIdpw(int id, int pw) {
 		Scanner sc = new Scanner(System.in);
-		int tid = -1;
+		int tid = -1, tpw = -1;
 		
 		System.out.print("아이디 입력: ");
 		tid = sc.nextInt();
-		
-		int id;
-		if (tid != id) {
-			System.out.println("다시 입력해주세요");
-			
-		}
-
-	private static void tempPw() {
-		Scanner sc = new Scanner(System.in);
-		int tpw = -1;
-
 		System.out.print("비밀번호 입력: ");
 		tpw = sc.nextInt();
+		
+		if (tid != id || tpw != pw) {
+			System.out.println("다시 입력해주세요");
+		} else {
+			
+		}
 	}
 
 }

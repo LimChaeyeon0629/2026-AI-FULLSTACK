@@ -40,7 +40,7 @@ public class BankProjectV1_lcy {
 			} else if (num == 2) { // [2] 🔍 계좌 조회
 				if (id == -1) {
 					System.out.println("계좌 추가 요망");
-					continue; 
+					continue;
 				}
 				
 				int tid = -1, tpw = -1;

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teamName</title>
+    <style>
+        *{ margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-image:linear-gradient(135deg, #f4ffb8 , #8affd0);
+        }
+
+        h1 {
+            border-left:10px solid #123456;
+            border-bottom:1px solid #123456;
+            margin:30px 0;
+            padding-left:20px;
+        }
+
+        .container { 
+            width:50%;
+            margin:50px auto;
+            border-radius: 10px;
+            background-color:#fff;
+            padding:20px;
+            box-shadow:0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* overflow: hidden → 컨텐츠 다 감싸기 */
+        }
+
+        .f1 { float: left; } /* 1. 배치 - float: left */
+        .f2 { float: right; } /* 2. 배치 - float: right */
+        
+        ul.team {
+            width: 40%;
+            list-style: none;
+            background-color: #333;
+        }
+        
+        ul.team li {
+            float: left;
+            margin: 10px;
+        }
+
+        ul.team li img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #ff6600;
+            /* 전환효과(transition) transform, border-color 각각 0.8s */
+            transition: transform 0.8s, border-color 0.8s;
+        }
+
+        .one :hover { transform: translateY(-20px); border-color: #00ccff; } /* 마우스 오버 시 위로 점프 */
+        .two :hover { transform: rotateZ(20deg); border-color: #33cc33; } /* 마우스 오버 시 좌우 흔들기 */
+        .three :hover { transform: rotateX(180deg); border-color: #ff33aa; } /* 마우스 오버 시 X축 뒤집기 */
+        .four :hover { transform: rotateY(180deg); border-color: #ffaa00; } /* 마우스 오버 시 Y축 뒤집기 */
+        .five :hover { transform: rotate(360deg) scale(1.2); border-color: #6600ff; } /* 마우스 오버 시 빙글빙글 회전*/
+
+        /* nth-child() 사용 (마우스 오버 시 X축 뒤집기)
+        ul.team li:nth-child(3) img:hover {
+            transform: rotateX(180deg);
+            border-color: #ff33aa;
+        } */
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>teamName</h1>
+
+        <ul class="team f1">
+            <li class="one"><img src="./img/one.png" alt="1번 사진"></li>
+            <li class="two"><img src="./img/two.png" alt="2번 사진"></li>
+            <li class="three"><img src="./img/three.png" alt="3번 사진"></li>
+            <li class="four"><img src="./img/four.png" alt="4번 사진"></li>
+            <li class="five"><img src="./img/five.png" alt="5번 사진"></li>
+        </ul>
+
+        <ul class="team f2">
+            <li><img src="https://picsum.photos/100?random=1" alt="얼굴1"></li>
+            <li><img src="https://picsum.photos/100?random=2" alt="얼굴2"></li>
+            <li><img src="https://picsum.photos/100?random=3" alt="얼굴3"></li>
+            <li><img src="https://picsum.photos/100?random=4" alt="얼굴4"></li>
+            <li><img src="https://picsum.photos/100?random=5" alt="얼굴5"></li>
+        </ul>
+    </div>
+</body>
+</html>
