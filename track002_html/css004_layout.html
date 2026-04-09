@@ -65,6 +65,51 @@
             bottom: 0;
             right: 10px;
         }
+
+        .di .item {
+            background-color: green;
+            text-align: center;
+        }
+
+        div.di p.item a {
+            color: white;
+            display: block;
+            width: 80%;
+            background-color: red;
+            margin: 10px 0;
+        }
+
+        /* a태그 inline 을 display:block - 인라인을 블록 (box) */
+        .di .item a:last-child {
+            display: none; /* 화면 상에 안 보이게 숨기기 (h태그에서 주의) */
+        }
+
+        .d1 {
+            background-color: orange;
+            text-align: center; /* inline은 박스에 */
+            margin: 10px 0;
+            padding: 10px;
+        }
+        
+        .d1 li {
+            background-color:red;
+            display: inline; /* 가로 방향으로 */
+            width: 100px; /* X */
+        } /* display: inline → block을 inline으로 - 한 줄로 배치 */
+        
+        .d2 {
+            background-color: blue;
+            text-align: center; /* inline은 박스에 */
+            margin: 10px 0;
+            padding: 10px;
+        }
+        
+        .d2 li {
+            background-color:red;
+            color: white;
+            display: inline-block; /* 가로 방향으로 */
+            width: 100px; /* width 사이즈 줄 수 있음 */
+        } /* display: inline-block → */
         
     </style>
 </head>
@@ -102,6 +147,31 @@
         <p>종류 : static(기본값), relative(박스 위치o), absolute(박스 위치x), 
             fixed(브라우저 고정), sticky(스크롤 할 때 특정지점에 붙기) </p>
         <p>부모 : relative(공간 확보) / 자식 : absolute(원하는 위치 배치) - 좌표</p>
+    </div>
+
+    <div class="container di">
+        <h3>5. 배치(3) - display </h3>
+        <p>속성 바꾸기 : display:block, inline, inline-block, none </p>
+        <p>배치 - 박스들이 어떻게 놓일지 정하는 규칙 (정리 도우미) display:flex </p>
+        <p class="item">
+            <a href="https://www.naver.com" target="_blank">Naver</a> <!-- display:block { box } 링크확대 -->
+            <a href="https://www.daum.com" target="_blank">Daum</a> <!-- display:none { 숨기기 } -->
+        </p>
+
+        <!-- display: inline (콘텐츠)-->
+        <ul class="d1">
+            <li>APPLE</li>
+            <li>BANANA</li>
+            <li>COCONUT</li>
+        </ul>
+        
+        <!-- display: inline-block (콘텐츠 - width O)-->
+        <ul class="d2">
+            <li>APPLE</li>
+            <li>BANANA</li>
+            <li>COCONUT</li>
+        </ul>
+
     </div>
 </body>
 
