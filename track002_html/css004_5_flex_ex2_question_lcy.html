@@ -57,10 +57,10 @@
     /* Q7. .banner : flex 컨테이너, 중앙정렬, 높이 300px,
     배경 #ff6600, 글자색 흰색, 글자크기 30px */
     .banner {
-      /* display: flex; */
+      display: flex;
       height: 300px;
-      text-align: center;
-      line-height: 300px;
+      justify-content: center; /* 가로 정렬 */
+      align-items: center; /* 세로 정렬 */
       background-color: #ff6600;
       color: white;
       font-size: 30px;
@@ -71,7 +71,7 @@
     .cards {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 20px; /* 간격 지정 */
       width: 80%;
       margin: 40px auto;
     }
@@ -79,12 +79,15 @@
     /* Q9. .card : flex 1 1 calc(33% - 20px), 배경 흰색, 모서리둥글게 8px,
                 그림자 효과, 안쪽여백 20px, 중앙정렬(text-align center) */
     .card {
-      flex: 1 1 calc(25% - 20px);
+      flex: 1 1 calc(33% - 60px);
+      /* 앞1 : 카드가 남으면 커질 수도 있음 */
+      /* 뒷1 : 공간 부족 시 줄어들 수 있음 */
+      /* calc(카드의 기본 크기 3칸(33%) - 60px(왼쪽패딩:20px, 오른쪽패딩:20px, 갭:20px)) */
       background-color: white;
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       padding: 20px;
-       text-align: center;
+      text-align: center;
     }
 
     /* Q10. .layout : flex 컨테이너, 너비 80%, 중앙정렬(margin auto),
@@ -98,14 +101,14 @@
 
     /* Q11. .sidebar : flex 1, 배경 #eee, 안쪽여백 20px */
     .sidebar {
-      flex: 1;
+      flex: 1; /* 전체 공간의 1만큼 */
       background-color: #eee;
       padding: 20px;
     }
 
     /* Q12. .content : flex 3, 배경 흰색, 안쪽여백 20px, 그림자 효과 */
     .content {
-      flex: 3;
+      flex: 3; /* 전체 공간의 3만큼 */
       background-color: white;
       padding: 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -114,8 +117,9 @@
     /* Q13. footer : flex 컨테이너, 중앙정렬, 배경 #333,
                       글자색 흰색, 안쪽여백 20px */
     footer {
-      /* display: flex; */
-      text-align: center;
+      display: flex;
+      justify-content: center; /* 가로 정렬 */
+      align-items: center; /* 세로 정렬 */
       background-color: #333;
       color: white;
       padding: 20px;

@@ -34,64 +34,86 @@ public class For2Ex008_2 {
 //		}
 		
 		
-		
-		for(int ch = 1; ch <= 6; ch++)
-		{
-			for(int i = ch; i <= 6; i++) { if(ch+i==6) { System.out.println(ch+"+"+i+"="+6); } 
+		// for
+		for(int ch = 1; ch <= 6; ch++) {
+			for(int i = ch; i <= 6; i++) { 
+				if(ch+i==6) { 
+					System.out.println(ch + "+" + i + "=" + 6); 
+				} 
+			}
 		}
 		
+		// while
+		System.out.println();
+		int ch = 1;
 		
-//		for(int n = 6; n >= 1; n--) // 두번째 주사위 n
-//		{
-//			for(int i = n; i <= 6; i++) // 첫번째 주사위 i
-//			{
-//				if(n+i==6) { System.out.println(n+"+"+i+"="+6); }
-//			}
-//		}
+		while(ch <= 6) {
+			int i = ch;
+			
+			while(i <= 6) {
+				if(ch+i==6) { System.out.println(ch + "+" + i + "=" + 6); } i++;
+			} ch++;
+		}
+		
+		// do while
+		System.out.println();
+		int ch1 = 1;
+		
+		do {
+			int i = ch1;
+			
+			do {
+				if(ch1+i==6) { System.out.println(ch + "+" + i + "=" + 6); } i++;
+			} while (i <= 6); ch1++;
+		} while(ch1 <= 6);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
 		// for
-//		for(int i = 1; i <= 6; i++) {
-//			for(int j = 6; j >= 1; j--) {
-//				if(i+j == 6) {
-//					System.out.println(i+ "+" + j + "=" + 6);
-//				}
-//			}
-//		}
-//
-//			
-//			
-//		// while
-//		int i = 1, j = 6;
-//		
-//		while(i <= 6)
-//		{
-//			while(j >= 1) {
-//				if(i+j == 6) {
-//					System.out.println(i+ "+" + j + "=" + 6);
-//				}
-//			}
-//			j--;
-//		}
-//		i++;
-//		
-//		
-//		
-//		// do while
-//		int i1 = 1, j1 = 6;
-//		
-//		do {
-//			do {
-//				if(i1+j1 == 6) { System.out.println(i1+ "+" + j1 + "=" + 6); }
-//			j1--;
-//			}
-//			while(j1 >= 1);
-//		
-//		i1++;
-//		}
-//		while(i1 <= 6);
-//
+		System.out.println();
+		for(int i = 1; i <= 6; i++) {
+			for(int j = 6; j >= 1; j--) {
+				if(i+j == 6) { System.out.println(i + "+" + j + "=" + 6); }
+			}
 		}
+
+			
+			
+		// while
+		System.out.println();
+		int i = 1;
+		
+		while(i <= 6) {
+			int j = 6;
+			
+			while(j >= 1) {
+				if(i+j == 6) { System.out.println(i + "+" + j + "=" + 6); } j--;
+			} i++;
+		}
+		
+		
+		
+		// do while
+		System.out.println();
+		int k = 1;
+		
+		do {
+			int l = 6;
+			
+			do {
+				if(k+l == 6) { System.out.println(k+ "+" + l + "=" + 6); } l--;
+			} while(l >= 1); k++;
+		} while(k <= 6);
+
 	}
 }

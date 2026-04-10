@@ -2,7 +2,7 @@ package com.the703.v1;
 
 import java.util.Scanner;
 
-public class BankProjectV1_lcy {
+public class BankProjectV2 {
 
 	public static void main(String[] args) {
 

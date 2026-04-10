@@ -2,14 +2,14 @@ package com.the703.v1;
 
 import java.util.Scanner;
 
-public class BankProjectV2_lcy {
+public class BankProjectV3 {
 
 	public static void main(String[] args) {
 
 		// 변수
 		Scanner sc = new Scanner(System.in);
-		int num = -1, id = -1, pw = -1, balance = -1, money = -1;
-		String answer;
+		int num = -1, id = -1, pw = -1, balance = -1, money = -1, tid = -1, tpw = -1;
+		String answer, temp;
 		
 		// 입력
 		System.out.println("🌟💰 WELCOME TO BANK SYSTEM 💰🌟");
@@ -38,16 +38,32 @@ public class BankProjectV2_lcy {
 				balance = sc.nextInt();
 				
 			} else if (num == 2) { // [2] 🔍 계좌 조회
-				BankTemp tempId = new BankTemp();
-				tempId.Id(); // BankTemp class에서 입력받은 tempId 호출
+				System.out.print("아이디 입력: ");
+				tid = sc.nextInt();
+				System.out.print("비밀번호 입력: ");
+				tpw = sc.nextInt();
 				
-				BankTemp tempPw = new BankTemp();
-				tempId.Pw(); // BankTemp class에서 입력받은 tempPw 호출
+				/*
+				 1. 계좌 추가
+				 2. [2~5]
+				 	2-1) 사용자 맞는지 여부
+				 	2-2) 조회면 조회기능, 입금이면 입력입금, 출금이면 입력출금, 삭제면 입력삭제
+				 3. 종료
+				 
+				 ver-1
+				 조건문: if, switch
+				 반복문: for(시작; 종료; 변화), while(조건), do while(한 번은 무조건 실행 후 나중에 조건)
+				 */
+			
+				
+//				temp = tid != id || tpw != pw ? "다시 입력해주세요"
+//						: tid == id && tpw == pw ? "🔍 계좌 조회" 
+//								: "";
 				
 				if (tid != id || tpw != pw) {
 					System.out.println("다시 입력해주세요");
+					continue;
 				} else if (tid == id && tpw == pw) {
-					/////////////////////////////////////////////////	
 					System.out.println("🔍 계좌 조회");
 					System.out.println("아이디: " + id);
 					System.out.println("비밀번호: " + pw);
@@ -55,51 +71,26 @@ public class BankProjectV2_lcy {
 				}
 				
 			} else if (num == 3) { // [3] 💵 입금하기
-				/////////////////////////////////////////////////	
-				int tid = -1, tpw = -1;
-				
 				System.out.print("아이디 입력: ");
 				tid = sc.nextInt();
 				System.out.print("비밀번호 입력: ");
 				tpw = sc.nextInt();
 				
-				if (tid != id || tpw != pw) {
-					System.out.println("다시 입력해주세요");
-					//continue; 
-				} else if (tid == id && tpw == pw) {
-					/////////////////////////////////////////////////	
-					System.out.print("입금: ");
-					money = sc.nextInt();
-					balance += money;
-					System.out.println("💵 입금완료");
-					System.out.println("잔액: " + balance);
-				}
+				temp = tid != id || tpw != pw ? "다시 입력해주세요"
+						 : tid == id && tpw == pw ? "\n 입금: " + (money = sc.nextInt()) + (balance += money) + "\n💵 입금완료" + "\n잔액: " + balance
+						 : "";
 				
 			} else if (num == 4) { // [4] 💸 출금하기
-				/////////////////////////////////////////////////	
-				int tid = -1, tpw = -1;
-				
 				System.out.print("아이디 입력: ");
 				tid = sc.nextInt();
 				System.out.print("비밀번호 입력: ");
 				tpw = sc.nextInt();
 				
-				if (tid != id || tpw != pw) {
-					System.out.println("다시 입력해주세요");
-					//continue;
-				} else if (tid == id && tpw == pw) {
-					/////////////////////////////////////////////////	
-					System.out.print("출금: ");
-					money = sc.nextInt();
-					balance -= money;
-					System.out.println("💵 출금완료");
-					System.out.println("잔액: " + balance);
-				}
+				temp = tid != id || tpw != pw ? "다시 입력해주세요"
+						 : tid == id && tpw == pw ? "\n출금: " + (money = sc.nextInt()) + (balance -= money) + "\n💵 출금완료" + "\n잔액: " + balance
+						 : "";
 				
 			} else if (num == 5) { // [5] 🗑️ 계좌 삭제
-				/////////////////////////////////////////////////	
-				int tid = -1, tpw = -1;
-				
 				System.out.print("아이디 입력: ");
 				tid = sc.nextInt();
 				System.out.print("비밀번호 입력: ");
@@ -130,26 +121,32 @@ public class BankProjectV2_lcy {
 				continue;
 			}
 		}
-		
-	}
 
-	public static void tempIdpw(int id, int pw) {
-		Scanner sc = new Scanner(System.in);
-		int tid = -1, tpw = -1;
 		
-		System.out.print("아이디 입력: ");
-		tid = sc.nextInt();
-		System.out.print("비밀번호 입력: ");
-		tpw = sc.nextInt();
+//				BankTemp tempId = new BankTemp();
+//				tempId.Id(); // BankTemp class에서 입력받은 tempId 호출
+//				
+//				BankTemp tempPw = new BankTemp();
+//				tempId.Pw(); // BankTemp class에서 입력받은 tempPw 호출
 		
-		if (tid != id || tpw != pw) {
-			System.out.println("다시 입력해주세요");
-		} else {
-			
-		}
-	}
 
+//	public static void tempIdpw(int id, int pw) {
+//		Scanner sc = new Scanner(System.in);
+//		int tid = -1, tpw = -1;
+//		
+//		System.out.print("아이디 입력: ");
+//		tid = sc.nextInt();
+//		System.out.print("비밀번호 입력: ");
+//		tpw = sc.nextInt();
+//		
+//		if (tid != id || tpw != pw) {
+//			System.out.println("다시 입력해주세요");
+//		} else {
+//			
+//		}
+//	}
+
+	}
 }
-
 
 //2~5메뉴사이에 겹치는 부분 줄이기- 도전~!
