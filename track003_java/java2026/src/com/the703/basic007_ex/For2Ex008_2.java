@@ -37,9 +37,7 @@ public class For2Ex008_2 {
 		// for
 		for(int ch = 1; ch <= 6; ch++) {
 			for(int i = ch; i <= 6; i++) { 
-				if(ch+i==6) { 
-					System.out.println(ch + "+" + i + "=" + 6); 
-				} 
+				if(ch+i==6) { System.out.println(ch + "+" + i + "=" + 6); } 
 			}
 		}
 		
@@ -63,57 +61,46 @@ public class For2Ex008_2 {
 			int i = ch1;
 			
 			do {
-				if(ch1+i==6) { System.out.println(ch + "+" + i + "=" + 6); } i++;
+				if(ch1+i==6) { System.out.println(ch1 + "+" + i + "=" + 6); } i++;
 			} while (i <= 6); ch1++;
 		} while(ch1 <= 6);
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// for
-		System.out.println();
-		for(int i = 1; i <= 6; i++) {
-			for(int j = 6; j >= 1; j--) {
-				if(i+j == 6) { System.out.println(i + "+" + j + "=" + 6); }
-			}
-		}
-
-			
-			
-		// while
-		System.out.println();
-		int i = 1;
-		
-		while(i <= 6) {
-			int j = 6;
-			
-			while(j >= 1) {
-				if(i+j == 6) { System.out.println(i + "+" + j + "=" + 6); } j--;
-			} i++;
-		}
-		
-		
-		
-		// do while
-		System.out.println();
-		int k = 1;
-		
-		do {
-			int l = 6;
-			
-			do {
-				if(k+l == 6) { System.out.println(k+ "+" + l + "=" + 6); } l--;
-			} while(l >= 1); k++;
-		} while(k <= 6);
+//		// for
+//		System.out.println();
+//		for(int i = 1; i <= 6; i++) {
+//			for(int j = 6; j >= 1; j--) {
+//				if(i+j == 6) { System.out.println(i + "+" + j + "=" + 6); }
+//			}
+//		}
+//
+//			
+//			
+//		// while
+//		System.out.println();
+//		int i = 1;
+//		
+//		while(i <= 6) {
+//			int j = 6;
+//			
+//			while(j >= 1) {
+//				if(i+j == 6) { System.out.println(i + "+" + j + "=" + 6); } j--;
+//			} i++;
+//		}
+//		
+//		
+//		
+//		// do while
+//		System.out.println();
+//		int k = 1;
+//		
+//		do {
+//			int l = 6;
+//			
+//			do {
+//				if(k+l == 6) { System.out.println(k+ "+" + l + "=" + 6); } l--;
+//			} while(l >= 1); k++;
+//		} while(k <= 6);
 
 	}
 }
