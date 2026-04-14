@@ -12,7 +12,7 @@ public class ArrayNewEx001 {
 //	    3. for + length 로 출력
 		
 		double [] arr = new double[5];
-		double data = 1.0;
+		double data = 1.0; // 초기값 지정
 
 		for (int i = 0; i < arr.length; i++) {
 			arr[0] = data; // arr[0] arr[1] arr[2] arr[3] arr[4]
