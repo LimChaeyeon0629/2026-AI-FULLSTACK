@@ -13,11 +13,11 @@ public class MethodEx006 {
 		return total/3;
 	}
 		
-//	public static String process_pass(float avg, int kor, int eng, int math) {
-//		String [] pass = new String[] { "", "", "" };
-//		pass = avg <= 60 ? "불합격" : kor > 40 && eng > 40 && math > 40 ? "합격" : "불합격";
-//		return pass;
-//	}
+	public static String process_pass(float avg, int kor, int eng, int math) {
+		String [] pass = new String[] { "", "", "" };
+		pass = avg <= 60 ? "불합격" : kor > 40 && eng > 40 && math > 40 ? "합격" : "불합격";
+		return pass;
+	}
 	
 	public static String process_scholar(float avg) {
 		String scholar = "";

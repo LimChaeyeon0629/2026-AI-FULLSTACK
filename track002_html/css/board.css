@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.myhidden { /* 숨기기 처리 */
+.myhidden {
     position: absolute; left: -9999px;
     width: 1px; height: 1px;
     overflow: hidden;
@@ -14,8 +14,8 @@
     overflow: hidden;
 }
 
-.navbar {
-    background: linear-gradient(135deg, #000000, #ddd);
+nav {
+    background: linear-gradient(135deg, rgb(14, 67, 80), #fff);
 }
 
 .carousel-item img {
@@ -32,7 +32,7 @@
 }
 
 body {
-    background-image: url(./img/ruslansikunov-chamomile-9922901_1920.jpg);
+    background-image: url(./ruslansikunov-chamomile-9922901_1920.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -40,29 +40,28 @@ body {
 }
 
 /* transform + transition */
-.container {
+..container {
     transition: all 0.8s;
 }
 
-/* .container:hover {
+..container:hover {
     transform: scale(0.95);
-} */
+}
 
+.navbar {
+    background: linear-gradient(135deg, #000000, #ddd);
+}
+
+/* 각 디바이스에 맞게 내가 원하는 사이즈 지정해서 css 적용 */
 @media (max-width: 575px) {
     .myvisual { display: none; }
+
 }
 
 .badge {
     text-decoration: none;
 }
 
-/* .cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 80%;
-} */
-
-/* .card { 
+.card { 
     flex: 1 1 calc(33% - 60px);
-} */
+}

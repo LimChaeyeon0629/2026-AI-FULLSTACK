@@ -21,20 +21,27 @@ public class MethodEx004 {
 	
 	public static int myadd(int num1, int num2) { return num1+num2; } // 5. 10+20
 	
+//	ver-1
 	public static String myban(char ch) { // 6. 반(노랑조/주황조)
 		if (ch == 'A') { return "노랑조"; }
 		else if (ch == 'B') { return "주황조"; }
 		else { return ""; }
 	}
+//	ver-2
+//	public static String myban(char ch) { return ch == 'A' ? "노랑조" : ch == 'B' ? "주황조" : ""; }
 	
 	public static String stdId(int id) { return "G" + id; } // 7. 당신의 학번은?
 	
-	public static int stdAvg(int avg) { // 8. 당신의 평균은?
+//	ver-1
+	public static char stdAvg(int avg) { // 8. 당신의 평균은?
 		if(avg>=90) { return 'A'; }
 		else if(avg>=80) { return 'B'; }
 		else if(avg>=70) { return 'C'; }
 		else { return 'D'; }
 	}
+//	ver-2
+//	public static char stdAvg(int avg) { return avg>=90 ? 'A' : avg>=80 ? 'B' : avg>=70 ? 'C' : 'D'; }
+//	public static char stdAvg(int avg) { return avg<70 ? 'D' : avg<80 ? 'C' : avg<90 ? 'B' : avg<=100 ? 'A' : ' '; }
 	
 
 	public static void main(String[] args) {

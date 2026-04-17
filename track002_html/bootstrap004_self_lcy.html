@@ -16,6 +16,11 @@
     <!-- Q1. h1내용바꾸기 / a태그 들어가있는 logo이름 / nav 좋아하는색상 -->
     <header>
         <h1 class="myhidden">채연 포트폴리오</h1> <!-- 숨김처리 -->
+        <div class="myvisual p-5 bg-primary text-white text-center">
+            <h1>First Template</h1>
+            <p>Lorem ipsum...</p>
+        </div>
+        
         <nav class="navbar navbar-expand-sm navbar-dark">
             <h2 class="myhidden">주메뉴</h2> <!-- 숨김처리 -->
             <div class="container-fluid">
@@ -26,13 +31,13 @@
                 <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav ms-auto"> <!-- me-auto -->
                     <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">About Me</a>
+                    <a class="nav-link text-dark" href="javascript:void(0)">About Me</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Gallery</a>
+                    <a class="nav-link text-dark" href="javascript:void(0)">Gallery</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Contact</a>
+                    <a class="nav-link text-dark" href="javascript:void(0)">Contact</a>
                     </li>
                 </ul>
                 <!-- <form class="d-flex">
@@ -50,44 +55,42 @@
         <!-- 슬라이딩 윈도우 -->
         <!-- Carousel -->
         <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-        </div>
-
-        <!-- The slideshow/carousel -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img src="./img/portfolio1.jpg" alt="portfolio1" class="d-block w-50 mx-auto" >
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
             </div>
-            <div class="carousel-item">
-            <img src="./img/portfolio2.jpg" alt="portfolio2" class="d-block w-50 mx-auto">
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="./img/portfolio1.jpg" alt="portfolio1" class="d-block w-50 mx-auto" >
+                </div>
+                <div class="carousel-item">
+                <img src="./img/portfolio2.jpg" alt="portfolio2" class="d-block w-50 mx-auto">
+                </div>
+                <div class="carousel-item">
+                <img src="./img/portfolio3.jpg" alt="portfolio3" class="d-block w-50 mx-auto">
+                </div>
             </div>
-            <div class="carousel-item">
-            <img src="./img/portfolio3.jpg" alt="portfolio3" class="d-block w-50 mx-auto">
-            </div>
-        </div>
-
-        <!-- Left and right controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
     </section>
     
     <!-- info -->
     <section>
-        <div class="bg-white p-5 m-3">
+        <div class="p-5 m-3">
             <div class="container p-5">
-                <h3 class="text-center">About me</h3>
-        
-                <div class="row shadow-lg p-4 mb-4 m-3">
+                <h3 class="text-center text-white p-3">About me</h3>
+
+                <div class="row bg-white rounded shadow-lg p-4 mb-4 m-10">
+                    <!-- 소개 -->
                     <div class="col-sm-4">
                         <p><img src="./img/one.png" alt="LimChaeYeon" class="w-50"></p>
                         <h4>Lim Chae Yeon</h4>
@@ -139,12 +142,13 @@
 
     <!-- portfolio -->
     <section>
-        <div class ="bg-white p-5 m-3">
+        <div class ="p-5 m-3">
             <h3 class="text-center">Portfolio</h3>
-
             <div class="container p-5">
-                <div class="row shadow-lg p-4 mb-4 p-5 bg-white rounded">
-                    <div class="col-sm-4">
+
+                <div class="cards row">
+                    <!-- 포트폴리오 동영상 -->
+                    <div class="card col-sm-4 bg-white shadow-lg p-4 mb-4 p-5 bg-white rounded">
                         <h4>포트폴리오 동영상</h4>
                         
                         <!-- 동영상 -->
@@ -155,7 +159,8 @@
                         <button class="btn btn-danger">포트폴리오 더보기</button>
                     </div>
 
-                    <div class="col-sm-4">
+                    <!-- spring boot + jpa + react portfolio -->
+                    <div class="card col-sm-4 bg-white shadow-lg p-4 mb-4 p-5 bg-white rounded">
                         <h4>spring boot + jpa + react portfolio</h4>
                         <ul>
                             <li><strong>Spring Boot + JPA</strong> 기반의 백엔드와 데이터 처리 로직 구현</li>
@@ -163,7 +168,9 @@
                             <li><strong>JWT 인증</strong>과 <strong>CI/CD 자동 배포</strong>로 보안성과 효율성 강화</li>
                         </ul>
                     </div>
-                    <div class="col-sm-4">
+
+                    <!-- 기술스택 -->
+                    <div class="card col-sm-4 bg-white shadow-lg p-4 mb-4 p-5 bg-white rounded">
                         <h4>기술스택</h4>
                         <ul>
                             <li>Spring Boot 2.7.14</li>
@@ -178,18 +185,67 @@
                             <li>GitHub Actions</li>
                         </ul>
                     </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MultiBoard -->
+    <section>
+        <div class ="bg-white p-5 m-3"> <!-- 큰 배경 -->
+            <h3 class="text-center">MultiBoard</h3>
+
+            <div class="container p-5">
+                <div class="container bg-white shadow-lg p-4 mb-4"> <!-- 그림자 배경 -->
+                    <div class = "container my-5"> <!-- 본문 -->
+                        <!-- borad 목록 -->
+                        <table class="table table-striped table-bordered table-hover table-secondary">
+                            <caption> BOARD 목록 </caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">NO</th>
+                                    <th scope="col">TITLE</th>
+                                    <th scope="col">WRITER</th>
+                                    <th scope="col">DATE</th>
+                                    <th scope="col">HIT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>첫번째 글쓰기</td>
+                                    <td>First</td>
+                                    <td>2026.04.17</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>첫번째 글쓰기</td>
+                                    <td>First</td>
+                                    <td>2026.04.17</td>
+                                    <td>1</td>      
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- 글쓰기 폼 -->
+                        <div class="text-end">
+                            <a href="#" title="글쓰기 폼" class="badge rounded-pill bg-primary p-3">글쓰기</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- contact -->
-    <section class="p-5 mybg text-white">
+    <section class="mybg bg-white p-5 text-black">
+        <!-- 제목 부제목 -->
         <h3 class="text-center">Contact Me</h3>
         <p class="text-center">열정적인 개발자 임채연에게 문의 주세요!</p>
 
-        <div class="container shadow-lg p-4 mb-4">
-            <form action="/action_page.php">
+        <div class="container shadow-lg p-4 mb-4"> <!-- 그림자 배경 -->
+            <form action="/action_page.php"> <!-- 본문 -->
             <div class="mb-3 mt-3">
                 <label for="email" class="form-label">제목:</label>
                 <input type="email" class="form-control" id="email"
@@ -200,14 +256,16 @@
                 <label for="comment">Comments:</label>
                 <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
             </div>
-
-            <button type="submit" class="btn btn-info ">메일 보내기</button>
+            <div class="text-end">
+            <!-- <button type="submit" class="btn btn-info ">메일 보내기</button> -->
+            <a href="#" title="글쓰기 폼" class="badge rounded-pill bg-primary p-3">메일 보내기</a>
+            </div>
             </form>
         </div>
     </section>
 
     <!-- footer -->
-    <footer class="text-center bg-dark text-white p-4">
+    <footer class="text-center bg-dark text-white p-5">
         © copyrights limchaeyeon 2026 all. rights reserved
     </footer>
 </body>
