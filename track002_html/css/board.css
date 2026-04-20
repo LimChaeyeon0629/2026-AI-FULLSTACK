@@ -62,6 +62,3 @@ body {
     text-decoration: none;
 }
 
-.card { 
-    flex: 1 1 calc(33% - 60px);
-}
