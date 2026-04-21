@@ -36,7 +36,6 @@ public class ClassEx001 {
 [METHOD:정보] Student001.class, ClassEx001.class #1
 ------------------------------------
 [HEAP:동적]           		 				|  [STACK:지역]
-
 1번지: Student001 {							← s1 [1번지]
  name=null, no=0, kor=0, eng=0, math=0
  info()

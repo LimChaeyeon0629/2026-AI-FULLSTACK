@@ -1,8 +1,10 @@
 @charset "UTF-8";
 
 
+* { margin: 0; padding: 0; }
 
-.myhidden { /* 숨기기 처리 */
+/* 숨기기 처리 */
+.myhidden {
     position: absolute; left: -9999px;
     width: 1px; height: 1px;
     overflow: hidden;
@@ -15,10 +17,6 @@
     height: 300px;
     overflow: hidden;
 }
-
-/* .navbar {
-    background: linear-gradient(135deg, #000000, #ddd);
-} */
 
 .carousel-item img {
     object-fit: fill;
@@ -34,6 +32,7 @@
 }
 
 body {
+    font-family: 'Arial, sans-serif';
     background-image: url(./img/ruslansikunov-chamomile-9922901_1920.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -42,12 +41,38 @@ body {
 }
 
 header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-background-color: #000000;
-color: white;
-padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    color: white;
+    padding: 15px 30px;
+}
+
+/* MyWebsite */
+header .logo { 
+    font-size: 20px;
+    font-weight: bold;
+}
+
+header nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    /* margin: 0;
+    padding: 0; */
+}
+
+/* Q5. header nav a : 글자색 흰색, 밑줄 제거, 글자굵게 */
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Q6. header nav a:hover : 글자색 #ff6600 */
+header a:hover {
+    color: #ff6600;
 }
 
 /* transform + transition */
