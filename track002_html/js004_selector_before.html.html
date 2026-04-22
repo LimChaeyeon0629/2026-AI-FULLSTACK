@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeList vs HTMLCollection</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+    .added {
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h2>과일 목록</h2>
+  <ul id="fruits">
+    <li class="fruit">Apple</li>
+    <li class="fruit">Banana</li>
+    <li class="fruit">Cherry</li>
+  </ul>
+
+  <button id="addFruit">과일 추가하기</button>
+  <button id="highlight">첫 번째 과일 강조하기</button>
+
+  <script>
+    window.addEventListener("load", function() {
+      // HTMLCollection (동적 / 실시간)   id + tagName
+      const fhtml = document.getElementsByClassName("fruit");
+      // NodeList       (정적) 
+      const fnode = document.querySelectorAll(".fruit");
+
+      // 버튼 이벤트
+      document.getElementById("addFruit").onclick = function() {
+        const newli = document.createElement("li"); // createElement 상수 리스트 태그 생성
+        newli.textContent = "Strawberry";           // 태그 안에 콘텐츠
+        newli.classList.add("fruit", "added");      // #2. css 추가되는지 확인 (css들) fruit, added
+        document.getElementById("fruits").appendChild(newli); // #1. 딸기 추가되는지 확인
+
+        // const 변수 = document.createElement("li");
+        // 변수.textContent = "콘텐츠";
+        // 변수.classList.add("li class", "added"); 
+        // document.getElementsById("id값").appendChild(변수);
+
+        console.log(fhtml, fhtml.length); //   (동적)
+        console.log(fnode, fnode.length); // 3 (정적) nodelist는 갯수 고정
+      };
+
+      document.getElementById("highlight").onclick = function() {
+        let frus = document.getElementById("fruits")
+        frus[0].style.backgroundColor = "red";
+      };
+    });
+  </script>
+</body>
+</html> 
