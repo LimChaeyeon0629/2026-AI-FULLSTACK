@@ -47,11 +47,10 @@
       
       // Q3: result 영역 문자열 알림창 → 이름으로 수정
       // document.getElementById("test3").onclick = () => {
-        //   alert("현재 내용: " + result.innerHTML);
+      //   alert("현재 내용: " + result.innerHTML);
       //   const name = prompt("새로운 텍스트를 입력하세요:");
       //   if (name) result.innerHTML = name;
       // };
-      
       // Q3: result 영역 문자열 알림창 → 이름으로 수정
       document.getElementById("test3").onclick = function() {
         let target = document.querySelector(".result_target");
@@ -65,17 +64,19 @@
       test4.onmouseout = function() { this.style.backgroundColor = "black"; };
       
       // Q5: 글자 크게/작게 토글
-      document.getElementById("test5").onclick = () => {
-        result.classList.toggle("big");
-      };
-      
+      // document.getElementById("test5").onclick = () => {
+      //   result.classList.toggle("big");
+      // };
       // Q5: 글자 크게/작게 토글
       const result = document.querySelector(".result_target");
       document.getElementById("test5").onclick = function() {
         this.style.fontSize = "10px";
       };
       
-      // <input type="button" value="숨기기/보이기" id="test6" class="btn btn-success" />
+      // Q6: 숨기기/보이기 토글
+      // document.getElementById("test6").onclick = () => {
+      //   result.classList.toggle("hidden");
+      // };
       // Q6: 숨기기/보이기 토글
       document.getElementById("test6").onclick = function() {
         // hidden

@@ -5,11 +5,11 @@ class Mobile2 {
 	String serialNo;		// 인스턴스 변수 / heap - new O - 생성자 - this (각각)
 	static int count = 0; 	// 클래스 변수   / method - new X - 클래스명.변수명
 	
-	// 멤버 함수
-	Mobile2() { // 생성자 초기화
+	// 생성자 ( 리턴 x & class 이름과 동일 )
+	Mobile2() { // 생성자 초기화 => m1 1번지, m2 2번지, m3 3번지, m4 4번지...
 		this.serialNo = "2030-" + ++count;
-	}
-}
+	} // 함수 이름과 클래스 이름이 동일 => Mobile2() { }
+}	  // Mobile2() { } 호출했을 때 serialNo에 값 채우기
 
 /*				기본값	명시적초기화	초기화블록		생성자
 #1	count		0		0			0			X						method- 클래스.변수
