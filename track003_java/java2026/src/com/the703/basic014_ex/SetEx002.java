@@ -27,7 +27,7 @@ public class SetEx002 {
 		for (int n : lotto) { 
         	System.out.println(n);
         }
-         
+        
         // 사용자 입력받아 포함 여부 확인
 		//4. 사용자로부터 번호를 입력받아, 해당 번호가 로또 번호에 포함되어 있는지 확인한다.  
         System.out.print("> 확인할 번호 입력 : ");
