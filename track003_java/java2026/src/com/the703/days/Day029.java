@@ -16,10 +16,12 @@ import java.util.Set;
 //private String name;
 //private int score;
 
+
+// 1. DTO
 class Player {
 	private String name;
 	private int score;
-	
+
 	public Player() { super(); }
 	public Player(String name, int score) { super(); this.name = name; this.score = score; }
 	@Override public String toString() { return "Player [name=" + name + ", score=" + score + "]"; }
@@ -39,12 +41,18 @@ class Player {
 	
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
+	
 	public int getScore() { return score; }
 	public void setScore(int score) { this.score = score; }
 }
 
+
 public class Day029 {
 	public static void main(String[] args) { 
+		//List: 기차 	(순서 o, 중복 o) 		add, get, size, remove, contains
+		//Set : 주머니 	(순서 x, 중복 x) 		add, 향상된 for/Iterator, size, remove, contains
+		//Map : 기차 	(key:value-쌍-엔트리) put, get(key), size, remove, contains
+		
 //		Q2. List (ArrayList) 출력
 //		2-1. players 이름으로 ArrayList 만들기
 //		2-2. 데이터 추가:
@@ -71,15 +79,17 @@ public class Day029 {
 		
 		int cnt=0;
 		for(int i=0; i<players.size(); i++) {
-			System.out.println( ++cnt
-					+ "\t" + players.get(i).getName()
-					+ "\t" + players.get(i).getScore());
+//			System.out.println( ++cnt
+//					+ "\t" + players.get(i).getName()
+//					+ "\t" + players.get(i).getScore() );
+			Player p = players.get(i);
+			System.out.printf("%d\t%s\t%d\n", ++cnt, p.getName(), p.getScore());
 		}
 		
 //		Q3. List에서 출력을 보면 Bowser   900  라는 같은데이터를 넣었는데 2개가 나옴. 이유는?
 //				4   Bowser   900
 //				5   Bowser   900
-		// A3. List 는 순서가 있는 기차 구조이고 중복 가능이라서 2개 나옴.
+//		→ A. List 는 순서가 있는 기차 구조이고 중복 가능이라서 2개 나옴.
 		
 //		Q4. Set (HashSet) 출력
 //		4-1. setPlayers 이름으로 HashSet 만들기
@@ -98,15 +108,15 @@ public class Day029 {
 		setPlayers.add( new Player("Bowser", 900) );
 		
 		System.out.println();
-		Iterator<Player> iter = setPlayers.iterator();
+		Iterator<Player> iter = setPlayers.iterator(); // 1. 줄을 서시오.
 		cnt=0;
-		while(iter.hasNext()) {
-			Player p = iter.next();
-			System.out.println(++cnt
-					+ "\t" + p.getName()
-					+ "\t" + p.getScore());
+		while(iter.hasNext()) { 		// 2. 처리 대상의 유무
+			Player p = iter.next();		// 3. 한 개씩 꺼내오기
+//			System.out.println( ++cnt
+//					+ "\t" + p.getName()
+//					+ "\t" + p.getScore());
+			System.out.printf("%d\t%s\t%d\n", ++cnt, p.getName(), p.getScore());
 		}
-		
 		
 //		Q5. Map (HashMap) 출력
 //		5-1. mapPlayers 이름으로 HashMap 만들기
@@ -129,11 +139,19 @@ public class Day029 {
 		mapPlayers.put("bowser", new Player("Bowser", 900));
 		
 		System.out.println();
-		for( Entry<String, Player> s : mapPlayers.entrySet() ) {
-			System.out.println( s.getKey()
-					+ "\t" + s.getValue().getName()
-					+ "\t" + s.getValue().getScore() );
+//		Set<Entry<String, Player>> m = mapPlayers.entrySet();
+//		for ( String key : mapPlayers.keySet() ) {
+//			System.out.println( key
+//					+ "\t" + mapPlayers.get(key).getName()
+//					+ "\t" + mapPlayers.get(key).getScore() );
+//		}
+		for( Entry<String, Player> e : mapPlayers.entrySet() ) {
+			System.out.println( e.getKey()
+					+ "\t" + e.getValue().getName()
+					+ "\t" + e.getValue().getScore() );
 		}
+		
+		
 		
 //		Q6. 정렬 문제
 //
@@ -153,20 +171,36 @@ public class Day029 {
 //		players.add( new Player("Bowser", 900) );
 		
 //		6-1. List코드에서 익명 클래스로 점수 오름차순 정렬
-		players.sort( new Comparator<Player>() {
+		players.sort( new Comparator<Player>() { // Comparator<? super Player> c
 			@Override
 			public int compare(Player o1, Player o2) {
-				return Integer.compare(o1.getScore(), o2.getScore()); // 값 비교 해서 오름차순 정리
-			}
+				return Integer.compare(o1.getScore(), o2.getScore()); // 오름차순
+//				return Integer.compare(o2.getScore(), o1.getScore()); // 내림차순
+			} 
 		});
 		
+		System.out.println(); cnt=0;
+		for(int i1=0; i1<players.size(); i1++) {
+			Player p = players.get(i1);
+			System.out.printf("%d\t%s\t%d\n", ++cnt, p.getName(), p.getScore());
+		}
+		
 //		6-2. 람다식으로 점수 내림차순 정렬
-//		players.sort ( (Player o1, Player o2) -> {
-//			return Integer.compare(o1.getScore(), o2.getScore());
-//		});
-		players.sort ( (o2, o1) -> Integer.compare(o2.getScore(), o1.getScore()) );
+		players.sort( (o1, o2) -> Integer.compare(o2.getScore(), o1.getScore()) );
+		
+		System.out.println(); cnt=0;
+		for(int i1=0; i1<players.size(); i1++) {
+			Player p = players.get(i1);
+			System.out.printf("%d\t%s\t%d\n", ++cnt, p.getName(), p.getScore());
+		}
 		
 //		6-3. 메서드 참조로 점수 오름차순 정렬
 		players.sort( Comparator.comparingInt(Player::getScore) );
+		
+		System.out.println(); cnt=0;
+		for(int i1=0; i1<players.size(); i1++) {
+			Player p = players.get(i1);
+			System.out.printf("%d\t%s\t%d\n", ++cnt, p.getName(), p.getScore());
+		}
     }
 }

@@ -1,0 +1,87 @@
+package com.the703.v1; 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
+
+//1. Dto 데이터전송목적
+class BankDto{
+	private String id;
+	private String pass;
+	private double balance;
+	
+	public BankDto() { super(); }
+	public BankDto(String id, String pass, double balance) { super(); this.id = id; this.pass = pass; this.balance = balance; }
+	@Override public String toString() { return "BankDto [id=" + id + ", pass=" + pass + ", balance=" + balance + "]"; }
+	
+	@Override public int hashCode() { return Objects.hash(balance, id, pass); }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BankDto other = (BankDto) obj;
+		return Double.doubleToLongBits(balance) == Double.doubleToLongBits(other.balance)
+				&& Objects.equals(id, other.id) && Objects.equals(pass, other.pass);
+	}
+	
+	public String getId() { return id; }
+	public void setId(String id) { this.id = id; }
+	
+	public String getPass() { return pass; }
+	public void setPass(String pass) { this.pass = pass; }
+	
+	public double getBalance() { return balance; }
+	public void setBalance(double balance) { this.balance = balance; }
+}
+
+
+class Bank{
+	List<BankDto> users;   // 객체를 생성하는게 아니라 정보만 받을 목적
+	
+	public Bank() { super(); }
+	public Bank(List<BankDto> users) { super(); this.users = users; }
+	
+	// 메뉴 - 안에 내용작성
+	public void menu() {
+		System.out.println("\n======BANK======");
+		System.out.println("[1] ➕ 계좌 추가" + "\n[2] 🔍 계좌 조회" + "\n[3] 💵 입금하기" + "\n[4] 💸 출금하기"  + "\n[5] 🗑️ 계좌 삭제" + "\n[9] 💀 종료" + "\n👉 번호를 선택하세요: ");
+		menu = sc.nextInt(); // 1 ~ 9까지 입력
+	}   
+	
+	// 유저추가  (add)
+	public void add() {
+		Scanner sc = new Scanner(System.in);
+		//변수
+		
+		//입력 - 사용자에게 정보입력받기
+		//처리 
+		users.add( new BankDto("aaa" , "pass" , 1 ) );
+		//출력
+	}
+	// 조회 	 (contains)
+	public void contains() {
+		
+	}
+	
+	// 입금   (get)
+	// 출금   (get)
+	// 유저삭제(remove)
+	// 종료   
+}
+
+public class BankCollection {
+	public static void main(String[] args) {
+		List<BankDto>  users = new ArrayList<>();
+		Bank      controller = new Bank(users);
+		controller.menu();
+		
+		//테스트용
+		//		controller.add();
+		//		System.out.println(controller.users);
+	}
+}
