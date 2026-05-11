@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class JavaIO002 {
+public class JavaIO002_byte {
 	public static void main(String[] args) {
 		//#1. 경로
 		String folder_rel = "src/com/the703/basic016/"; //상대경로 - 현재 작업하는 폴더 기준

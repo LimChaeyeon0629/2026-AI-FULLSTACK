@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 
-public class JavaIO003 {
+public class JavaIO003_char {
 	public static void main(String[] args) {
 		//#1. 경로
 		String folder_rel = "src/com/the703/basic016/"; //상대경로 - 현재 작업하는 폴더 기준
@@ -68,11 +68,10 @@ public class JavaIO003 {
       InputStream           OutputStream
       Reader               	Writer
  
- 
 2. Java I/O 분류
 - byte (모든 종류 - 그림, 멀티미디어, 문자) 	/ char (문자)
-- byte (InputStream/OutputStream)		/ char (Reader/Writer)
-
+- byte (InputStream/OutputStream)	/ char (Reader/Writer)
 
 3. 보조스트림
+
 */
