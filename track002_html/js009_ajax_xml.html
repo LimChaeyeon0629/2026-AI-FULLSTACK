@@ -87,26 +87,29 @@
               class="btn btn-outline-primary" onclick="showXml2()"/></p>
     <div class="alert alert-primary result xml2" id="xml2"></div>
     <script>
-      function showXml2() {           // 
+      function showXml2() {           // 경로
         fetch("./data/xml2.xml")      // 결과물
           .then(res => res.text())    // 성공
           .then(xml => {
             //1. 문자열을 xml dom으로 변환
-            let parser = new DOMParser(); // 1. DOMParser 인스턴스 생성
+            let parser = new DOMParser(); // 1. DOMParser 인스턴스 생성 (dom으로 만들어주는 도구)
             let xmlDoc = parser.parseFromString(xml, "application/xml"); // 2. parseFromString 메서드를 사용하여 문자열을 DOM으로 변환
             
             //2. 원하는 태그값 추출
-            let items = xmlDoc.getElementsByTagName("items"); // 3. 생성된 DOM 요소에 접근
-            // console.log(items);
-            let name = xmlDoc.getElementsByTagName("name")[0].textContent;//태그의 텍스트 추출
+            // let items = xmlDoc.getElementsByTagName("items"); // 3. 생성된 DOM 요소에 접근
+            let item = xmlDoc.getElementsByTagName("item"); // 3. 생성된 DOM 요소에 접근
+            // console.log(item);
+            // console.log(item[0]);
+            // console.log( item[0].getElementsByTagName("name") );
+            let name = item[0].getElementsByTagName("name")[0].textContent;//태그의 텍스트 추출
             // textContent: HTML 요소의 텍스트 콘텐츠 가져오기 or 설정하기
             // innerHTML  : HTML 요소의 내부 텍스트를 포함한 HTML 콘텐츠 설정하기 (값 집어넣기)
-            let price = xmlDoc.getElementsByTagName("price")[0].textContent;
+            let price = item[0].getElementsByTagName("price")[0].textContent;//문자열뽑기(가져오기)
 
             // document.getElementById("xml2").innerHTML = xml;
             document.getElementById("xml2").innerHTML =
                                       `<div class = "alert alert-warning">
-                                        <strong>${name}</strong>
+                                        <strong class = "text-info">${name}</strong>
                                         <span>${price}</span>
                                       </div>`;
           })
@@ -117,6 +120,125 @@
     </script>
   </div>
 </div>
+
+<!-- STEP4 XML -->
+  <div class="container my-5 card-body">
+    <h4>Q3. Ajax-xml (fetch)</h4>
+    <pre>
+      1. fetch()로 로컬 XML 파일 가져오기
+         경로: ./data/xml3.xml
+         예시 내용:
+         <items>
+           <item><name>사과</name><price>1000</price></item>
+           <item><name>바나나</name><price>2000</price></item>
+           <item><name>포도</name><price>3000</price></item>
+         </items>
+      2. 응답을 .text()로 받아서 DOMParser로 XML 파싱
+      3. item 태그를 순회하며 name, price 출력하기
+    </pre>
+    <p><input type="button" id="btnXml" value="fetch-xml" 
+        class="btn btn-outline-primary" onclick="showXml3()"/></p>
+    <div class="alert alert-primary result xml3" id="xml3"></div>
+    <script>
+      function showXml3() {
+        fetch("./data/xml3.xml")      // 경로
+          .then(res => res.text())    // 결과물
+          .then(xml => {              // 성공
+            let parser = new DOMParser(); // DOM 인스턴스(도구) 불러오기
+            let xmlDom = parser.parseFromString(xml, "application/xml");
+            
+            let item = xmlDom.getElementsByTagName("item");
+            // console.log(item);
+            // console.log(item[0]);
+            // console.log(item[1]);
+            // console.log(item[2]);
+
+            let result = "";
+            for ( let it of item ) { // console.log(it);
+              let name = it.getElementsByTagName("name")[0].textContent;
+              let price = it.getElementsByTagName("price")[0].textContent;
+              result += `<div class = "alert alert-info"> ${name} - ${price} </div>`;
+            }
+            document.getElementById("xml3").innerHTML = result; // getElementsById (x)
+          })
+          .catch(err => {
+            document.getElementById("xml3").innerHTML = "에러 발생: " + err.message;
+          });
+      }
+    </script>
+  </div>
+</div>
+
+
+<!-- STEP4 XML -->
+  <div class="container my-5 card-body">
+    <h4>Q4. Ajax-xml (fetch)</h4>
+    <pre>
+      1. fetch()로 로컬 XML 파일 가져오기
+         경로: ./data/xml4.xml
+         예시 내용:
+          <?xml version="1.0" encoding="UTF-8"?>
+          <members>
+            <member>
+              <name>홍길동</name>
+              <age>30</age>
+              <address>서울특별시 강남구</address>
+              <mobile>010-1234-5678</mobile>
+            </member>
+            <member>
+              <name>김철수</name>
+              <age>25</age>
+              <address>인천광역시 부평구</address>
+              <mobile>010-9876-5432</mobile>
+            </member>
+            <member>
+              <name>이영희</name>
+              <age>28</age>
+              <address>부산광역시 해운대구</address>
+              <mobile>010-5555-7777</mobile>
+            </member>
+          </members>
+      2. 응답을 .text()로 받아서 DOMParser로 XML 파싱
+      3. item 태그를 순회하며 name, price 출력하기
+    </pre>
+    <p><input type="button" id="btnXml" value="fetch-xml"
+              class="btn btn-outline-primary" onclick="showXml4()"/></p>
+    <div class="alert alert-primary result xml4" id="xml4"></div>
+    <script>
+      function showXml4() {
+        fetch("./data/xml4.xml")
+          .then(res=> res.text())
+          .then(xml=> {
+            let parser = new DOMParser(); // Dom 인스턴스(도구) 사용
+            let xmlDom = parser.parseFromString(xml, "application/xml");
+
+            let member = xmlDom.getElementsByTagName("member");
+            // console.log(member);
+
+            let result = "";
+            for( let mem of member ) {
+              console.log(mem, typeof(mem));
+              
+              // console.log(mem.getElementsByTagName("name"))
+              // console.log(mem.getElementsByTagName("name")[0])
+              let name = mem.getElementsByTagName("name")[0].textContent;
+              let age = mem.getElementsByTagName("age")[0].textContent;
+              let address = mem.getElementsByTagName("address")[0].textContent;
+              let mobile = mem.getElementsByTagName("mobile")[0].textContent;
+              result += `<div class = alert alert-info>
+                          ${name} - ${age} - ${address} - ${mobile}
+                        </div>`;
+            }
+            document.getElementById("xml4").innerHTML = result;
+          })
+          .catch(err=> {
+            document.getElementById("xml4").innerHTML = "에러 발생: " + err.message;
+          })
+      }
+    </script>
+  </div>
+</div>
+
 
 
 </body>

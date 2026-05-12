@@ -114,9 +114,10 @@
               .then(res => res.text())    // 결과물
               .then(txt => {              // 성공
                 console.log(txt);
-                let lines = txt.split("\n"); console.log(lines);
-                let result="";
+                let lines = txt.split("\n");
+                console.log(lines);
 
+                let result="";
                 lines.forEach( l => {
                   let arr = l.split("/"); // /기준으로 문자열 분리
                   result += `<div class="alert alert-warning">
@@ -167,7 +168,7 @@
     <script>
       function showText4() {
         fetch("./data/text4.txt")         // 경로
-          .then(res => res.text())        // 결과물 
+          .then(res => res.text())        // 결과물
           .then(txt => {                  // 성공
             let  lines = txt.split("\n"); // \n으로 나누기
             let result = "";
