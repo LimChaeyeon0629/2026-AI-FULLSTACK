@@ -19,31 +19,20 @@ class QuestionCount extends Thread {
 	}
 }
 
-class SetIsStop extends Thread {
-	private boolean isStop;
-	public SetIsStop(boolean isStop) { this.isStop = isStop; }
-	
-	
-	while(!isStop) {
-		for(long i=0; i<100000000; i++) { } // 시간 지연용
-		if(Thread.interrupted()) { break; }
-	}
-}
-
-
 public class ThreadEx001 {
 	public static void main(String[] args) {
 		Thread count = new QuestionCount();
-		Thread stop  = new SetIsStop();
 		count.start();
-		stop.start();
 
 		String answer = JOptionPane.showInputDialog("사과 알파벳을 입력하세요.");
-//		if(answer.equals("apple")) { System.out.println("정답입니다."); }
-//		else { System.out.println("정답이 아닙니다."); }
+		if(answer.equals("apple")) { 
+			System.out.println("정답입니다.");
+			
+		}
+		else { System.out.println("정답이 아닙니다."); }
 		
 //		System.out.println( answer.equals("apple")? "정답" : "오답");
-		System.out.println( answer.toLowerCase().equals("apple")? "정답" : "오답" );
+//		System.out.println( answer.toLowerCase().equals("apple")? "정답" : "오답" );
 		// 							다 소문자로 "apple"
 	}
 }

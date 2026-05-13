@@ -45,7 +45,7 @@ class Bank {
    public void menu() {
       int menu = -1;
       String id   = "", pass="";
-      double balance=-1;
+      double balance = -1;
       
       System.out.println("🌟💰 WELCOME TO BANK SYSTEM 💰🌟");
 
@@ -65,12 +65,12 @@ class Bank {
             exit();
             
          } else if (menu == 1) {
-            add();
+            add(); break;
             
          } else if (menu >= 2 && menu <= 5) {
         	 if(users.size() == 0) { System.out.println("아직 등록된 유저가 없습니다."); continue; }
         	 
-        	 idpwcheck();
+        	 BankDto user = idpwcheck();
             
             switch (menu) {
                case 2: inquiry(); break;
@@ -108,34 +108,39 @@ class Bank {
    
    // 조회 (contains)
    public void inquiry() {
-      System.out.printf("ID: %s\nPW: %s\n잔액: %d\n", id[find], pass[find], balance[find]);
+	   users.contains(new BankDto(id, pass, balance));
+	   
+//	  System.out.printf("ID: %s\nPW: %s\n잔액: %d\n", new BankDto(id, pass, balance));
    }
    
    // 입금   (get)
    public void deposit() {
       System.out.print("입금: ");
-      money = sc.nextInt();
+      int money = sc.nextInt();
       balance[find+1] += money;
       System.out.println("💵 입금완료");
-      System.out.println("잔액: " + balance[find]);
+      System.out.println("잔액: " + );
    }
    
    // 출금   (get)
    public void withdraw() {
+	  int money = -1;
       System.out.print("출금: ");
       money = sc.nextInt();
-      System.out.println( money > balance[find] ? "출금불가" : "출금완료! 잔액: " + (balance[find] -= money));
+      
+      
    }
    
    // 유저삭제(remove)
    public void userdelete() {
       System.out.println("계좌를 삭제하시겠습니까? (y/n)");
+      String answer = "";
       answer = sc.next();
       
       if (answer.equals("y")) {
-         id[find] = "";
-         pass[find] = "";
-         balance[find] = -1;
+         users.remove( new BankDto(id) ) = "";
+         users.remove( new BankDto(pass) ) = "";
+         users.remove( new BankDto(balance) ) = 1;
          System.out.println("🗑️ 계좌 삭제 완료");
          break;
          
@@ -154,14 +159,16 @@ class Bank {
    // 아이디 확인
    public void idpwcheck() {
 	   String tid = "", tpw = "";
-	   System.out.print("아이디 입력: "); tid = sc.next();
-	   System.out.print("비밀번호 입력: "); tpw = sc.next();
+	   System.out.print("아이디 입력: ");
+	   tid = sc.next();
+	   System.out.print("비밀번호 입력: ");
+	   tpw = sc.next();
 		
 	   System.out.println(tid);
 	   // tid가 id랑 같지 않음 || tpw가 pass랑 같지 않음
-	   if (!tid.equals(id[find]) || !tpw.equals(pass[find]))
+	   if (!tid.equals(new BankDto(id)) || !tpw.equals(new BankDto(balance)))
 	   { System.out.println(tid); System.out.println(tpw);
-	   System.out.println(id[find]); System.out.println(pass[find]); // null
+	   System.out.println(new BankDto(id)); System.out.println(new BankDto(pass)); // null
 	   System.out.println("잘못 입력하셨습니다"); break; }
    }
 }
@@ -177,7 +184,3 @@ public class BankCollection {
       //      System.out.println(controller.users);
    }
 }
-
-
-
-
