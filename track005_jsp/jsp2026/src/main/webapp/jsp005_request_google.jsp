@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>   
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,22 +18,22 @@
       	Q1. 구글검색연결 - 요청
       	Q2. 빈칸검사
       
-         https://www.google.com/search?q=APPLE<br/>
-         1.처리컨테이너 (action : 해결사	): https://www.google.com/search <br/>
-         2.처리방식    (method : get	): get <br/>
-         3.보관용기    (name   : q 	): q <br/>
+        https://www.google.com/search?q=APPLE<br/>
+        1.처리컨테이너 (action : 해결사	): https://www.google.com/search <br/>
+        2.처리방식    (method : get	): get <br/>
+        3.보관용기    (name   : q 	): q <br/>
       </p>
+      
       <form action="https://www.google.com/search" method="get"
-      		onsubmit="return check()" target="_blank">
-      		<!-- onsubmit 빈칸체크 -->
+      		onsubmit="return check()" target="_blank"> <!-- onsubmit 빈칸체크 -->
          <div class="my-2">
-            <label for="query">검색어</label>
+            <label for="query" >검색어</label>
             <input type="text" class="form-control" placeholder="구글에게 물어봐!"
-            	   id="query"  name="q" 
-             />				<!-- name 보관용기 -->
+            	   id="query"  name="q" /> <!-- name 보관용기 -->
             <button type="submit" class="btn btn-success mt-3 d-block" >검색</button>
          </div>
       </form>
+      
 	<script>
      	function check() {
      		let query = document.getElementById("query");
@@ -45,9 +45,8 @@
      		return true;
      	}
 	</script> 
-   </div>
-   
-   
+    </div>
+    
 </body>
 </html>
 

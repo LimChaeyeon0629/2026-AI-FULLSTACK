@@ -41,19 +41,19 @@ class Bank {
 		System.out.println("🌟💰 WELCOME TO BANK SYSTEM 💰🌟");
 		
 		for (;;) { // while (menu!=9) { //for( ;menu!=9; ) {
-			System.out.println(id + "\t" + pass + "\t" + balance); // 계좌의 1명분 확인용
+//			System.out.println("확인용: " + id + "\t" + pass + "\t" + balance); // 계좌의 1명분 확인용
 			System.out.print("\n======BANK======\n" + "[1] ➕ 계좌 추가\n" + "[2] 🔍 계좌 조회\n" + "[3] 💵 입금하기\n"
 					+ "[4] 💸 출금하기\n" + "[5] 🗑️ 계좌 삭제\n" + "[9] 💀 종료\n" + "👉 번호를 선택하세요: ");
 			menu = sc.nextInt();
-
+			
 			if (menu == 9) {
-				exit();
+				exit(); break;
 
 			} else if (menu == 1) {
 				add();
 
 			} else if (menu >= 2 && menu <= 5) {
-				if (users.size() == 0) { // list 0명
+				if (users.size() == 0) {
 					System.out.println("아직 등록된 유저가 없습니다. \n계좌 추가 먼저 해주세요.");
 					continue;
 				}
@@ -65,24 +65,23 @@ class Bank {
 				}
 				
 				switch (menu) { // 각각의 메뉴에 맞는 기능호출
-				case 2: show(find); break;
-				case 3: deposit(find); break;
-				case 4: withdraw(find); break;
-				case 5: delete(find); break;
-				case 9: exit(); break;
+					case 2: show(find); break;
+					case 3: deposit(find); break;
+					case 4: withdraw(find); break;
+					case 5: delete(find); break;
+					case 9: exit(); break;
 				}
 
 			} else {
-				System.out.println("메뉴판 숫자 1~5, 9 중에 입력해주세요"); break;
+				System.out.println("메뉴판 숫자 1~5, 9 중에 입력해주세요"); continue;
 			}
 		}
 	}
 
+	
+	
 	// 유저추가 (add)
 	void add() {
-		// 변수
-		Scanner sc= new Scanner(System.in);
-
 		// 입력 - 사용자에게 정보입력받기
 		System.out.println("아이디 입력: ");
 		String tempId = sc.next(); // ※ 아이디 중복 검사 추가
@@ -101,8 +100,6 @@ class Bank {
 	// 유저로그인 - 유저정보 - BankDto login(){}
 	BankDto login() {
 //		return null;
-		//변수
-		Scanner sc = new Scanner(System.in);
 		
 		//입력
 		System.out.print("아이디 입력: ");
@@ -122,12 +119,11 @@ class Bank {
 
 	// 조회 (contains) - void show( BankDto users ){}
 	void show(BankDto users) {					// BankDto에 getId() 꺼내오기
-	   System.out.printf("ID: %s\nPW: %s\n잔액: %d\n", users.getId(), users.getPass(), users.getBalance()  );
+	   System.out.printf("ID: %s\nPW: %s\n잔액: %s\n", users.getId(), users.getPass(), users.getBalance()  );
 	}
 
 	// 입금 (get) - void deposit( BankDto users ){}
 	void deposit(BankDto users) {
-		Scanner sc = new Scanner(System.in);	//변수
 		System.out.print("입금: ");
         double tempMoney = sc.nextDouble();		//입력
         
@@ -139,30 +135,29 @@ class Bank {
 
 	// 출금 (get) - void withdraw( BankDto users ){}
 	void withdraw(BankDto users) {
-		Scanner sc = new Scanner(System.in);	//변수
 		System.out.print("출금: ");
-		double tempMoney = sc.nextDouble();		//입력
+		double tempMoney = sc.nextDouble();
 		
-		users.setBalance( users.getBalance() - tempMoney );	//처리
-		if( users.getBalance() < tempMoney ) { // 잔액부족
-			System.out.println("금액이 모자랍니다!");
+		if( users.getBalance() < tempMoney || tempMoney <= 0 ) {
+			System.out.println("제대로 된 금액을 입력해주세요.");
 			return;
 		}
+		users.setBalance( users.getBalance() - tempMoney );	//처리
 		
 		System.out.println("💵 출금완료");
-		System.out.println("잔액: " + users.getBalance() );	//출력
+		System.out.println("잔액: " + users.getBalance() );
 	}
 
 	// 유저삭제 (remove) - void delete( BankDto users ){}
 	void delete(BankDto users) {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("계좌를 삭제하시겠습니까? (y/n)");
 		String answer = sc.next();
 
 		if (answer.equals("y")) {
-			users.setId("");
-			users.setPass("");
-			users.setBalance(0);
+//			users.setId("");
+//			users.setPass("");
+//			users.setBalance(0);
+			this.users.remove(users);
 			System.out.println("🗑️ 계좌 삭제 완료");
 			return;
 

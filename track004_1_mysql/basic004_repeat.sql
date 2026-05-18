@@ -1,6 +1,6 @@
 -- 1.  데이터베이스 언어
 -- -- DDL( 정의어 )  CREATE, ALTER, DROP 				→ cad
--- -- DML( 조작어 )  INSERT, SELECT, DELETE , UPDATE  → ured
+-- -- DML( 조작어 )  INSERT, SELECT, DELETE , UPDATE  → cruds
 -- -- DCL( 제어어 )  REVOKE, GRANT
 
 

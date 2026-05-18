@@ -33,8 +33,8 @@
       <script>
       	function check() {
       		let query = document.getElementById("query"); //1. 아이디 값 이용해서 query 대상 찾아오기
-      		if(query.value.trim() == "") { //2. 칸이 빈칸이라면 - 검색어를 입력하세요.
-      			//2. query.value 문자열 찾아와서, trim() 앞뒤 공백빼기
+      		if(query.value.trim() == "") { 	//2. 칸이 빈칸이라면 - 검색어를 입력하세요.
+      										//2. query.value 문자열 찾아와서, trim() 앞뒤 공백빼기
       			alert("검색어를 입력하세요. ");
       			query.focus(); // 커서 가게
 	      		return false; //3. 전송여부
