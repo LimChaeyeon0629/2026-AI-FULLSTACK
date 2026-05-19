@@ -18,9 +18,9 @@
 -- +-------+--------------+------+-----+---------+----------------+
 -- 3 rows in set (0.00 sec)
 use mbasic; -- database 선택
--- create table userinfo_ex select * from userinfo; -- userinfo_ex 테이블 만들기 (userinfo 구조 복사)
+create table userinfo_ex select * from userinfo; -- userinfo_ex 테이블 만들기 (userinfo 구조 복사)
 show tables; -- 테이블 확인
-desc userinfo_ex;  -- 테이블 구조 확인
+desc userinfo_ex;  -- 테이블 구조 확인  ``
 alter table userinfo_ex modify no int not null auto_increment primary key; -- 숫자 자동 증가 + 기본키
 select * from userinfo_ex; -- 전체 데이터 검색
 
@@ -77,8 +77,8 @@ select * from userinfo_ex;
 -- |  2 | second |  22 |
 -- |  3 | third  |  33 |
 -- |  4 | fourth |  44 |
--- |  5 | fifth    |  55 |   ← age 55로 수정
--- |  6 | six   |  66 |       ← name sixth로 수정
+-- |  5 | fifth  |  55 |   ← age 55로 수정
+-- |  6 | six    |  66 |       ← name sixth로 수정
 -- +----+--------+-----+
 update userinfo_ex set age=55 where no=5;
 -- update userinfo_ex set age=55 where name='fifth';

@@ -889,4 +889,11 @@ select * from emp where deptno=30 and ename like '%e%' and sal not between 1000 
 -- |  7934 | MILLER | CLERK   | 7782 | 1982-01-23 | 1300 | NULL |     10 |
 -- +-------+--------+---------+------+------------+------+------+--------+
 -- 5 rows in set (0.00 sec)
+
+-- use mbasic;
+-- create table emp from * select emp;
+-- show tables;
+-- desc emp;
+-- select * from emp;
+ 
 select * from emp where comm is null and mgr is not null and job in ('MANAGER','CLERK') and ename not like '_l%';

@@ -33,7 +33,6 @@ class Bank {
 
 	// 메뉴 - 안에 내용작성
 	public void menu() {
-		Scanner sc = new Scanner(System.in);
 		int menu = -1;
 		String id = "", pass = "";
 		double balance = -1;
