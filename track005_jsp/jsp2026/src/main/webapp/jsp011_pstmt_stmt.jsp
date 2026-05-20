@@ -52,8 +52,8 @@
 			/////////////////////////////////////////////////////
 			PreparedStatement pstmt =
 				conn.prepareStatement("insert into userinfo (name, age) values (?, ?)");
-			pstmt.setString(1, "길동"); //? 순서, 값								↑
-			pstmt.setInt(   2, 11   ); //? 순서, 값									↑
+			pstmt.setString(1, "길동"); //? 순서, 값(name)				 			↑
+			pstmt.setInt(   2, 11   ); //? 순서, 값(age)								↑
 			
 			int result = pstmt.executeUpdate();		//INSERT, UPDATE, DELETE, 실행한 줄수
 			if (result > 0) {
@@ -71,6 +71,10 @@
 		} catch (Exception e) { e.printStackTrace(); }
 		%>
 		
+		
+		
+		
+		
 		<%
 		//1) Class.forName() 드라이버 로딩
 		//2) DriverManager.Connection 활성화
@@ -83,9 +87,35 @@
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn =
 					DriverManager.getConnection( "jdbc:mysql://localhost:3306/mbasic", "root", "1234");
-			if(conn != null) {
-				conn.close();
+			/////////////////////////////////////////////////////
+			PreparedStatement 	pstmt = null;
+			ResultSet 			rset  = null;
+			pstmt = conn.prepareStatement("select * from userinfo");
+			
+			rset = pstmt.executeQuery(); //표:	executeQuery  - select
+										 //		executeUpdate - insert, update, delete
+	        /*		mysql> select * from userinfo;
+		            +----+--------+------+
+		            | no | name   | age  |
+		            +----+--------+------+
+		            |  1 | first  |   11 |
+		            |  2 | second |   22 |
+		            |  3 | third  |   33 |
+		            |  4 | fourth |   44 |
+		            +----+--------+------+ */
+		            //해당하는 줄수
+			while( rset.next() ) { 						// 줄 |  1 | first  |   11 |
+				out.print("<p>" + 
+						  rset.getInt("no") + "/"		// 칸 rset.getInt("필드명");
+						+ rset.getString("name") + "/"
+						+ rset.getInt("age") + "</p>");			
 			}
+		            
+		            
+			/////////////////////////////////////////////////////
+			if(rset  != null) { rset.close(); }		// rset  끊기
+			if(pstmt != null) { pstmt.close(); }	// pstmt 끊기
+			if(conn  != null) { conn.close(); }		// conn  끊기
 			
 		} catch(Exception e) { e.printStackTrace(); }
 		%>

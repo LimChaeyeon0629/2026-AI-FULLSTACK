@@ -112,7 +112,6 @@
 			}
 		            
 		            
-		            
 			/////////////////////////////////////////////////////
 			if(rset  != null) { rset.close(); }		// rset  끊기
 			if(pstmt != null) { pstmt.close(); }	// pstmt 끊기

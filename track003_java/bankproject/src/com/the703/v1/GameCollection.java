@@ -26,11 +26,9 @@ class PlayerDto {
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
 		PlayerDto other = (PlayerDto) obj;
-		return exp == other.exp && Double.doubleToLongBits(gold) == Double.doubleToLongBits(other.gold)
-				&& hp == other.hp && Objects.equals(job, other.job) && level == other.level
-				&& Objects.equals(name, other.name);
+		return exp == other.exp && gold == other.gold && hp == other.hp && Objects.equals(job, other.job)
+				&& level == other.level && Objects.equals(name, other.name);
 	}
-	
 	public String getName() { return name; } public void setName(String name) { this.name = name; }
 	public String getJob() { return job; } public void setJob(String job) { this.job = job; }
 	public int getHp() { return hp; } public void setHp(int hp) { this.hp = hp; }
@@ -63,10 +61,10 @@ class Game {
 			System.out.print("\n======RPG GAME======\n"
 					+ "[1] ➕ 캐릭터 추가\n"
 					+ "[2] 🔍 캐릭터 상태 조회\n"
-					+ "[3] 💵 입금하기\n" //
-					+ "[4] 💸 회복하기\n"
-					+ "[5] 🗑️ 계좌 삭제\n"
-					+ "[9] 💀 종료\n"
+					+ "[3] 💰 골드 획득하기\n" //
+					+ "[4] ❤️ 회복하기\n"
+					+ "[5] 🗑️ 캐릭터 삭제\n"
+					+ "[9] 💀 게임 종료\n"
 					+ "👉 번호를 선택하세요: ");
 			menu = sc.nextInt();
 			
@@ -92,8 +90,8 @@ class Game {
 				
 				switch (menu) { // 각각의 메뉴에 맞는 기능호출
 					case 2: show(find); break;
-					case 3: heal(find); break;
-					case 4: withdraw(find); break;
+					case 3: gold(find); break;
+					case 4: heal(find); break;
 					case 5: delete(find); break;
 					case 9: exit(); break;
 				}
@@ -110,7 +108,7 @@ class Game {
 	void add() {
 		System.out.println("캐릭터명 입력: ");
 		String tempName = sc.next();
-		for( PlayerDto u : users ) { // ※ 아이디 중복 검사 추가
+		for( PlayerDto u : users ) { // ※아이디 중복 검사 추가
 			// PlayerDto에있는name = 입력받은tempName
 			if( u.getName().equals(tempName)) {
 				System.out.println("이미 존재하는 닉네임입니다.");
@@ -120,6 +118,13 @@ class Game {
 		
 		System.out.println("직업 입력 (전사/마법사/궁수): ");
 		String tempJob = sc.next();
+		if( !(tempJob.equals("전사"))
+				&& !(tempJob.equals("마법사"))
+				&& !(tempJob.equals("궁수")) ) {
+			System.out.println("전사/마법사/궁수 중에 입력해주세요.");
+			return;
+		}
+		
 		System.out.println("소지 골드 입력: ");
 		int tempGold = sc.nextInt();
 
@@ -148,9 +153,20 @@ class Game {
 	// 상태 조회 (contains) - void show( PlayerDto users ){}
 	void show(PlayerDto users) {					// GameDto에 getName() 꺼내오기
 	   System.out.printf("\\n======상태창======\\n" 	//name job hp gold level exp
-	   		+ "캐릭터명: %s" + "\n직업: %s" + "\nHP: %s" + "\n소지 골드: %s" + "\n레벨: %s" + "\n경험치: %s\n",
+	   		+ "캐릭터명: %s" + "\n직업: %s" + "\nHP: %d" + "\n소지 골드: %d" + "\n레벨: %d" + "\n경험치: %d\n",
 	   		users.getName(), users.getJob(), users.getHp(), users.getGold(), users.getLevel(), users.getExp() );
 	}
+	
+	// 골드 획득 (get) - void deposit( BankDto users ){}
+	void gold(PlayerDto users) {
+		System.out.print("획득할 골드량: ");
+        int tempMoney = sc.nextInt();		//입력
+        
+        users.setGold( users.getGold() + tempMoney );	//처리
+        
+        System.out.println("💵 골드 획득 완료");
+        System.out.println("잔액: " + users.getGold() );	//출력
+   }
 
 	// 회복 (get) - void heal( PlayerDto users ){}
 	void heal(PlayerDto users) {
@@ -164,40 +180,25 @@ class Game {
 			System.out.println("소지 골드가 적습니다.");
 			return;
 		}
-        users.setGold( users.getGold() + tempMoney );	//처리
+        users.setGold( users.getGold() - tempMoney );	//처리
         
-        System.out.println("💵 입금완료");
+        System.out.println("💵 회복완료");
         System.out.println("잔액: " + users.getGold() );	//출력
    }
 
-	// 출금 (get) - void withdraw( BankDto users ){}
-	void withdraw(PlayerDto users) {
-		System.out.print("출금: ");
-		int tempMoney = sc.nextInt();
-		
-		if( users.getGold() < tempMoney || tempMoney <= 0 ) {
-			System.out.println("제대로 된 금액을 입력해주세요.");
-			return;
-		}
-		users.setGold( users.getGold() - tempMoney );	//처리
-		
-		System.out.println("💵 완료");
-		System.out.println("잔액: " + users.getGold() );
-	}
-
-	// 유저삭제 (remove) - void delete( BankDto users ){}
+	// 캐릭터 삭제 (remove) - void delete( BankDto users ){}
 	void delete(PlayerDto users) {
-		System.out.println("계좌를 삭제하시겠습니까? (y/n)");
+		System.out.println("캐릭터를 삭제하시겠습니까? (y/n)");
 		String answer = sc.next();
 
 		if (answer.equals("y")) {
 //			users.setId(""); //			users.setPass(""); //			users.setBalance(0);
 			this.users.remove(users);
-			System.out.println("🗑️ 계좌 삭제 완료");
+			System.out.println("🗑️ 캐릭터 삭제 완료");
 			return;
 
 		} else if (answer.equals("n")) {
-			System.out.println("🗑️ 계좌 삭제 취소");
+			System.out.println("🗑️ 캐릭터 삭제 취소");
 			return;
 
 		} else {
@@ -207,7 +208,7 @@ class Game {
 
 	// 종료
 	void exit() {
-		System.out.println("프로그램을 종료합니다.");
+		System.out.println("게임을 종료합니다.");
 		return;
 	}
 }

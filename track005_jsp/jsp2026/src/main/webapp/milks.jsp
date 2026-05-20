@@ -55,20 +55,22 @@
 	       		// 2 choch  1800
 	       		// 3 banana 1800
 	       		//3. PreparenedStatement pstmt 이용해서 milk 테이블의 데이터 가져오기 (가격이 낮은 순으로)
-	       		pstmt = conn.prepareStatement("select * from milk order by mprice asc");
+	       		pstmt = conn.prepareStatement("select * from milk_order by oprice asc");
 	       		
 	       		rset= pstmt.executeQuery(); 	// 표
 	       		while ( rset.next() ) {			// 줄
 	       			out.println("<tr><td>" 
-	       					+ rset.getInt("mno") + "</td><td>"
-	       					+ rset.getString("mname") + "</td><td>"
-	       					+ rset.getInt("mprice") + "</td></tr>");
+	       					+ rset.getInt("ono") + "</td><td>"
+	       					+ rset.getString("oname") + "</td><td>"
+	       					+ rset.getInt("oprice") + "</td></tr>");
 	       		}
+
 	       		
 	       		//4. JDBC 끊기
 	       		if(rset  != null) { rset.close(); }
 	       		if(pstmt != null) { pstmt.close(); }
 	       		if(conn  != null) { conn.close(); }
+	       		
 	       	} catch(Exception e) { e.printStackTrace(); }
 	       	%>
 	       	</tbody>
@@ -76,12 +78,12 @@
 	</div>
 
 
-<!-- 주문현황표 -->
+<!-- 주문현황표 (입력받은 거 띄우기) -->
 <!-- 주문현황표 -->
 	<div class="container card my-5 bg-dark">
 		<h2 class="card-header text-white" >MILK ORDER</h2>
 		<table class="table table-striped table-bordered table-hover">
-			<caption>주문현황표</caption>
+			<caption class="order text-white">주문현황표</caption>
 			<thead>
 				<tr>
 					<th scope="col">NO</th>
@@ -100,7 +102,7 @@
 	 			PreparedStatement 	pstmt = null;
 		       	ResultSet			 rset = null;
 				String url="jdbc:mysql://localhost:3306/mbasic";
-				String sql="select * milk_order order by omo desc";
+				String sql="select * from milk_order order by ono desc";
 				
 				// jdbc 연동
 		       	conn = DriverManager.getConnection(url, "root", "1234");
@@ -113,13 +115,13 @@
 				while( rset.next() ) {			//줄
 					out.print("<tr><td>" + rset.getInt("ono")
 							+ "</td><td>" + rset.getString("oname")
-							+ "</td><td>" + rset.getInt("enum")
+							+ "</td><td>" + rset.getInt("onum")
 							+ "</td><td>" + rset.getString("odate")
 							+ "</td></tr>");
 				}
-				if(rset != null) { rset.close(); }
+				if(rset  != null) { rset.close(); }
 				if(pstmt != null) { pstmt.close(); }
-				if(conn != null) { conn.close(); }
+				if(conn  != null) { conn.close(); }
 				
 			} catch (Exception e) { e.printStackTrace(); }
 			%>
@@ -144,7 +146,7 @@
 			
 		<div id="accordion">
 		
-		<!-- 주문하기 -->
+		<!-- insert -->
 		<div class="card">
 		    <div class="card-header bg-danger">
 		    	<a class="btn" data-bs-toggle="collapse" href="#collapseOne" >주문하기</a>
@@ -155,14 +157,14 @@
 			    	<!-- 주문 form -->
 					<form action="jsp012_insert.jsp" method="post" onsubmit="return check()">
 						<div class="container my-3">
-							<label for="name" class="form-label" >주문할 우유 이름</label>
-							<input class="form-control" value="주문할 우유 이름을 적어주세요!"
-									id="name" name="name"></input>
+							<label for="oname" class="form-label" >주문할 우유 이름</label>
+							<input class="form-control" placeholder="주문할 우유 이름을 적어주세요!"
+									id="oname" name="oname"></input>
 						</div>
 						<div class="container my-3">
-							<label for="cnt" class="from-label" >주문할 우유 갯수</label>
-							<input class="form-control" value="우유 갯수를 적어주세요!"
-									id="cnt" name="cnt"
+							<label for="onum" class="from-label" >주문할 우유 갯수</label>
+							<input class="form-control" placeholder="우유 갯수를 적어주세요!"
+									id="onum" name="onum"
 									min="0" max="100"></input>
 						</div>
 						<div class="container my-3">
@@ -174,7 +176,7 @@
 			
 		</div>
 		
-		<!-- 수정하기 -->
+		<!-- update -->
 		<div class="card">
 		    <div class="card-header bg-danger">
 		    	<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo" >주문수정</a>
@@ -183,27 +185,27 @@
 		    <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
 		    	<div class="card-body">
 		        	<!-- 수정 form -->
-					<form action="jsp012_insert.jsp" method="post" onsubmit="return check()">
+					<form action="jsp012_update.jsp" method="post" onsubmit="return check1()">
 						<div class="container my-3">
-							<label for="name" class="form-label" >주문할 우유 이름</label>
-							<input class="form-control" value="주문할 우유 이름을 적어주세요!"
-									id="name" name="name"></input>
+							<label for="oname1" class="form-label" >수정할 우유 이름</label>
+							<input class="form-control" placeholder="수정할 우유 이름을 적어주세요!"
+									id="oname1" name="oname"></input>
 						</div>
 						<div class="container my-3">
-							<label for="cnt" class="from-label" >주문할 우유 갯수</label>
-							<input class="form-control" value="우유 갯수를 적어주세요!"
-									id="cnt" name="cnt"
+							<label for="onum1" class="from-label" >수정할 우유 갯수</label>
+							<input class="form-control" placeholder="수정할 우유 갯수를 적어주세요!"
+									id="onum1" name="onum"
 									min="0" max="100"></input>
 						</div>
 						<div class="container my-3">
-							<button class="btn btn-danger" title="주문하러가기">주문하기</button>
+							<button type="submit" class="btn btn-danger" title="수정하러가기">수정하기</button>
 						</div>
 					</form> <!-- 수정 form end -->
 		    	</div>
 		  	</div>
 		</div>
 	
-		<!-- 삭제하기 -->
+		<!-- delete -->
 		<div class="card">
 	    <div class="card-header bg-danger">
 	    	<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree" >주문삭제</a>
@@ -212,27 +214,28 @@
 	    <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
 	    	<div class="card-body">
 	        	<!-- 삭제 form -->
-				<form action="jsp012_insert.jsp" method="post" onsubmit="return check()">
+				<form action="jsp012_delete.jsp" method="post" onsubmit="return check2()">
 					<div class="container my-3">
-						<label for="name" class="form-label" >주문할 우유 이름</label>
-						<input class="form-control" value="주문할 우유 이름을 적어주세요!"
-								id="name" name="name"></input>
+						<label for="name2" class="form-label" >주문할 우유 이름</label>
+						<input class="form-control" placeholder="삭제할 우유 이름을 적어주세요!"
+								id="name2" name="name"></input>
 					</div>
 					<div class="container my-3">
-						<label for="cnt" class="from-label" >주문할 우유 갯수</label>
-						<input class="form-control" value="우유 갯수를 적어주세요!"
-								id="cnt" name="cnt"
+						<label for="onum2" class="from-label" >주문할 우유 갯수</label>
+						<input class="form-control" placeholder="우유 갯수를 적어주세요!"
+								id="onum2" name="onum"
 								min="0" max="100"></input>
 					</div>
 					<div class="container my-3">
-						<button class="btn btn-danger" title="주문하러가기">주문하기</button>
+						<button type="submit" class="btn btn-danger" title="삭제하러가기" >삭제하기</button>
 					</div>
 				</form> <!-- 삭제 form end -->
 	    	</div>
 		</div>
 		
 		</div>
-	
+	</div>
+	</div>
 	
 	
 </body>

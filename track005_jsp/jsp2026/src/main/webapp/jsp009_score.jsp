@@ -24,6 +24,7 @@
 		 KOR    ENG    MATH   TOTAL    AVG
 		 100    100     99    299      99.67   
 		</pre>
+		
 		<form  action="jsp009_result.jsp"  method="post"
 			 onsubmit="return check()">
 			<div class="my-3">
