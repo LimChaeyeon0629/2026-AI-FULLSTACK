@@ -13,7 +13,7 @@
 	//2. request.getParameter() 이용해서 데이터 받기
 	String oname = request.getParameter("oname");
 	int		onum = Integer.parseInt(request.getParameter("onum"));
-	//out.println(oname + " / " + onum);
+	out.println(oname + " / " + onum);
 	
 	//3. insert 구문처리
 	try {

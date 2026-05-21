@@ -140,9 +140,9 @@
 			1) form 만들기
 			2) 빈칸검사
 			3) 처리해결사
-			action 	jsp012_insert.jsp
-			method	데이터 노출x
-			name 	보관용기 oname, oprice -->
+			jsp012_insert.jsp
+			데이터 노출x
+			보관용기 mname, mprice -->
 			
 		<div id="accordion">
 		
@@ -158,14 +158,12 @@
 					<form action="jsp012_insert.jsp" method="post" onsubmit="return check()">
 						<div class="container my-3">
 							<label for="oname" class="form-label" >주문할 우유 이름</label>
-							<input type="text"
-									class="form-control" placeholder="주문할 우유 이름을 적어주세요!"
+							<input class="form-control" placeholder="주문할 우유 이름을 적어주세요!"
 									id="oname" name="oname"></input>
 						</div>
 						<div class="container my-3">
 							<label for="onum" class="from-label" >주문할 우유 갯수</label>
-							<input type="number"
-									class="form-control" placeholder="우유 갯수를 적어주세요!"
+							<input class="form-control" placeholder="우유 갯수를 적어주세요!"
 									id="onum" name="onum"
 									min="0" max="100"></input>
 						</div>
@@ -186,13 +184,12 @@
 		    
 		    <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
 		    	<div class="card-body">
-		    	
 		        	<!-- 수정 form -->
 					<form action="jsp012_update.jsp" method="post" onsubmit="return check1()">
+						
 						<div class="container my-3">
 							<label 	for="ono1" class="form-label" >수정할 우유 넘버</label>
-							<input 	type="number"
-									class="form-control"
+							<input 	class="form-control"
 									placeholder="수정할 우유 넘버를 적어주세요!"
 									id="ono1" 
 									name="ono"></input>
@@ -200,8 +197,7 @@
 						
 						<div class="container my-3">
 							<label 	for="oname1" class="form-label" >수정할 우유 이름</label>
-							<input 	type="text"
-									class="form-control"
+							<input 	class="form-control"
 									placeholder="수정할 우유 이름을 적어주세요!"
 									id="oname1" 
 									name="oname"></input>
@@ -209,8 +205,7 @@
 						
 						<div class="container my-3">
 							<label 	for="onum1" class="from-label" >수정할 우유 갯수</label>
-							<input 	type="number"
-									class="form-control"
+							<input 	class="form-control"
 									placeholder="수정할 우유 갯수를 적어주세요!"
 									id="onum1" 
 									name="onum"
@@ -233,18 +228,35 @@
 	    
 	    <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
 	    	<div class="card-body">
-	        	
 	        	<!-- 삭제 form -->
+	        	
 				<form action="jsp012_delete.jsp" method="post" onsubmit="return check2()">
+				
 					<div class="container my-3">
 							<label 	for="ono2" class="form-label" >삭제할 우유 넘버</label>
-							<input 	type="number"
-									class="form-control"
+							<input 	class="form-control"
 									placeholder="삭제할 우유 넘버를 적어주세요!"
 									id="ono2" 
 									name="ono"></input>
 					</div>
 				
+				<!-- 
+					<div class="container my-3">
+						<label for="oname2" 
+								class="form-label" >삭제할 우유 이름</label>
+						<input class="form-control" placeholder="삭제할 우유 이름을 적어주세요!"
+								id="oname2" name="oname"></input>
+					</div>
+					
+					<div class="container my-3">
+						<label for="onum2" class="from-label" >주문할 우유 갯수</label>
+						<input class="form-control" placeholder="우유 갯수를 적어주세요!"
+								id="onum2" name="onum"
+								min="0" max="100"></input>
+					</div>
+					
+					 -->
+					
 					<div class="container my-3">
 						<button type="submit" class="btn btn-danger" title="삭제하러가기" >삭제하기</button>
 					</div>
@@ -258,51 +270,4 @@
 	
 	
 </body>
-
-
-<script>
-	function check(){ // 주문
-		let oname = document.getElementById("oname");
-		let onum = document.getElementById("onum");
-		
-		if(oname.value.trim()=="") {
-			alert("주문 이름이 비어있습니다!");
-			return false;
-		}
-		if(onum.value.trim()=="") {
-			alert("주문 갯수가 비어있습니다!");
-			return false;
-		}
-	}
-	
-	function check1(){ // 수정
-		let ono = document.getElementById("ono1");
-		let oname = document.getElementById("oname1");
-		let onum = document.getElementById("onum1");
-
-		if(ono.value.trim()=="") {
-			alert("수정 넘버가 비어있습니다!");
-			return false;
-		}
-		if(oname.value.trim()=="") {
-			alert("수정 이름이 비어있습니다!");
-			return false;
-		}
-		if(onum.value.trim()=="") {
-			alert("수정 갯수가 비어있습니다!");
-			return false;
-		}
-	}
-
-	function check2(){ // 삭제
-		let ono = document.getElementById("ono2");
-		if(ono.value.trim()=="") {
-			alert("삭제 갯수가 비어있습니다!");
-			return false;
-		}
-	}
-
-
-</script>
-
 </html>
