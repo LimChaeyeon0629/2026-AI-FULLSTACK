@@ -251,8 +251,9 @@
 				</form> <!-- 삭제 form end -->
 	    	</div>
 		</div>
-		
 		</div>
+		
+		
 	</div>
 	</div>
 	

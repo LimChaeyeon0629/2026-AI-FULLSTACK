@@ -201,8 +201,7 @@ alter table coffee drop primary key;
 
 8) alter_coffee 테이블의 이름을 alter_coffee2 로 바꾸기
 ALTER TABLE coffee rename coffee2;
-ALTER TABLE coffee modify cno int not null aut0_increment first;
-
+ALTER TABLE coffee modify cno int not null auto_increment primary key first;
 
 
 9) 연습문제9) 다음과 같이 최종본으로 테이블만들기
