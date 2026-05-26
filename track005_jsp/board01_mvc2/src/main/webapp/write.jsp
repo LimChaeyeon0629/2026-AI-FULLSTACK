@@ -1,8 +1,5 @@
 <%@page import="java.net.InetAddress"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
@@ -12,7 +9,7 @@
 	<div class="container card my-5">
 		<h3 class="card-header">글 등록</h3>
 		
-	    	<!-- 주문 form -->
+	    	<!-- 등록 form -->
 			<form action="write_action.jsp" method="post" onsubmit="return checkForm()">
 				
 				<!-- name -->
@@ -47,11 +44,11 @@
 				</div>
 				
 				<div class="my-3 text-end">
-					<button type="reset"  class="btn btn-danger" title="글취소" >글취소</button>
-					<a href="list.jsp"    class="btn btn-danger" title="목록보기">목록</a>
+					<button type="reset"  class="btn btn-outline-danger" title="글 리셋" >글 리셋</button>
+					<a href="list.jsp"    class="btn btn-outline-danger" title="목록보기">목록</a>
 					<button type="submit" class="btn btn-danger" title="글등록" >글등록</button>
 				</div>
-			</form> <!-- 주문 form end -->
+			</form> <!-- 등록 form end -->
 		</div>
 		
 	<!-- footer -->

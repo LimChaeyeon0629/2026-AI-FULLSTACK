@@ -16,6 +16,6 @@ desc mvcboard1;
 alter table mvcboard1 modify bdate timestamp not null default current_timestamp;
 alter table mvcboard1 modify bip varchar(50) not null;
 
-delete from mvcboard1 where bno=3;
+delete from mvcboard1 where bno=5;
 select * from mvcboard1;
 insert into mvcboard1 (bname, bpass, btitlc, bcontent, bip) values ('bname', 'bpass', 'btitlc', 'bcontent', 'bip');

@@ -1,7 +1,4 @@
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
 
@@ -25,13 +22,18 @@
             </thead>
             <tbody>
             <%
-            try {
-            	Connection conn = null; 	PreparedStatement pstmt = null;
-            	ResultSet  rset = null;
-            	String url="jdbc:mysql://localhost:3306/dbdbig";
-            	String sql="select * from mvcboard1 order by bno desc";
-            	String user="root", pass="1234";
-            	
+           	Connection conn = null; 	PreparedStatement pstmt = null;
+           	ResultSet  rset = null;
+
+           	String url="jdbc:mysql://localhost:3306/dbdbig";
+           	String user="root", pass="1234";
+           	
+           	// String sql="select * from mvcboard1 b	order by bno desc";
+           	// String sql="select count(*) from mvcboard1 b	order by bno desc";
+           	String sql="select b.* , ( select count(*) from mvcboard1 ) `cnt`"	
+           			 + "from mvcboard1 b	order by bno desc";
+ 
+           	try {
             	// 드라이버 연동
             	Class.forName("com.mysql.cj.jdbc.Driver");
             	
@@ -39,11 +41,19 @@
             	conn = DriverManager.getConnection(url, user, pass);
             	
             	// sql 연동
-            	pstmt = conn.prepareStatement(sql);	
-            	
+                pstmt = conn.prepareStatement(sql , ResultSet.TYPE_SCROLL_INSENSITIVE,
+                									ResultSet.CONCUR_READ_ONLY);
             	rset = pstmt.executeQuery();	// 표 ( select -> executeQuery() )
+            	//1) 먼저 전체글 갯수 출력
+				int cnt=-1;
+				//		줄
+            	if( rset.next() ) {
+					cnt = rset.getInt("cnt");	// 칸
+					rset.beforeFirst();			// 다시 처음으로 표부터 처리
+				}
+            	//2) 
             	while( rset.next() ) {			// 줄
-            		out.print( "<tr><td>" + rset.getInt("bno")	// 칸
+            		out.println( "<tr><td>" + cnt-- /* rset.getInt("bno") */	// 칸
             				+ "</td><td> <a href='detail.jsp?bno=" + rset.getInt("bno") + "'>" 
             				+ rset.getString("btitlc")
             				+ "</a> </td><td>"

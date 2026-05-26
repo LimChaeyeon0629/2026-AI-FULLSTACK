@@ -1,8 +1,4 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.net.InetAddress"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
 
@@ -11,16 +7,17 @@
 	int bno = Integer.parseInt(request.getParameter("bno"));
 	
 	String bname="", btitlc="", bcontent=""; int bhit=0;
-	try {
-		Connection conn=null;
-		PreparedStatement pstmt=null;	ResultSet rset=null;
-		
-		String url="jdbc:mysql://localhost:3306/dbdbig";
-		String user="root", pass="1234";
-		
-		String sql1="update mvcboard1 set bhit=bhit+1 where bno=?";	// 조회수
-		String sql2="select * from mvcboard1 where bno=?";			// 상세보기
+	
+	Connection conn=null;
+	PreparedStatement pstmt=null;	ResultSet rset=null;
+	
+	String url="jdbc:mysql://localhost:3306/dbdbig";
+	String user="root", pass="1234";
+	
+	String sql1="update mvcboard1 set bhit=bhit+1 where bno=?";	// 조회수
+	String sql2="select * from mvcboard1 where bno=?";			// 상세보기
 
+	try {
 		// 드라이버 연동
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		// jdbc 연동
@@ -59,7 +56,7 @@
     	<!-- 디테일 form -->
 		<form action="detail.jsp" method="post" onsubmit="return checkForm()">
 			
-			<!-- bhit -->
+			<!-- bhit 
 			<div class="container my-3">
 				<label for="bhit" class="form-label" >조회수</label>
 				<input type="text"
@@ -67,7 +64,7 @@
 						class="form-control"
 						id="bhit" name="bhit"
 						readonly >
-			</div>
+			</div> -->
 
 			<!-- name -->
 			<div class="container my-3">
@@ -97,9 +94,9 @@
 			</div>
 			
 			<div class="my-3 text-end">
-				<a href="edit.jsp?bno=<%=bno%>"   class="btn btn-danger" title="수정" >수정</a>
+				<a href="edit.jsp?bno=<%=bno%>"    class="btn btn-danger" title="수정" >수정</a>
 				<a href="delete.jsp?bno=<%=bno %>" class="btn btn-danger" title="삭제" >삭제</a>
-				<a href="list.jsp"   class="btn btn-danger" title="목록보기" >목록보기</a>
+				<a href="list.jsp"   class="btn btn-outline-danger" title="목록보기" >목록보기</a>
 			</div>
 		</form> <!-- 디테일 form end -->
 		

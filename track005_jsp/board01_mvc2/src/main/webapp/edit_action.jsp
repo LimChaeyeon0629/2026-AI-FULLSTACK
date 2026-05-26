@@ -1,8 +1,4 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.net.InetAddress"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
 
@@ -11,24 +7,27 @@
 	
 	String btitlc = request.getParameter("btitlc");
 	String bpass = request.getParameter("bpass");
-	String bno = request.getParameter("bno");
+	int bno = Integer.parseInt( request.getParameter("bno") );
 	String bcontent = request.getParameter("bcontent");
 	
+	Connection conn=null;
+	PreparedStatement pstmt=null;	ResultSet rset =null;
+
+	String url="jdbc:mysql://localhost:3306/dbdbig";
+	String user = "root", pass="1234";
+	
+	String sql="update mvcboard1 set btitlc=?, bcontent=?, bpass=? where bno=?";
+
 	try {
-		Connection conn=null; PreparedStatement pstmt=null;
-		ResultSet rset =null;
-		
 		Class.forName("com.mysql.cj.jdbc.Driver");	//3-1) Class.forName
-		String url="jdbc:mysql://localhost:3306/dbdbig";
-		String sql="update mvcboard1 set btitlc=?, bcontent=?, bpass=? where bno=?";
 		
-		conn = DriverManager.getConnection(url, "root", "1234");	//3-2) db연동 (DriverManager.getConnection)
+		conn = DriverManager.getConnection(url, user, pass);	//3-2) db연동 (DriverManager.getConnection)
 	
 		pstmt = conn.prepareStatement(sql);		//3-3) update executeUpdate
 		pstmt.setString(1, btitlc);				//executeUpdate = insert, delete, update
 		pstmt.setString(2, bcontent);			//executeQuery  = select
-		pstmt.setString(3, bpass);	
-		pstmt.setString(4, bno);				
+		pstmt.setString(3, bpass); 
+		pstmt.setInt(4, bno);
 		
 		int result = pstmt.executeUpdate();
 		
