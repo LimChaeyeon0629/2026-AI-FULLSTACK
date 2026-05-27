@@ -27,6 +27,7 @@
 		pstmt.setString(3, email);
 		pstmt.setString(4, mobile);
 		pstmt.setString(5, InetAddress.getLocalHost().getHostAddress());
+		//out.print(pstmt);
 		
 		if ( pstmt.executeUpdate() > 0 ) {
 			out.println("<script> alert('회원가입 성공'); location.href='list.jsp'; </script>");
