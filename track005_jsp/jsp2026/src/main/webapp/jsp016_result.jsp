@@ -42,7 +42,7 @@
 		pstmt.setString(2, bpass);
 		// out.print(pstmt);
 		
-		if( pstmt.executeUpdate()>0 ) {
+		if( pstmt.executeUpdate() > 0 ) {
 			out.print("<script> location.href='jsp016_login.jsp'; </script>");
 		} else {
 			out.print("<script> history.go(-1); </script>");

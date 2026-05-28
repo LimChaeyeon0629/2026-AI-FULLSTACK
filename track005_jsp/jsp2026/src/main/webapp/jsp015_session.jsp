@@ -31,11 +31,11 @@
 	        </tbody>
      	 </table>
 
-	      <div  class="text-center">
+	     <div  class="text-center">
 	         <a href="jsp015_session2.jsp" class="btn btn-danger">세션값 저장</a>
 	         <a href="jsp015_session3.jsp" class="btn btn-danger">세션값 삭제</a>
 	         <a href="jsp015_session4.jsp" class="btn btn-danger">세션값 초기화</a>
-	      </div>
+	     </div>
 	</div>
 </body>
 </html>

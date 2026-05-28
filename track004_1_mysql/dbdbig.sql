@@ -59,6 +59,7 @@ desc users;
 -- 회원가입 sql
 -- insert into users (nickname, bpass, email, mobile, bip) values (?, ?, ?, ?, ?)
 insert into users (nickname, bpass, email, mobile, bip) values ('aaa', '1111', 'aaa@gmail.com', '010-111-1111', '127.0.0.1');
+select * from users;
 
 -- 로그인 sql
 -- select count(*) from users where bpass=? and email=?;
