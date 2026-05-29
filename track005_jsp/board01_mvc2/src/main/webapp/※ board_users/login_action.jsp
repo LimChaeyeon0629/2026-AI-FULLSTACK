@@ -23,7 +23,8 @@
 	String url="jdbc:mysql://localhost:3306/mbasic";
 	String user="root", pass="1234";
 	
-	//String sql = "select * from users where email=? and bpass=?";
+	// select * from
+	String sql = "select * from users where email=? and bpass=?";
 	
 	session.setAttribute("email", email);
 	session.setAttribute("bpass", bpass);

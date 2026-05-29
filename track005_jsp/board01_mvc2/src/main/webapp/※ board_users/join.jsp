@@ -16,32 +16,28 @@
 				<!-- nickname -->
 				<div class="container my-3">
 					<label for="nickname" class="form-label" >닉네임</label>
-					<input type="text"
-							class="form-control" placeholder="닉네임을 적어주세요!"
+					<input type="text" class="form-control" placeholder="닉네임을 적어주세요!"
 							id="nickname" name="nickname">
 				</div>
 
 				<!-- pw -->
 				<div class="container my-3">
 					<label for="bpass" class="form-label" >비밀번호</label>
-					<input type="text"
-							class="form-control" placeholder="비밀번호를 적어주세요!"
+					<input type="text" class="form-control" placeholder="비밀번호를 적어주세요!"
 							id="bpass" name="bpass">
 				</div>
 				
 				<!-- 이메일 -->
 				<div class="container my-3">
 					<label for="email" class="from-label" >이메일</label>
-					<input type="text"
-							class="form-control" placeholder="이메일을 적어주세요!"
+					<input type="text" class="form-control" placeholder="이메일을 적어주세요!"
 							id="email" name="email">
 				</div>
 				
 				<!-- 휴대폰 -->
 				<div class="container my-3">
 					<label for="mobile" class="from-label" >전화번호</label>
-					<input type="text"
-							class="form-control" placeholder="전화번호를 적어주세요!"
+					<input type="text" class="form-control" placeholder="전화번호를 적어주세요!"
 							id="mobile" name="mobile">
 				</div>
 				
