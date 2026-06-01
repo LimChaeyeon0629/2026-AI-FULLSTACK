@@ -1,0 +1,26 @@
+package ex1;
+
+import org.springframework.context.ApplicationContext;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.company.ioc2.IceCreamShop;
+
+@RunWith(SpringJUnit4ClassRunner.class) // spring 구동
+@ContextConfiguration( locations = "classpath:config/test2.xml" ) // 위치설정
+
+public class BeanTest2 {
+	// import org.springframework.context.ApplicationContext;
+	@Autowired ApplicationContext context; //1. bean (스프링이 관리하는 객체들)
+	//2. ApplicationContext - bean 생성자 생성부터 소멸까지 관리
+	//3. @Autowired 생성자, 프로퍼티가 있는지 테스트하고 자동연결, 적용
+	
+	@Test
+	public void test1() {
+	    IceCreamShop iceCreamShop = (IceCreamShop)context.getBean("iceCreamShop");
+	    iceCreamShop.print();
+	}
+}
