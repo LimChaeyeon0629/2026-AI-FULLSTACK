@@ -706,3 +706,6 @@ select min(sal) from emp where deptno=30 group by deptno
 -- step2)
 -- sal > any ( 950 1250 1500 1600 2850 ) 최소값 950보다 크다
 -- sal > all ( 950 1250 1500 1600 2850 ) 최대값 2850보다 크다
+
+
+
