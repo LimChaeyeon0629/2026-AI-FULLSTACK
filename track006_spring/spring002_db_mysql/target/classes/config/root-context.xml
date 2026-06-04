@@ -16,6 +16,7 @@
 		<property name="annotationClass" value="com.the703.dao.Mapper" />
 	</bean>
 
+
 	<!-- STEP2 mybatis
 		■1. SqlSessionFactoryBean : 스프링에서 SqlSession 객체들을 생성 및 관리
 		private Resource configLocation;	- 설정파일
@@ -41,13 +42,14 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
+	
 	<!-- STEP1 dataSource - ■SimpleDriverDataSource : setter -->
 	<context:property-placeholder location="classpath:config/db.properties" />
 	<bean 	id="dataSource"
-			class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+			class="com.zaxxer.hikari.HikariDataSource">
 			<!-- 드라이버 연동 -->
-		<property name="driverClass" 	value="${db.driverClass}" />
-		<property name="url"			value="${db.url}" />
+		<property name="driverClassName" 	value="${db.driverClass}" />
+		<property name="jdbcUrl"			value="${db.url}" />
 		<property name="username"		value="${db.username}" />
 		<property name="password" 		value="${db.password}" />
 	</bean>

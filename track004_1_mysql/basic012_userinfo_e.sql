@@ -27,3 +27,7 @@ create table mvcboard2 (
     bhit int not null default 0,
     bip varchar(50) not null
 );
+
+desc mvcboard2;
+select * from mvcboard2;
+insert into mvcboard2 values (1, 'aaa', 'bbb', '123', 'context', '2020-02-19', 10, '12-0-34');
