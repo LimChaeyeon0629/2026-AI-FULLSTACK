@@ -14,14 +14,15 @@
 			bpass=#{bpass},
 			btitle=#{btitle},
 			bcontent=#{bcontent},
-			bip=#{bip},
+			<!-- bip=#{bip}, -->
 			bhit = bhit + 1
-		where bno=#{bno};
+		where bno=#{bno} and bpass=#{bpass};
 	</update>
 	
 		<!-- 메서드명 / 파라미터타입 -->
-	<delete id="delete" parameterType="int">
-		delete from mvcboard2 where bno=#{bno};
+	<delete id="delete" parameterType="BoardDto">
+		delete from mvcboard2 
+		where bno=#{bno} and bpass=#{bpass};
 	</delete>
 	
 	<select resultType="BoardDto" id="select" parameterType="int">

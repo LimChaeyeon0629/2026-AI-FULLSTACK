@@ -1,6 +1,7 @@
 package ex02;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import javax.sql.DataSource;
 
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.the703.dao.TestMapper;
 import com.the703.dao.BoardMapper;
 import com.the703.dto.BoardDto;
+import com.the703.service.BoardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)	//1.spring 구동
 @ContextConfiguration(locations = "classpath:config/root-context.xml") //2.설정파일
@@ -25,6 +27,7 @@ public class ModelTest {
 	@Autowired SqlSession sqlSession;
 	@Autowired TestMapper testMapper;
 	@Autowired BoardMapper board;
+	@Autowired BoardService service;
 	
 	@Ignore //@Test
 	public void test1() {
@@ -46,7 +49,7 @@ public class ModelTest {
 		System.out.println(testMapper.now());
 	} // 메서드명 now()
 	
-	@Test
+	@Ignore //@Test
 	public void test5() {
 		//삭제
 //		System.out.println( board.delete(8) );
@@ -76,6 +79,36 @@ public class ModelTest {
 //		System.out.println( board.select(1) );
 		
 		//전체출력
-		System.out.println(board.selectAll());
+//		System.out.println(board.selectAll());
 	}
+	
+	@Test
+	public void test6() throws UnknownHostException {
+		//삭제
+//		BoardDto dto = new BoardDto();
+//		dto.setBno(10);
+//		System.out.println( service.delete(dto) );
+		
+		//수정
+		BoardDto dto = new BoardDto();
+		dto.setBname("first");
+		dto.setBpass("1111");
+		dto.setBno(11);
+		dto.setBtitle("service-제목");
+		dto.setBcontent("service-글쓰기");
+		dto.setBip(InetAddress.getLocalHost().getHostAddress());
+		System.out.println( service.edit(dto) );
+		
+		//삽입
+//		BoardDto dto = new BoardDto();
+//		dto.setBname("second");
+//		dto.setBpass("2222");
+//		dto.setBtitle("service-제목");
+//		dto.setBcontent("service-글쓰기");
+//		System.out.println( service.insert(dto) );
+		
+		//전체출력
+		System.out.println( service.selectAll() );
+	}
+	
 }

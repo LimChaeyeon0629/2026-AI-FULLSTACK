@@ -4,18 +4,41 @@
 <!-- 	header		 -->
 <!-- 	header		 -->
 
+
+<script>
+window.addEventListener("load", function() {
+	let result = '${result}';	// el	-	rttr.addFlashAttribute("result", result)
+	console.log(result);
+	
+	if( result == "글삭제 실패..." ) {
+		alert(result); history.go(-1);	// 알림창; 뒤로가기;
+	} else if( result.length != 0 ) {
+		alert(result);
+	}
+});
+</script>
+
+
+
+
    <div class="container  my-5">
       <h3 >글 삭제</h3>
-      <form  action ="#"  method="post"   onsubmit="return checkForm()"> 
+      <form  action ="${pageContext.request.contextPath}/board/delete.do"  method="post"   onsubmit="return checkForm()"> 
+      	
+      	<input type="hidden" name="bno" value="${dto.bno}">
+      	
       	<div  class="my-3">
       		<label for="bpass"   class="form-label">비밀번호</label>
       		<input type="password"   class="form-control"    id="bpass"  name="bpass"  />
       	</div> 
+      	
       	<div  class="my-3  text-end"> 
       		<button type="reset"   class="btn btn-outline-primary"  title="글취소">취소</button>
-      		<a href=""             class="btn btn-outline-success"  title="목록보러가기">목록</a>
+      		<a href="${pageContext.request.contextPath}/board/list.do"
+      		   class="btn btn-outline-success"  title="목록보러가기" >목록</a>
       		<button type="submit"  class="btn btn-primary"  title="글삭제">글삭제</button>
       	</div>
+      	
       </form> 
 		<script>
 		function   checkForm(){ 
