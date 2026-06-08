@@ -12,6 +12,9 @@ create table mvcboard1 (
     bip varchar(50)
 );
 
+use mbasic;
+select * from mvcboard2;
+
 desc mvcboard1;
 alter table mvcboard1 modify bdate timestamp not null default current_timestamp;
 alter table mvcboard1 modify bip varchar(50) not null;
@@ -60,9 +63,41 @@ desc users;
 -- insert into users (nickname, bpass, email, mobile, bip) values (?, ?, ?, ?, ?)
 insert into users (nickname, bpass, email, mobile, bip) values ('aaa', '1111', 'aaa@gmail.com', '010-111-1111', '127.0.0.1');
 select * from users;
+select * from mvcboard1;
 delete from users where uno=3;
 
 -- 로그인 sql
 -- select count(*) from users where bpass=? and email=?;
 -- select       *  from users where bpass=? and email=?;
 select       *  from users where bpass='1111' and email='aaa@gmail.com';
+
+use mbasic;
+select * from users;
+select * from mvcboard1;
+
+
+
+
+use mbasic;
+desc mvcboard2;
+alter table mvcboard2 add bfile varchar(500) default 'the703.png';
+alter table mvcboard2 modify bfile varchar(500) not null default 'the703.png';
+
+alter table mvcboard2 modify bfile varchar(500) default 'the703.png';
+desc mvcboard2;
+
+
+
+insert into mvcboard2 (bname, bpass, btitle, bcontent, bdate, bhit, bip, bfile)
+select bname, bpass, btitle, bcontent, bdate, bhit, bip, bfile from mvcboard2;
+
+select * from mvcboard2;
+
+delete from mvcboard2
+where bno between 517 and 585;
+
+select * from mvcboard2 order by bno desc limit 0, 10;		-- 어디서부터, 몇 개
+select * from mvcboard2 order by bno desc limit 10, 10; 	-- 그 다음 10개부터, 10개
+select * from mvcboard2 order by bno desc limit 20, 10;
+
+select count(*) from mvcboard2;

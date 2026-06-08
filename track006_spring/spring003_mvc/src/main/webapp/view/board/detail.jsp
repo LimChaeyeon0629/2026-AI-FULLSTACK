@@ -11,7 +11,7 @@ window.addEventListener("load", function() {
 	let result = '${result}';	// el	-	rttr.addFlashAttribute("result", result)
 	console.log(result);
 	
-	if( result == "글수정 실패" ) {
+	if( result == "비밀번호 확인!" ) {
 		alert(result);	// 알림창;
 		history.go(-1);	// 뒤로가기;
 	} else if( result.length != 0 ) {
@@ -41,6 +41,12 @@ window.addEventListener("load", function() {
       		<label for="bcontent"  class="form-label">내용</label>
       		<textarea  class="form-control"    id="bcontent"  name="bcontent"   readonly >${dto.bcontent}</textarea>
       	</div>
+      	
+      	<div class="my-3">
+		<label for="bname" class="form-label">파일</label>
+			<img src="${pageContext.request.contextPath}/upload/${dto.bfile}"
+				 alt="${dto.btitle}" class="w-50" />
+		</div>
       	
       	<div  class="my-3  text-end"> 
       		<a href="${pageContext.request.contextPath}/board/edit.do?bno=${dto.bno}" 

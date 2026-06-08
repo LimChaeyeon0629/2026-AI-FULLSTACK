@@ -12,6 +12,7 @@ public class BoardDto {
 	private String bdate; //timestamp
 	private int bhit;
 	private String bip;
+	private String bfile;
 }
 
 

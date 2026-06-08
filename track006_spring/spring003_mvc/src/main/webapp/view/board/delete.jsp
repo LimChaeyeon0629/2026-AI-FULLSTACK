@@ -10,7 +10,7 @@ window.addEventListener("load", function() {
 	let result = '${result}';	// el	-	rttr.addFlashAttribute("result", result)
 	console.log(result);
 	
-	if( result == "글삭제 실패..." ) {
+	if( result == "글삭제 실패..." || result == "비밀번호 확인!" ) {
 		alert(result); history.go(-1);	// 알림창; 뒤로가기;
 	} else if( result.length != 0 ) {
 		alert(result);
@@ -25,7 +25,7 @@ window.addEventListener("load", function() {
       <h3 >글 삭제</h3>
       <form  action ="${pageContext.request.contextPath}/board/delete.do"  method="post"   onsubmit="return checkForm()"> 
       	
-      	<input type="hidden" name="bno" value="${dto.bno}">
+      	<input type="hidden" name="bno" value="${param.bno}">
       	
       	<div  class="my-3">
       		<label for="bpass"   class="form-label">비밀번호</label>

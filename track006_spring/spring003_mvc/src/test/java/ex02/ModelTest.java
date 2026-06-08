@@ -2,6 +2,7 @@ package ex02;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 
 import javax.sql.DataSource;
 
@@ -26,8 +27,19 @@ public class ModelTest {
 	@Autowired DataSource dataSource;
 	@Autowired SqlSession sqlSession;
 	@Autowired TestMapper testMapper;
+	
 	@Autowired BoardMapper board;
 	@Autowired BoardService service;
+	
+	@Test
+	public void test7() {
+		HashMap<String, Integer> map = new HashMap();
+		map.put("start", 0);
+		map.put("end", 10);
+		System.out.println( board.select10(map) );
+		
+		System.out.println( board.selectCnt() );
+	}
 	
 	@Ignore //@Test
 	public void test1() {
@@ -82,7 +94,7 @@ public class ModelTest {
 //		System.out.println(board.selectAll());
 	}
 	
-	@Test
+	@Ignore //@Test
 	public void test6() throws UnknownHostException {
 		//삭제
 //		BoardDto dto = new BoardDto();
@@ -90,14 +102,14 @@ public class ModelTest {
 //		System.out.println( service.delete(dto) );
 		
 		//수정
-		BoardDto dto = new BoardDto();
-		dto.setBname("first");
-		dto.setBpass("1111");
-		dto.setBno(11);
-		dto.setBtitle("service-제목");
-		dto.setBcontent("service-글쓰기");
-		dto.setBip(InetAddress.getLocalHost().getHostAddress());
-		System.out.println( service.edit(dto) );
+//		BoardDto dto = new BoardDto();
+//		dto.setBname("first");
+//		dto.setBpass("1111");
+//		dto.setBno(11);
+//		dto.setBtitle("service-제목");
+//		dto.setBcontent("service-글쓰기");
+//		dto.setBip(InetAddress.getLocalHost().getHostAddress());
+//		System.out.println( service.edit(dto) );
 		
 		//삽입
 //		BoardDto dto = new BoardDto();
@@ -108,7 +120,7 @@ public class ModelTest {
 //		System.out.println( service.insert(dto) );
 		
 		//전체출력
-		System.out.println( service.selectAll() );
+//		System.out.println( service.selectAll() );
 	}
 	
 }
