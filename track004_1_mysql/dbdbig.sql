@@ -78,6 +78,8 @@ select * from mvcboard1;
 
 
 
+
+-- src img
 use mbasic;
 desc mvcboard2;
 alter table mvcboard2 add bfile varchar(500) default 'the703.png';
@@ -87,7 +89,7 @@ alter table mvcboard2 modify bfile varchar(500) default 'the703.png';
 desc mvcboard2;
 
 
-
+-- paging
 insert into mvcboard2 (bname, bpass, btitle, bcontent, bdate, bhit, bip, bfile)
 select bname, bpass, btitle, bcontent, bdate, bhit, bip, bfile from mvcboard2;
 
@@ -101,3 +103,37 @@ select * from mvcboard2 order by bno desc limit 10, 10; 	-- 그 다음 10개부�
 select * from mvcboard2 order by bno desc limit 20, 10;
 
 select count(*) from mvcboard2;
+
+
+-- 
+use mbasic;
+show tables;
+desc users;
+select * from users;
+insert into users (nickname, bpass, email, mobile, bip) values ('1', '1', 'first@gmail.com', '010-000-0000', '192.168.40.38');
+
+alter table users modify bpass varchar(500) not null;
+desc users;
+
+SET SQL_SAFE_UPDATES =0;
+delete from users;
+
+delete from users where uno=5;
+-- create table userss select * from users;
+
+create table authorities (
+	email varchar(50) not null,
+    auth varchar(50) not null
+);
+desc authorities;
+
+insert into authorities (email, auth) values ('first@gmail.com', 'ROLE_MEMBER');
+insert into authorities (email, auth) values ('first@gmail.com', 'ROLE_ADMIN');
+-- insert into authorities (email, auth) values (#{email}, #{auth});
+
+update authorities set bpass='1234' where email='first@gmail.com';
+select * from authorities;
+
+select u.email, u.bpass, a.auth
+from users u left join authorities a on u.email = a.email
+where u.email = 'first@gmail.com'
