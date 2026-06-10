@@ -30,6 +30,12 @@ public class ModelTest2 {
 	
 	/* security */
 	@Test
+	public void test4() {
+		AuthDto dto2 = new AuthDto();	dto2.setEmail("a@a");
+		System.out.println( user.readAuth(dto2) );
+	}
+	
+	@Ignore //@Test
 	public void test3() {
 		/* 로그인시 인가 (해당유저 정보 가져오기) */
 		AuthDto dto2 = new AuthDto();

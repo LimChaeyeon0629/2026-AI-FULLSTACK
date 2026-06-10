@@ -13,6 +13,8 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
+
+
 	<!-- 한글 인코딩 필터 설정 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -38,7 +40,7 @@
 
 
 	<!-- 1. 스프링구동 ContextLoaderListener -->
-	<!-- needed for ContextLoaderListener (root-context.xml 파일 읽기) -->
+	<!-- needed for ContextLoaderListener (root-context.xml & security-context.xml 파일 읽기) -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:/config/*-context.xml</param-value>
@@ -48,8 +50,6 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-
 
 
 	<filter>

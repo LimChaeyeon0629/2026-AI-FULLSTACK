@@ -1,15 +1,57 @@
 package com.the703.controller;
 
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.the703.dto.UserDto;
+import com.the703.service.UserService;
 
 @Controller
-@RequestMapping("/security/")
+@RequestMapping("/security/*")
 public class SecurityController { // URL 요청 받아서 어떤 JSP 보여줄지 결정
+
+	@Autowired UserService service;
 	
-	@RequestMapping("all")
+	@RequestMapping("/all")
 	public String all() { return "security/all"; }
-	
-	@RequestMapping("member")
+	@RequestMapping("/member")
 	public String member() { return "security/member"; }
+	
+	@RequestMapping("/join")
+	public String join() { return "security/join"; }
+	@RequestMapping(value="/join", method=RequestMethod.POST)
+	public String join_post(UserDto dto, RedirectAttributes rttr) { 
+		String result="회원가입실패";
+		if( service.insert(dto) > 0 ) { result = "회원가입성공"; }
+		rttr.addFlashAttribute("success", result);
+		return "redirect:/security/join"; 
+	}
+	@RequestMapping("/login")
+	public String login() { return "security/login"; }
+	
+	@RequestMapping("/fail")
+	public String fail() { return "security/fail"; }
+	@RequestMapping("/mypage")
+	
+	
+	
+	// Authentication - Principal 현재 로그인한 사용자 정보
+	public String mypage( Principal principal, Model model ) { 
+		System.out.println("................." + principal);
+		System.out.println("................." + principal.getName()); //username - email
+//		model.addAttribute("email", principal.getName()); //email mypage출력
+
+		// mapper - email 검색 시 해당 유저 정보 가져오기 	- mapper&service 
+		//											- 검색된 단일유저조회(UserDto) / 파라미터타입은 email만(String email)
+		model.addAttribute("dto", service.findByEmailUserInfo( principal.getName() ));
+		
+		return "security/mypage"; }
+
 }

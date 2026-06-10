@@ -30,8 +30,6 @@
 	</delete>
 	
 	
-	
-	
 	<!-- authorities -->
 	<!-- authorities -->
 	<insert id="insertAuth" parameterType="AuthDto">
@@ -42,7 +40,7 @@
 		select u.email, u.bpass, a.auth
 		from users u		left join authorities a		on u.email = a.email
 		where u.email = #{email}
-	</select>					<!-- "AppUserAuthDto" -->	
+	</select>					
 	<resultMap id="authlistMap" type="AuthListDto">
 		<result property="email" column="email" />
 		<result property="bpass" column="bpass" />
@@ -52,6 +50,10 @@
 		<result property="email" column="email" />
 		<result property="auth" column="auth" /> <!-- property= dto / column= table field -->
 	</resultMap>
+	
+	<select resultType="UserDto" id="findByEmailUserInfo" parameterType="string">
+		select * from users where email=#{email}
+	</select>
 	
 	
 	

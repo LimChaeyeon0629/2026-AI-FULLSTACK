@@ -17,4 +17,5 @@ public interface UserMapper { // DB랑 직접 연결되는 역할 (SQL 실행) mybatis
 	/* security - authorities */
 	public int insertAuth(AuthDto dto);
 	public AuthListDto readAuth(AuthDto dto);
+	public UserDto findByEmailUserInfo(String email);
 }

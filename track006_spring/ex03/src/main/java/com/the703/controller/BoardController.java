@@ -48,7 +48,7 @@ public class BoardController {
 							RedirectAttributes rttr) {
 		String result="글쓰기 실패";
 		
-		if ( service.insert(dto, file) > 0 ) { result="글쓰기 성공 "; }
+		if ( service.insert(dto, file) > 0 ) { result="글쓰기 성공"; }
 		rttr.addFlashAttribute("result", result);	// Flash - 한 번만 동작
 		
 		return "redirect:/board/list.do";	//response.sendRedirect + alert (x)

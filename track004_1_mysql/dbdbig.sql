@@ -118,7 +118,7 @@ desc users;
 SET SQL_SAFE_UPDATES =0;
 delete from users;
 
-delete from users where uno=5;
+delete from users where uno=16;
 -- create table userss select * from users;
 
 create table authorities (
