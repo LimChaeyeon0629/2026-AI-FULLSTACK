@@ -26,6 +26,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
                 </button>
+                
                 <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav ms-auto">
                 <!--  애플리케이션 루트기준  --> 
