@@ -12,12 +12,51 @@
 	4) 처리경로     : 처리후 로그인 폼으로 (LoginAction - Get)   
    -->
 	<form action="${pageContext.request.contextPath}/security/join" method="post" onsubmit="return checkForm()">
+	
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 		<div class="my-3">
 			<label for="nickname" class="form-label">닉네임</label>
 			<input type="text" class="form-control" id="nickname" name="nickname" />
 		</div>
+		<div class="my-3 alert alert-warning target2">
+			닉네임 중복검사는 필수입니다.
+		</div>
+		<script>
+		window.addEventListener("load", function() {
+			let nickname = document.getElementById("nickname");
+			let target2 = document.querySelector(".target2");
+			
+			nickname.addEventListener("keyup", function(e) {
+				let value = e.target.value.trim(); //앞뒤로 공백빼기
+				
+				if(value !== "") { //빈칸이 아니면 서버에 요청
+					fetch("${pageContext.request.contextPath}/doubleNickname?nickname=" + encodeURIComponent(value))
+					.then(response=> response.json())
+					.then(data=> {
+						if(data.exists) {
+							target2.textContent="닉네임이 존재합니다.";
+							target2.className="my-3 alert alert-danger target2";
+							
+						} else {
+							target2.textContent="사용가능한 닉네임입니다.";
+							target2.className="my-3 alert alert-success target2";
+						}
+					})
+					.catch(err=> {
+						target2.textContent="오류입니다.";
+						target2.className="my-3 alert alert-info target2";
+					});
+					
+				} else { //빈칸이면 유지
+					target2.textContent="닉네임 중복검사는 필수입니다.";
+					target2.className="my-3 alert alert-warning target2";
+				}
+			});
+			
+		});
+		</script>
+		
 
 		<div class="my-3">
 			<label for="bpass" class="form-label">비밀번호</label>
@@ -29,7 +68,7 @@
 			<input type="email" class="form-control" id="email" name="email" />
 		</div>
 		<div class="my-3	alert	alert-warning	target">
-			아이디 중복검사는 필수입니다.
+			이메일 중복검사는 필수입니다.
 		</div>
 			<script>
 			window.addEventListener("load", function(){

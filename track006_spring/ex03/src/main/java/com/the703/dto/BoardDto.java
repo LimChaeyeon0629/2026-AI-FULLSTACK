@@ -15,7 +15,6 @@ public class BoardDto {
 	private String bfile;
 }
 
-
 /*
 mysql> desc mvcboard2;
 +----------+---------------+------+-----+-------------------+-------------------+

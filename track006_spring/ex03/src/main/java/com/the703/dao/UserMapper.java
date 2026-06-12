@@ -9,7 +9,8 @@ public interface UserMapper { // DB랑 직접 연결되는 역할 (SQL 실행) mybatis
 	public int insert(UserDto dto);
 	public int findLogin(UserDto dto);
 	public UserDto findByUno(int uno);
-	public String findByEmail(String email);
+	public String findByEmail(String email); //이메일중복확인
+	public String findByNickname(String nickname); //닉네임중복확인
 	public int update(UserDto dto);
 	public int delete(int uno);
 	

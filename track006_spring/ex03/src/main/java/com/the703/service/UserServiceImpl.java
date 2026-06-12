@@ -48,6 +48,12 @@ public class UserServiceImpl implements UserService {
 	public String findByEmail(String email) {
 		return dao.findByEmail(email);
 	}
+	
+	@Override
+	public String findByNickname(String nickname) {
+		// TODO Auto-generated method stub
+		return dao.findByNickname(nickname);
+	}
 
 	@Override
 	public int update(UserDto dto) {
@@ -70,6 +76,8 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return dao.findByEmailUserInfo(email);
 	}
+
+	
 	
 	
 	

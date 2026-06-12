@@ -51,10 +51,9 @@
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
                     	<a class="nav-link" href="${pageContext.request.contextPath}/security/mypage">
-                    		<sec:authentication property="principal.dto.email" />
-                    	</a>	<!-- 로그인 사용자 정보 조회 -->
+                    		<sec:authentication property="principal.dto.email" /> <!-- 로그인 사용자 정보 조회 -->
+                    	</a>	
                     </li>
-                    
                     <li class="nav-item">
                     	<form action="${pageContext.request.contextPath}/security/logout" method="post">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

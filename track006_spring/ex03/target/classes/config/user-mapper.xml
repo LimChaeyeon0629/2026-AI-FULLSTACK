@@ -20,6 +20,10 @@
 	<select resultType="String" id="findByEmail" parameterType="String">
 		select email from users where email=#{email}
 	</select>
+
+	<select resultType="String" id="findByNickname" parameterType="String">
+		select nickname from users where nickname=#{nickname}
+	</select>
 	
 	<update  id="update" parameterType="UserDto">
 		update users set email=#{email} where uno=#{uno}

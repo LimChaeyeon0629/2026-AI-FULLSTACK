@@ -47,6 +47,7 @@ Paging 1 - Model 1) Mapper
     2) 전체 게시글 갯수
     select count(*) from mvcboard2
 
+
 Paging 2 - Model 2) PagingUtil
 
 Paging 3 - Controller) BoardController 사용
