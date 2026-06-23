@@ -16,8 +16,7 @@
   <select  resultType="BoardDto"   id="selectAll"   >
   	select * from mvcboard2  order by bno desc
   </select>
-  <select resultType="BoardDto"   id="select"   
-  							parameterType="int">
+  <select resultType="BoardDto"   id="select"  parameterType="int">
   	select * from mvcboard2  where  bno= #{bno}
   </select>
   
@@ -30,7 +29,6 @@
   <select    resultType="BoardDto"   id="select10"  parameterType="java.util.HashMap">
   	select * from mvcboard2  order by bno desc  limit  #{start} , #{end}
   </select>
-  
 
   <select    resultType="int"   id="selectCnt"  >
     select  count(*)  from mvcboard2
