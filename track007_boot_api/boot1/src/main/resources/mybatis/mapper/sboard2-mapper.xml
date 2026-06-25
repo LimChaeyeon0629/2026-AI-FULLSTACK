@@ -37,12 +37,13 @@
 	
 	<!-- 해당번호 업데이트 -->
 	<update id="updateById" parameterType="Sboard2Dto">
-		update sboard2 set btitle=#{btitle}, bcontent=#{bcontent}, bfile=#{bfile, jdbcType=VARCHAR} where ID = #{id}
+		update sboard2 set btitle=#{btitle}, bcontent=#{bcontent}, bfile=#{bfile, jdbcType=VARCHAR}
+		where ID = #{id} and bpass = #{bpass}
 	</update>
 		
 	<!-- 해당번호 삭제 -->
 	<delete id="deleteById" parameterType="Sboard2Dto">
-		delete from sboard2 where ID = #{id}
+		delete from sboard2 where ID = #{id} and bpass = #{bpass}
 	</delete>
 	
 </mapper>

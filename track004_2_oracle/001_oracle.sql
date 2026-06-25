@@ -229,3 +229,7 @@ update sboard2 set btitle='new', bcontent='new', bfile='2.png' where ID = 1;
 
 -- 해당번호 삭제
 delete from sboard2 where ID = 1;
+
+-- 1) spring + jsp
+-- 2) spring boot + thymeleaf ( 권장사항 html )
+-- 3) spring boot / react

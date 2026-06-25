@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class UtilUpload {
-	@Value("${resource.path=C:/upload}")
+	@Value("${resource.path}")
 	private String resourcePath; // C:/upload
 	
 	public String fileUpload(MultipartFile file) throws IOException {

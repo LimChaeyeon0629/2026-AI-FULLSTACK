@@ -12,8 +12,8 @@ public class UtilPaging {
 	private int bottomlist;		// 하단 페이지 수 10개
 	private int pstartno;		// 페이지 시작 번호 (1) 1,10 (2) 11,10 ( oracle version )
 	private int current;		// 현재 번호
-	private int start;			// 1
-	private int end;			// 10
+	private int start;			// 1		11		21
+	private int end;			// 10		20		30
 
 	public UtilPaging(int listtotal, int pageNo) {
 		this(listtotal, pageNo, 10, 10); // 한 페이지10, 하단네버10

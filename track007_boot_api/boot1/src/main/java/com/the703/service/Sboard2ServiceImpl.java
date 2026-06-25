@@ -86,6 +86,7 @@ public class Sboard2ServiceImpl implements Sboard2Service {
 	//7. 삭제기능
 	@Override
 	public int delete(Sboard2Dto dto) {
+		
 		return dao.deleteById(dto);
 	}
 	
