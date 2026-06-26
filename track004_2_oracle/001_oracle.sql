@@ -233,3 +233,65 @@ delete from sboard2 where ID = 1;
 -- 1) spring + jsp
 -- 2) spring boot + thymeleaf ( 권장사항 html )
 -- 3) spring boot / react
+
+create table appuser (
+    app_user_id number(5) not null,
+    email varchar2(100) not null,
+    password varchar2(100),
+    mbti_type_id number(3),
+    created_at date,
+    ufile varchar2(255),
+    mobile varchar2(50),
+    nickname varchar(50),
+    provider varchar2(50) not null,
+    provider_id varchar2(100)
+);
+desc appuser;
+alter table appuser modify created_at date default 0;
+
+create table authorities (
+    auth_id number(5) not null,
+    email varchar2(255),
+    auth varchar2(255) not null,
+    app_user_id number(5)
+);
+desc authorities;
+
+create sequence appuer_seq;
+drop sequence appuer_seq;
+--
+create sequence appuser_seq;
+create sequence authorities_seq;
+
+-- 회원가입
+insert into appuser (app_user_id, email, password, mbti_type_id, CREATED_AT, UFILE, MOBILE, NICKNAME, PROVIDER, PROVIDER_ID)
+values ( appuser_seq.nextval, 'first@gmail.com', '111', 1, sysdate, '1.png', '01011111111', 'first', 'the703', 't7-1');
+
+select * from appuser;
+
+commit;
+
+-- 로그인 - 이메일로 이메일, 비밀번호, 권한
+
+-- 이메일로 유저찾기
+select * from appuser where email = #{email};
+
+-- 이메일로 중복검사
+
+
+-- 회원수정
+-- 회원삭제
+-- 권한삽입
+desc authorities;
+insert into authorities (AUTH_ID, EMAIL, AUTH)
+values (authorities_seq.nextval, 'first@gmail.com', 'ROLE_MEMBER');
+
+insert into authorities (AUTH_ID, EMAIL, AUTH)
+values (authorities_seq.nextval, 'first@gmail.com', 'ROLE_ADMIN');
+
+insert into authorities (AUTH_ID, EMAIL, AUTH)
+values (authorities_seq.nextval, 'first@gmail.com', 'ROLE_MEMBER');
+
+select * from authorities;
+
+-- 권한삭제
