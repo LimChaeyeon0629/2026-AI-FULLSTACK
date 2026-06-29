@@ -1,5 +1,7 @@
 package com.the703.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.the703.dto.AppUserAuthDto;

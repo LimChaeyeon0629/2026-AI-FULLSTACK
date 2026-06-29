@@ -7,13 +7,23 @@
 	<!-- insert 회원가입 -->
 	<insert id="insertAppUser" parameterType="AppUserDto">
 		insert into appuser (app_user_id, email, password, mbti_type_id, CREATED_AT, UFILE, MOBILE, NICKNAME, PROVIDER, PROVIDER_ID)
-		values ( appuser_seq.nextval, #{email}, #{password}, #{mbtiTypeId}, sysdate, #{ufile, jdbcType=VARCHAR}, #{mobile}, #{nickname}, #{provider}, #{providerId})
+		values ( appuser_seq.nextval, #{email}, #{password}, #{mbtiTypeId}, sysdate, #{ufile}, #{mobile}, #{nickname}, #{provider}, #{providerId})
 	</insert>
 	
+	<!-- join에서 List 사용 시 - resultMap - collection 사용 -->
+	<resultMap id="AppUserAuthResultMap" type="AppUserAuthDto">
+	    <id property="email" column="email"/>
+	    <result property="email" column="email"/>
+	    <result property="password" column="password"/>  
+	    <collection property="authList" ofType="com.the703.dto.AuthDto">
+	        <result property="auth" column="auth"/>
+	    </collection>
+	</resultMap>
+	
 	<!-- 로그인 - 이메일로 이메일, 비밀번호, 권한 -->
-	<select id="readAuthByEmail" resultType="AppUserAuthDto" parameterType="AppUserDto">
+	<select id="readAuthByEmail" resultMap="AppUserAuthResultMap" parameterType="AppUserDto">
 		select u.email, u.password, a.auth
-		from appuser u left join authrities a on u.email = a.email
+		from appuser u left join authorities a on u.email = a.email
 		where u.email = #{email}
 	</select>
 	
@@ -30,20 +40,41 @@
 	<!-- 회원수정 -->
 	<update id="updateAppUser" parameterType="AppUserDto">
 		update appuser
-		set password= #{password},
-		    mbti_type_id= #{mbtiTypeId},
-		    ufile= #{ufile, jdbcType=VARCHAR},
-		    nickname= #{nickname},
-		    mobile= #{mobile},
-		    provider= #{provider},
-		    provider_id= #{providerId}
-		where email = #{email}
+		<set>
+<!-- 		<if test="password != null">
+				password = #{password},
+			</if> -->
+			<if test="mbtiTypeId != null">
+				mbti_type_id = #{mbtiTypeId},
+			</if>
+			<if test="ufile != null">
+				ufile = #{ufile},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile},
+			</if>
+			<if test="provider != null">
+				provider = #{provider},
+			</if>
+			<if test="providerId != null">
+				provider_id = #{providerId}
+			</if>
+		</set>
+		where app_user_id = #{appUserId}
 	</update>
 	
 	<!-- 회원삭제 -->
 	<delete id="deleteAppUser" parameterType="AppUserDto">
-		delete from appuser where email = #{email}
+<!-- 	delete from appuser where email = #{email}		-->
+		delete from appuser where app_user_id = #{appUserId}
 	</delete>
+	
+	
+	
+	
 	
 	<!-- 권한삽입 -->
 	<insert id="insertAuth" parameterType="AuthDto">
@@ -55,5 +86,10 @@
 	<delete id="deleteAuth" parameterType="AuthDto">
 		delete from authorities where email = #{email}
 	</delete>
+	
+	
+	
+	
+	
 	
 </mapper>

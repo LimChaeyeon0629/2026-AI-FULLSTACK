@@ -17,6 +17,7 @@ import org.springframework.mock.web.MockMultipartFile;
 
 import com.the703.dao.Sboard2Dao;
 import com.the703.dao.TestDao;
+import com.the703.dto.AppUserDto;
 import com.the703.dto.Sboard2Dto;
 import com.the703.service.Sboard2Service;
 
@@ -26,6 +27,8 @@ class Boot1ApplicationTests {
 	@Autowired TestDao dao;
 	@Autowired Sboard2Dao sdao;
 	@Autowired Sboard2Service service;
+	
+	
 	
 	@Disabled //@Test
 	public void service06_Delete() {

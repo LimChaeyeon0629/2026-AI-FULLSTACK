@@ -28,6 +28,7 @@
 --<실습2> 테이블만들기, dml
 -- 드래그 ctrl + enter
 conn  scott/tiger;
+commit;
 
 create table dept(
     deptno  number   primary key,
@@ -272,26 +273,74 @@ select * from appuser;
 commit;
 
 -- 로그인 - 이메일로 이메일, 비밀번호, 권한
+select u.email, u.password, a.auth
+from appuser u left join authrities a on u.email = a.email
+where u.email = 'first@gmail.com';
 
 -- 이메일로 유저찾기
-select * from appuser where email = #{email};
+select * from appuser where email = 'first@gmail.com';
+--
+select * from appuser where email = '1@1';
 
 -- 이메일로 중복검사
-
+select count(*) from appuser where email = 'first@gmail.com';
 
 -- 회원수정
+update appuser
+set password='2222',
+    mbti_type_id=2,
+    ufile='2.png',
+    nickname='second',
+    mobile='01022222222',
+    provider='naver',
+    provider_id='n-1'
+where email = 'first@gmail.com';
+--
+select * from appuser;
+
+commit;
+
+select * from authorities where email = '8@8';
+select * from appuser where email = '8@8';
+
+ 
+
+
+select app_user_id from appuser;
+
 -- 회원삭제
+delete from appuser where email = 'first@gmail.com';
+--
+delete from appuser where email = '1@1';
+delete from appuser where email = '5@5';
+delete from appuser where email = '6@6';
+delete from appuser where email = '8@8';
+
 -- 권한삽입
 desc authorities;
 insert into authorities (AUTH_ID, EMAIL, AUTH)
 values (authorities_seq.nextval, 'first@gmail.com', 'ROLE_MEMBER');
 
 insert into authorities (AUTH_ID, EMAIL, AUTH)
-values (authorities_seq.nextval, 'first@gmail.com', 'ROLE_ADMIN');
-
-insert into authorities (AUTH_ID, EMAIL, AUTH)
-values (authorities_seq.nextval, 'first@gmail.com', 'ROLE_MEMBER');
+values (authorities_seq.nextval, 'second@gmail.com', 'ROLE_ADMIN');
 
 select * from authorities;
 
+SELECT *
+FROM appuser
+WHERE email = '3@3';
+
+SELECT *
+FROM authorities
+WHERE email = '3@3';
+
+select u.email, u.password, a.auth
+from appuser u
+left join authorities a on u.email = a.email
+where u.email = '3@3';
+
 -- 권한삭제
+delete from authorities where email = 'first@gmail.com';
+delete from authorities where email = 'second@gmail.com';
+--
+delete from authorities where email = '8@8';
