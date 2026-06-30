@@ -17,7 +17,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http //1. 허용경로
 			.authorizeHttpRequests( auth -> auth
-					.requestMatchers("/users/join", "/users/login", "/api/**").permitAll()
+					.requestMatchers("/users/join", "/users/login", "/users/iddouble", "/api/**").permitAll()
 					.requestMatchers("/users/mypage", "/users/update", "/users/delete").authenticated()
 					.anyRequest().permitAll()
 			)
@@ -33,8 +33,8 @@ public class SecurityConfig {
 		
 		//3. 로그아웃
 		.logout( logout -> logout
-				.logoutUrl("/users/logout")
-				.logoutSuccessUrl("/users/login")
+				.logoutUrl("/users/logout")			//로그아웃 요청 받을 url
+				.logoutSuccessUrl("/users/login")	//로그아웃 성공 후 이동할 url
 				.invalidateHttpSession(true)
 				.clearAuthentication(true)
 				.permitAll()
@@ -42,7 +42,7 @@ public class SecurityConfig {
 		
 		//4. csrf 예외처리
 		.csrf( csrf -> csrf
-				.ignoringRequestMatchers("/users/join", "/users/update", "users/delete")
+				.ignoringRequestMatchers("/users/join", "/users/update", "/users/delete")
 		);
 		
 		return http.build();

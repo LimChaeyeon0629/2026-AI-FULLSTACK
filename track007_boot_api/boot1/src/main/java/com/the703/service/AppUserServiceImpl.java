@@ -22,9 +22,15 @@ public class AppUserServiceImpl implements AppUserService {
 	@Autowired private UtilUpload upload;
 	@Autowired private PasswordEncoder passwordencoder;
 	
+	
+	
 	@Transactional
 	@Override
 	public int insert(MultipartFile file, AppUserDto dto) {
+
+		dto.setMbtiTypeId(1);			// 확장버전 : mbti
+		dto.setProviderId("the703-1");	// UUId - 추가
+
 		//이미지 업로드
 		dto.setUfile("the703.png");
 		if( !file.isEmpty() ) {

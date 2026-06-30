@@ -326,6 +326,9 @@ values (authorities_seq.nextval, 'second@gmail.com', 'ROLE_ADMIN');
 
 select * from authorities;
 
+delete from authorities;
+commit;
+
 SELECT *
 FROM appuser
 WHERE email = '3@3';

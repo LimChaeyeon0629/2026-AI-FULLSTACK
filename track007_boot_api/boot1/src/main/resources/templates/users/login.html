@@ -7,8 +7,8 @@
 	<div layout:fragment="content">
 
 		<!-- 알림메시지 -->
-		<div th:if="${result}" class="alert alert-success alert-dismissible fade show" role="alert">
-			<span th:text="${result}"></span>
+		<div th:if="${errorMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+			<span th:text="${errorMessage}"></span>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 
@@ -16,6 +16,7 @@
 		<!-- 로그인 폼은 익명 사용자만 -->
 		<div sec:authorize = "isAnonymous()" >
 			<form th:action="@{/users/loginProc}" method="post" class="needs-validation" novalidate>
+			
 				<div class="mb-3">
 					<label for="username" class="form-label">이메일</label>
 					<input type="text" id="username" name="username" class="form-control" required>
