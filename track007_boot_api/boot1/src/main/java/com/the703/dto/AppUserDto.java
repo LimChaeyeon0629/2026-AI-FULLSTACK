@@ -11,6 +11,7 @@ public class AppUserDto {
 	private String createdAt;
 	private String ufile;
 	private String mobile;
+	
 	private String nickname;
 	private String provider;
 	private String providerId;

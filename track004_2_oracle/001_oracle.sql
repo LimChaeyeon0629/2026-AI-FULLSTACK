@@ -324,8 +324,10 @@ values (authorities_seq.nextval, 'first@gmail.com', 'ROLE_MEMBER');
 insert into authorities (AUTH_ID, EMAIL, AUTH)
 values (authorities_seq.nextval, 'second@gmail.com', 'ROLE_ADMIN');
 
+select * from appuser;
 select * from authorities;
 
+delete from appuser;
 delete from authorities;
 commit;
 
@@ -347,3 +349,6 @@ delete from authorities where email = 'first@gmail.com';
 delete from authorities where email = 'second@gmail.com';
 --
 delete from authorities where email = '8@8';
+
+conn  scott/tiger;
+commit;

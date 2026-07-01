@@ -12,8 +12,7 @@ public class UserNaver implements UserInfoOAuth2 {
 	@SuppressWarnings("unchecked")
 	private Map<String, Object> getResponse() {
 		Object response = attributes.get("response");
-		return response instanceof Map?
-				(Map<String, Object>)response : null;
+		return response instanceof Map? (Map<String, Object>)response : null;
 	}
 	
 	@Override
