@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.the703.api.ApiEmail;
+import com.the703.api.ApiKmaWeather;
 import com.the703.api.ApiNaverBook;
 import com.the703.api.ApiOpenAi;
 import com.the703.api.BookDto;
@@ -128,7 +129,23 @@ public class ApiUtilController {
             model.addAttribute("fileName", "오류 발생");
         }
     	
-      return "util/rag";
-  }
+    	return "util/rag";
+	}
+    
+    ///////////////////////////////////////////////////////////
+    // /api/util/kma
+    // 6. KMA-WEATHER
+    @Autowired ApiKmaWeather weather;
 	
+    @GetMapping("/kma") // http://localhost:8080/api/util/kma
+    public String kma_get() {
+    	return "util/kma";
+    }
+    
+    @GetMapping( value="/kmaWeather", produces=MediaType.APPLICATION_XML_VALUE)
+    @ResponseBody //ajax
+    public String kmaWeather_get() {
+    	return weather.getWeatherResponse();
+    }
+    
 }

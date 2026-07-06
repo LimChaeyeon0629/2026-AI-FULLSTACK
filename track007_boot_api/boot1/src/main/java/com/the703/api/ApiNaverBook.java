@@ -32,7 +32,7 @@ public class ApiNaverBook {
 		//1. 주소 - UriComponentsBuilder (자동인코딩)
 		java.net.URI uri = UriComponentsBuilder
 				.fromUriString("https://openapi.naver.com/v1/search/book.json")
-				.queryParam("query", query)
+				.queryParam("query", query) // 주소 표시창 줄에 쿼리로 넘기기
 				.build()
 				.toUri();
 		

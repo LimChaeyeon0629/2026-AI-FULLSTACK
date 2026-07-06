@@ -42,7 +42,7 @@ public class ApiOpenAi {
 			String responseBody = restClient.post()
 					.contentType(MediaType.APPLICATION_JSON)
 					.header("Authorization", "Bearer " + apiKey)
-					.body(body)
+					.body(body) // post 방식으로 넘기기
 					.retrieve()
 					.body(String.class); // 응답을 String
 			
