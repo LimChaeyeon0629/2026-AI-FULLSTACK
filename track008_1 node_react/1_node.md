@@ -232,9 +232,28 @@ back/
 │   └── local.js               # Local 전략 설정
 ├── routes/
 │   └── user.js                # 사용자 관련 API 라우터
-├── app.
+├── app.js
 
 1. [routers] - user.js
+```
+주소경로
+post : /user/register (requestBody)
+post : /user/login    (requestBody)
+post : /user/logout   
+get  : /user/
+patch: /user/{id}/nickname
+※비교  /user/nickname?id=1
+delete: /user/{id}
+```
+
+patch: /user/{id}/nickname  ← rest 방식    데이터접근방식 : url 자원소스가 포함
+※비교  /user/nickname?id=1  ← 쿼리스트링    데이터접근방식 : url ?key=value
+
+http 표준프로토콜 사용
+- GET(조회), POST(생성), PUT/PATCH(수정), DELETE(삭제)
+
+
+
 2. app.js
 3. [passport] - index.js / local.js
 4. [middlewares] - isAuthenticated.js

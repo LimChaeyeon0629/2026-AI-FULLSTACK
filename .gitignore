@@ -11,8 +11,15 @@ track005_jsp/tomcat9.0/
 track005_jsp/Servers/
 
 # Node.js 관련
-**/node_modules/
-**/.env
+# **/node_modules/
+# **/.env
+node_modules/
+.env
+.env.*
+dist/
+build/
+coverage/
+.next
 
 # 빌드 결과물 무시
 /bin/
