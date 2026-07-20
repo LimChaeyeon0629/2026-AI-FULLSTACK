@@ -254,3 +254,130 @@ step3) 본문영역 main.container 안에 콘텐츠 출력
 ##### 3) [pages]      - index.js  본문콘텐츠
 ```
 ```
+
+
+5. 개발 ( reducer - saga - view ) (1) reducer
+
+1. reducer (주방 레시피대로 상태바꾸기 - 치킨의 상태) 조리시작, 조리중, 조리완료
+2. saga    (배달기사 - 서버에 다녀오기)
+3. store   (치킨집  - 모든상태를 모아두는 중앙창고 / 주방(reducer),배달(saga))
+
+1) `View` 손님이 주문 `/users/login.js` →  (store에 액션 전달: 치킨집) 
+                                      →  액션을 saga/reducer로 전달    
+2) 배달기사가 서버에 다녀오고       (saga)      성공/실패
+3) 주방레시피대로 상태바꾸기        (reducer)   결과에 따라 상태(state)를 변경
+4) 치킨집(store) 업데이트         
+5) `View` 화면반영  → 상태감지하고 화면에 그림그리기
+
+1. [reducers] - user.js    ※ post.js, hashtag.js,,,,,
+2. [reducers] - index.js
+3. [reducers] - user.test.js
+
+
+
+
+```
+사용자 액션 (버튼클릭, 로그인 요청 등)
+             ↓
+        [View  컴포넌트]   
+    _______________________________
+    - dispatch({type:LOG_IN_REQUEST , data})
+    - 화면에서 액션발생    
+
+             ↓
+          [Store]
+    _______________________________
+    - 중앙창고 (Redux Store)
+    - 모든상태(state)저장
+    - 액션을  reducer/saga 로 전달
+
+             ↓
+          [Saga (Middleware)]
+    _______________________________
+    - 비동기 작업 담당 (API)
+    - 예) axios.post('/user/login')
+    - 성공 -  LOG_IN_SUCCESS
+    - 실패 -  LOG_IN_FAILURE
+    
+             ↓
+          [Reducer]
+    _______________________________
+    - 상태(state) 변경 규칙서
+    - LOG_IN_SUCCESS → me 업데이트
+    - LOG_IN_FAILURE → error 저장
+
+             ↓
+          [Store]
+    _______________________________
+    - 변경된 상태를 중앙창고에 반영
+
+             ↓
+
+        [View  리렌더링]   
+    _______________________________
+    - useSelector로 상태읽기
+
+```
+
+6. 개발 ( reducer - saga - view )   (2) saga
+
+```
+front/
+├── sagas/                  # ✅ Redux-Saga 폴더
+│   ├── index.js            # 루트 사가
+│   ├── user.js             # 사용자 관련 사가
+│   └── user.test.js        # 사가 테스트 코드
+```
+
+1) 제너레이터 함수
+
+```js
+function* g1() {
+  let i=0;
+  while(true) {
+    yield i++;
+  }
+}
+
+const gen1 = g1();
+
+console.log( gen1.next().value ); // gen1.next() 호출
+console.log( gen1.next().value );
+```
+
+```js
+function* g2() {
+  console.log("first");
+  yield 1;  // 첫번째 반환
+  
+  console.log("second");
+  yield 2;  // 두번째 반환
+  
+  console.log("third");
+  yield 3;  // 세번째 반환
+}
+
+const gen2 = g2();
+
+console.log( gen2.next() );
+console.log( gen2.next() );
+console.log( gen2.next() );
+```
+
+2) saga 기본함수
+- all, fork, call, put, takeLatest
+1. all        - 여러 saga를 동시에 실행
+2. fork       - [비동기]로 saga 실행
+3. call       - api를 호출하고 결과를 기다림 (blocking) > 동기
+4. put        - redux 액션을 dispatch
+5. takeLatest - 특정 액션을 감지하고 가장 마지막 액션만 처리
+                * request 요청 중 가장 마지막 액션만.
+
+
+주소경로
+post : /user/register (requestBody)
+post : /user/login    (requestBody)
+post : /user/logout   
+get  : /user/
+patch: /user/{id}/nickname 
+delete: /user/{id} 

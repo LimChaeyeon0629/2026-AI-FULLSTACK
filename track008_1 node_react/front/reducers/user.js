@@ -62,17 +62,20 @@ const reducer = ( state=initialState, action )=> { // 현재상태, 요청액션
         case LOAD_USERS_SUCCESS:
             return { ...state, isLoading: false, users: action.data };
         case UPDATE_NICKNAME_SUCCESS:
-        return  {  ...state, isLoading: false , 
-                    me: state.me  &&  state.me.id === action.data.id
-                    ? { ...state.me ,  nickname:action.data.nickname } 
-                    : state.me  ,
-                    users: state.users.map( (u)=> u.id === action.data.id ? {  ...u , nickname: action.data.nickname } : u)
-        };
+            return  {  ...state, isLoading: false , 
+                        me: state.me && state.me.id === action.data.id
+                        ? { ...state.me, nickname:action.data.nickname } 
+                        : state.me,
+                        users: state.users.map( (u)=> u.id === action.data.id
+                        ? { ...u , nickname: action.data.nickname } : u)
+            };
         case DELETE_USER_SUCCESS:
             return { ...state,
                     isLoading: false,
                     
-                    me: state.me?.id === action.data.id? null : state.me,
+                    me: state.me?.id === action.data.id
+                        ? null
+                        : state.me,
                     users: state.users.filter( (u)=> u.id !== action.data.id )
             };
             
