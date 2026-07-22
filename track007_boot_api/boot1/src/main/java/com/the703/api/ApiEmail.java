@@ -34,11 +34,13 @@ public class ApiEmail { // Service
 		props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 						// javax.mail.Session , javax.mail.Authenticator
 		Session session = Session.getInstance(props, new Authenticator() {
+			
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(user, password);
 			}
 		});
+		
 		// 4. 메일보내기 (Mime 텍스트 text/plain , html text/html , 이미지 image/png) 멀티미디어메시지
 		MimeMessage message = new MimeMessage(session);
 		try {

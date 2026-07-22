@@ -9,14 +9,14 @@
 import { useSelector, useDispatch } from 'react-redux'; // 전역상태, 상태알림
 import { useState,   useEffect    } from 'react';       // 변수상태변경, 이벤트변경
 import { useRouter } from 'next/router';                // 경로
-import { SIGN_UP_REQUEST } from '../reducers/user';
+import { SIGN_UP_REQUEST, EMAIL_DOUBLECHECK_REQUEST } from '../reducers/user';
 
 export default function JoinPage() {
     // 1. 코드
     // let logo = "MyReact - 회원가입";
     const dispatch  = useDispatch();
     const router    = useRouter();
-    const {me, isLoading, error, signUpDone} = useSelector( (state)=> state.user);  // 1. Store : 전역상태감지 useSelector
+    const {me, isLoading, error, signUpDone, isEmailAvailable, emailCheckMessage} = useSelector( (state)=> state.user);  // 1. Store : 전역상태감지 useSelector
     // console.log("......", me);  // 회원가입 유저정보 test
     // console.log("......", isLoading);
 
@@ -24,6 +24,21 @@ export default function JoinPage() {
     const [email, setEmail]         = useState('');     // let email=''
     const [password, setPassword]   = useState('');     // let password=''
     const [nickname, setNickname]   = useState('');     // 3. 변수 상태 변경 - REACT DOM ( useState )
+
+    const onEmailDoubleCheck = (e)=> {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!email.trim()) {
+            alert('이메일을 입력해주세요.');
+            return;
+        }
+        
+        dispatch({
+            type: EMAIL_DOUBLECHECK_REQUEST,
+            data: { email }
+        });
+    };
 
     // 회원가입 요청액션을 dispatch
     const onSubmit = (e)=> {
@@ -81,10 +96,24 @@ export default function JoinPage() {
             <form className="w-50 mx-auto" onSubmit={onSubmit}>
                 {/* 이메일 입력 */}
                 <div className="mb-3">
-                    <input type="email" className="form-control"
-                            placeholder="이메일" title="이메일입력"
-                            value={email}
-                            onChange={(e)=> { setEmail(e.target.value); }}/>
+                    <div className='input-group'>
+                        <input type="email" className="form-control"
+                                placeholder="이메일" title="이메일입력"
+                                value={email}
+                                onChange={(e)=> { setEmail(e.target.value); }}/>
+                        
+                        <button type="button" className='btn btn-secondary'
+                                onClick={onEmailDoubleCheck}
+                                disabled={isLoading}>중복확인
+                        </button>
+                    </div>
+
+                    {emailCheckMessage && (
+                        <div className={ isEmailAvailable
+                            ? 'text-success mt-2'
+                            : 'text-danger mt-2'}>{emailCheckMessage}
+                        </div>
+                    )}
                 </div>
                 {/* 비밀번호 입력 */}
                 <div className="mb-3">
@@ -95,7 +124,7 @@ export default function JoinPage() {
                 </div>
                 {/* 닉네임 입력 */}
                 <div className="mb-3">
-                    <input type="nickname" className="form-control"
+                    <input type="text" className="form-control"
                             placeholder="닉네임" title="닉네임입력"
                             value={nickname}
                             onChange={(e)=> { setNickname(e.target.value); }}/>
@@ -113,10 +142,3 @@ export default function JoinPage() {
     );
 }
 
-// 1. back - 이메일중복( model ) 이메일 검색 sql 구문 확인
-// 2. back - 이메일중복( router ) 
-// 3. back - swagger 테스트확인
-
-// 4. front - reducer 액션이벤트추가, 상태변화 체크
-// 5. front - saga 기능상태확인
-// 6. front - view 연동

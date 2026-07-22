@@ -93,7 +93,7 @@ async function verifyUser(email, password) {
     if(!user) return null;
     
     const match = await bcrypt.compare(password, user.PASSWORD);
-    if(!user) return null;
+    if(!match) return null;
 
     return {
         id: user.APP_USER_ID,
@@ -200,5 +200,4 @@ async function findUserByNickname(nickname) {
 
 // 3. export
 module.exports = { createUser, findUserByEmail, findUserById, verifyUser,
-        getAllUsers, updateUserNickname, deleteUser, findUserByNickname,
-        emailDoubleCheck };
+        getAllUsers, updateUserNickname, deleteUser, findUserByNickname};

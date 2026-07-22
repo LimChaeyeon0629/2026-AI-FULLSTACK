@@ -7,7 +7,7 @@ const express = require('express');
 const passport = require('passport');  //## passport 
 const {    createUser,  getAllUsers,  updateUserNickname
         ,  deleteUser , findUserByEmail , findUserByNickname
-        ,  emailDoubleCheck } = require('../models/users');
+    } = require('../models/users');
 const isAuthenticated = require('../middlewares/isAuthenticated'); //## 미들웨어
 
 const router = express.Router();   
@@ -205,19 +205,19 @@ router.delete('/:id'   ,   isAuthenticated   , async(req, res)=>{
  *     summary: 이메일 중복 확인
  *     description: 입력한 이메일이 존재하는지 확인합니다.
  *     parameters:
- *       - in: path
+ *       - in: query
  *         name: email
  *         required: true
  *         schema: { type: string }
  *     responses:
  *       200:
  *         description: 사용가능한 이메일
- *       401:
+ *       409:
  *         description: 이미 사용중인 이메일
  */
-router.post('/check-email', async(req, res)=> {
+router.get('/check-email', async(req, res)=> {
     try {
-        const user = await findUserByEmail( req.query );    // 쿼리스트링으로 이메일받음
+        const user = await findUserByEmail(req.query.email);    // 쿼리스트링으로 이메일받음
         if(user) {
             return res.status(409).json({isAvailable:false, message:'이미 사용중인 이메일입니다.'});
         }

@@ -11,14 +11,24 @@
 	<div layout:fragment="content">
 		<h3>OpenAI - ChatGPT</h3>
 		<div class="alert alert-primary">일기작성시 일기내용요약해서 이미지로 나타내기.</div>
+		
 		<div class="my-3">
-			<textarea class="form-control" placeholder="오늘의 일기를 작성해주세요"
-				id="userMessage" title="일기작성"></textarea>
+			<textarea
+				class="form-control"
+				placeholder="오늘의 일기를 작성해주세요"
+				id="userMessage"
+				title="일기작성">
+			</textarea>
 		</div>
+		
 		<div class="my-3 text-end">
-			<input type="button" id="sendBtn" class="btn btn-primary"
+			<input
+				type="button"
+				id="sendBtn"
+				class="btn btn-primary"
 				value="일기작성" />
 		</div>
+		
 		<div id="response" class="alert alert-warning"></div>
 
 		<meta name="_csrf" th:content="${_csrf.token}" />

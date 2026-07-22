@@ -3,8 +3,8 @@
 
 import {call, put} from 'redux-saga/effects';    // saga 기본함수
 import {
-    login, logout, signUp, loadUsers, updateNickname, deleteUser,
-    loginApi, logoutApi, signUpApi, loadUsersApi, updateNicknameApi, deleteUserApi
+    login, logout, signUp, loadUsers, updateNickname, deleteUser, emailDoubleCheck,
+    loginApi, logoutApi, signUpApi, loadUsersApi, updateNicknameApi, deleteUserApi, emailDoubleCheckApi
 } from './user';
 
 import reducer, {
@@ -14,7 +14,10 @@ import reducer, {
     SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE,
     LOAD_USERS_REQUEST, LOAD_USERS_SUCCESS, LOAD_USERS_FAILURE,
     UPDATE_NICKNAME_REQUEST, UPDATE_NICKNAME_SUCCESS, UPDATE_NICKNAME_FAILURE,
-    DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE
+    DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE,
+    EMAIL_DOUBLECHECK_REQUEST,
+    EMAIL_DOUBLECHECK_SUCCESS,
+    EMAIL_DOUBLECHECK_FAILURE
 } from '../reducers/user';  // 액션 타입 불러오기
 
 describe('user saga', ()=> {
@@ -36,15 +39,15 @@ describe('user saga', ()=> {
     // ===== 로그인 =====       watchLogin
     // ===== 로그인 =====       watchLogin
     it( 'login success' , ()=>{
-        const action = {type:LOG_IN_REQUEST, data:{ email:'z@z' , password:'z' }};
+        const action = {type:LOG_IN_REQUEST, data:{ email:'1@1' , password:'1' }};
         const gen    = login(action);
 
         expect(gen.next().value).toEqual(call(loginApi, action.data));
 
-        const apiResponse = {APP_USER_ID:1, EMAIL : 'z@z', NICKNAME:'zzz'};
-        expect(gen.next({ data:apiResponse }).value)
+        const apiResponse = {APP_USER_ID:1, EMAIL : '1@1', NICKNAME:'1'};
+        expect(gen.next({ data: { user: apiResponse } }).value)
                     .toEqual( put({type:LOG_IN_SUCCESS,
-                                data:{id:1 , email:'z@z' , nickname:'zzz'}
+                                data:{id:1 , email:'1@1' , nickname:'1'}
                     }));
     });
 
@@ -85,7 +88,8 @@ describe('user saga', ()=> {
 
 
 
-
+    // ===== 닉네임 수정 =====  watchUpdateNickname
+    // ===== 닉네임 수정 =====  watchUpdateNickname
     it( 'updateNickname success' , ()=>{
     const action = { type: UPDATE_NICKNAME_REQUEST, data: {id:1, nickname:'new'}};
     const gen    = updateNickname(action);
@@ -101,21 +105,46 @@ describe('user saga', ()=> {
             .toEqual(put( {type:UPDATE_NICKNAME_FAILURE, error:'수정 실패'} ));
     });
 
+
+    
+    // ===== 사용자 삭제 =====  watchDeleteUser
+    // ===== 사용자 삭제 =====  watchDeleteUser  
     it( 'deleteUser success' , ()=>{
-    const action = { type: DELETE_USER_REQUEST, data: {id:1}};
-    const gen    = deleteUser(action);
+        const action = { type: DELETE_USER_REQUEST, data: {id:1}};
+        const gen    = deleteUser(action);
 
-    expect(gen.next().value).toEqual(call(deleteUserApi, action.data.id));
+        expect(gen.next().value).toEqual(call(deleteUserApi, action.data.id));
 
-    expect(gen.next({}).value).toEqual(put({type: DELETE_USER_SUCCESS,
-                                            data: {id:1}
-    }));
+        expect(gen.next({}).value).toEqual(put({type: DELETE_USER_SUCCESS,
+                                                data: {id:1}
+        }));
 
-    const error = {response: {data:'삭제 실패'}};
-    expect(gen.throw(error).value)
-            .toEqual(put( {type:DELETE_USER_FAILURE, error:'삭제 실패'} ));
+        const error = {response: {data:'삭제 실패'}};
+        expect(gen.throw(error).value)
+                .toEqual(put( {type:DELETE_USER_FAILURE, error:'삭제 실패'} ));
     });
-});
+    
+    // ===== 이메일 중복확인 =====       watchEmailDoubleCheck
+    // ===== 이메일 중복확인 =====       watchEmailDoubleCheck 
+    it( 'emailDoubleCheck success' , ()=>{
+        const action = { type: EMAIL_DOUBLECHECK_REQUEST, data: {email:'1@1'}};
+        const gen    = emailDoubleCheck(action);
+
+        expect(gen.next().value).toEqual(call(emailDoubleCheckApi, action.data.email));
+
+        //  expect(gen.next({}).value).toEqual(put({type: EMAIL_DOUBLECHECK_SUCCESS,
+        //                                         data: {email:'1@1'}
+        //  }));                        // back router
+        const apiResponse = { isAvailable: true, message: '사용 가능한 이메일입니다.' };
+        expect( gen.next({ data: apiResponse }).value).toEqual(
+                put({ type: EMAIL_DOUBLECHECK_SUCCESS, data: apiResponse })
+        );
+
+        const error = {response: {data:'이메일 더블체크 에러'}};
+        expect(gen.throw(error).value)
+                .toEqual(put( {type:EMAIL_DOUBLECHECK_FAILURE, error:'이메일 더블체크 에러'} ));
+        });
+    });
 
 // npm run test
 // npx jest sagas/user.test.js

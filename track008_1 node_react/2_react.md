@@ -428,3 +428,11 @@ app.use( cors({
 ```
 
 실습1) front - pages - [ _app.js ]
+
+// 1. back - 이메일중복( model ) 이메일 검색 sql 구문 확인
+// 2. back - 이메일중복( router ) 
+// 3. back - swagger 테스트확인
+
+// 4. front - reducer 액션이벤트추가, 상태변화 체크
+// 5. front - saga 기능상태확인
+// 6. front - view 연동

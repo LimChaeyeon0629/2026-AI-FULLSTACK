@@ -19,7 +19,8 @@ import reducer, {
     SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE,
     LOAD_USERS_REQUEST, LOAD_USERS_SUCCESS, LOAD_USERS_FAILURE,
     UPDATE_NICKNAME_REQUEST, UPDATE_NICKNAME_SUCCESS, UPDATE_NICKNAME_FAILURE,
-    DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE
+    DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE,
+    EMAIL_DOUBLECHECK_REQUEST, EMAIL_DOUBLECHECK_SUCCESS, EMAIL_DOUBLECHECK_FAILURE
 } from '../reducers/user';  // 액션 타입 불러오기
 import { func } from 'prop-types';
 
@@ -131,6 +132,7 @@ function* watchLoadUsers() {
     // return { ...state, isLoading: true, error: null }
 }
 
+
 // ===== 닉네임 수정 =====  watchUpdateNickname
 // ===== 닉네임 수정 =====  watchUpdateNickname
 // patch: /user/{id}/nickname
@@ -161,6 +163,7 @@ function* watchUpdateNickname() {
     // return { ...state, isLoading: true, error: null }
 }
 
+
 // ===== 사용자 삭제 =====  watchDeleteUser
 // ===== 사용자 삭제 =====  watchDeleteUser
 // delete: /user/{id}
@@ -187,6 +190,26 @@ function* watchDeleteUser() {
     // return { ...state, isLoading: true, error: null }
 }
 
+
+// ===== 이메일 중복확인 =====       watchEmailDoubleCheck
+// ===== 이메일 중복확인 =====       watchEmailDoubleCheck
+// get: /user/check-email
+// get: /user/check-email?email=1@1
+export function emailDoubleCheckApi(email) {
+    return client.get(`/user/check-email?email=${encodeURIComponent(email)}`); // http://localhost:/user/check-email?email=1@1
+}
+export function* emailDoubleCheck(action) {
+    try {
+        const result = yield call( emailDoubleCheckApi, action.data.email ); // api 호출 action.data.email;
+        yield put( {type:EMAIL_DOUBLECHECK_SUCCESS, data:result.data} );
+
+    } catch (err) {
+        yield put( {type:EMAIL_DOUBLECHECK_FAILURE, error: err.response?.data || err.message} );
+    }
+}
+function* watchEmailDoubleCheck() {
+    yield takeLatest( EMAIL_DOUBLECHECK_REQUEST, emailDoubleCheck );
+}
 
 
 export default function* userSaga() {
