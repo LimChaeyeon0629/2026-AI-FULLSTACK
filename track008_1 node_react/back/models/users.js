@@ -131,7 +131,7 @@ async function getAllUsers() {
 // UPDATE appuser 
 // SET NICKNAME = :nickname 
 // WHERE APP_USER_ID = :id
-async function updateUserNickname(nickname, id) {
+async function updateUserNickname(id, nickname) {
     let conn;
     try {
         conn = await oracledb.getConnection(dbConfig);
@@ -139,7 +139,7 @@ async function updateUserNickname(nickname, id) {
             `UPDATE appuser 
             SET NICKNAME = :nickname 
             WHERE APP_USER_ID = :id`,
-            {nickname, id},
+            {id, nickname},
             options) // 실행
     
     } catch(err) {
@@ -196,6 +196,9 @@ async function findUserByNickname(nickname) {
     }
 }
 
+
+
 // 3. export
 module.exports = { createUser, findUserByEmail, findUserById, verifyUser,
-        getAllUsers, updateUserNickname, deleteUser, findUserByNickname };
+        getAllUsers, updateUserNickname, deleteUser, findUserByNickname,
+        emailDoubleCheck };

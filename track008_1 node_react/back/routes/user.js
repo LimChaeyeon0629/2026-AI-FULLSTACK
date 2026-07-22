@@ -6,7 +6,8 @@
 const express = require('express');
 const passport = require('passport');  //## passport 
 const {    createUser,  getAllUsers,  updateUserNickname
-        ,  deleteUser , findUserByEmail , findUserByNickname} = require('../models/users');
+        ,  deleteUser , findUserByEmail , findUserByNickname
+        ,  emailDoubleCheck } = require('../models/users');
 const isAuthenticated = require('../middlewares/isAuthenticated'); //## 미들웨어
 
 const router = express.Router();   
@@ -193,7 +194,39 @@ router.delete('/:id'   ,   isAuthenticated   , async(req, res)=>{
         console.error('DeleteUser Error' , err);
         res.status(500).json({message:'사용자 삭제 실패'});
     }
-}); 
+});
+
+// 이메일 중복검사
+// /user/check-email/
+/**
+ * @swagger
+ * /user/check-email:
+ *   get:
+ *     summary: 이메일 중복 확인
+ *     description: 입력한 이메일이 존재하는지 확인합니다.
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         required: true
+ *         schema: { type: string }
+ *     responses:
+ *       200:
+ *         description: 사용가능한 이메일
+ *       401:
+ *         description: 이미 사용중인 이메일
+ */
+router.post('/check-email', async(req, res)=> {
+    try {
+        const user = await findUserByEmail( req.query );    // 쿼리스트링으로 이메일받음
+        if(user) {
+            return res.status(409).json({isAvailable:false, message:'이미 사용중인 이메일입니다.'});
+        }
+        return res.status(200).json({isAvailable:true, message:'사용 가능한 이메일입니다.'})
+
+    } catch(err) {
+        res.status(500).json({message:'서버 오류'});
+    }
+});
 
 //3. export
 module.exports = router;

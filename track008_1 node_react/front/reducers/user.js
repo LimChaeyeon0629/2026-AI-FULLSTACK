@@ -30,6 +30,7 @@ export const UPDATE_NICKNAME_FAILURE = 'UPDATE_NICKNAME_FAILURE'; // 닉네임 �
 export const DELETE_USER_REQUEST = 'DELETE_USER_REQUEST'; // 사용자 삭제 요청
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS'; // 사용자 삭제 성공
 export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE'; // 사용자 삭제 실패
+// export 다른파일에서 import 해서 쓸 수 있게 내보내기
 
 // 2. 초기상태
 export const initialState = {
@@ -50,6 +51,7 @@ const reducer = ( state=initialState, action )=> { // 현재상태, 요청액션
         case LOAD_USERS_REQUEST:
         case UPDATE_NICKNAME_REQUEST:
         case DELETE_USER_REQUEST:
+        case EMAIL_DOUBLECHECK_REQUEST:
             return { ...state, isLoading: true, error: null }
             
         // 성공 액션 → 상태업데이트
@@ -78,6 +80,8 @@ const reducer = ( state=initialState, action )=> { // 현재상태, 요청액션
                         : state.me,
                     users: state.users.filter( (u)=> u.id !== action.data.id )
             };
+        case EMAIL_DOUBLECHECK_SUCCESS:
+            return { ...state, isLoading: false, users: action.data};
             
         // 실패 액션 → 에러메시지 저장
         case LOG_IN_FAILURE:
@@ -86,6 +90,7 @@ const reducer = ( state=initialState, action )=> { // 현재상태, 요청액션
         case LOAD_USERS_FAILURE:
         case UPDATE_NICKNAME_FAILURE:
         case DELETE_USER_FAILURE:
+        case EMAIL_DOUBLECHECK_FAILURE:
             return { ...state, isLoading: false, error: action.error?.message || action.error };
             
         // 기본값 → 상태 변경없음

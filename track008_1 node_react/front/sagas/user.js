@@ -33,15 +33,15 @@ const client = axios.create({
 // ===== 로그인 =====       watchLogin
 // post : /user/login (requestBody)
 export function loginApi(data) {
-    return client.post('/user/login', data); // 경로, data // http://localhost:/user/login
+    return client.post(`/user/login`, data); // 경로, data // http://localhost:/user/login
 }
 export  function* login(action){
     try{
         const result = yield call( loginApi, action.data );  // API 호출 action.data: email, password
         const user   = {
-            id:result.data.APP_USER_ID,
-            email: result.data.EMAIL,
-            nickname:result.data.NICKNAME
+            id:result.data.user.APP_USER_ID,
+            email: result.data.user.EMAIL,
+            nickname:result.data.user.NICKNAME
         };
         yield  put(  {type:LOG_IN_SUCCESS , data:user}  );  // 성공 액션 dispatch 
         //return  {  ...state, isLoading: false ,  me: action.data  }; 
@@ -60,13 +60,13 @@ function* watchLogin(){
 // ===== 로그아웃 =====     watchLogout
 // post : /user/logout
 export function logoutApi() {
-    return client.post('/user/logout'); // http://localhost:/user/logout
+    return client.post(`/user/logout`); // http://localhost:/user/logout
 }
 export function* logout() {
     try {
         yield call( logoutApi );   // api 호출, 결과물
         yield put( {type:LOG_OUT_SUCCESS} );    // 성공 액션 dispatch
-        // return { ...state, isLoading: false, me: null };
+            // return { ...state, isLoading: false, me: null };
         
     } catch (err) {
         yield put( {type:LOG_OUT_FAILURE, error: err.response?.data || err.message} );   // 실패 액션 dispatch
@@ -106,7 +106,7 @@ function* watchSignUp() {
 // ===== 사용자 조회 =====  watchLoadUsers
 // get  : /user/
 export function loadUsersApi() {
-    return client.get('/user'); // http://localhost:/user
+    return client.get(`/user`); // http://localhost:/user
 }
 export function* loadUsers() {
     try {
@@ -135,7 +135,7 @@ function* watchLoadUsers() {
 // ===== 닉네임 수정 =====  watchUpdateNickname
 // patch: /user/{id}/nickname
 export function updateNicknameApi(data) {
-    return client.patch('/user/${data.id}/nickname', {nickname:data.nickname}); // http://localhost:/user/{id}/nickname
+    return client.patch(`/user/${data.id}/nickname`, {nickname:data.nickname}); // http://localhost:/user/{id}/nickname
 }
 export function* updateNickname(action) {
     try {
@@ -165,7 +165,7 @@ function* watchUpdateNickname() {
 // ===== 사용자 삭제 =====  watchDeleteUser
 // delete: /user/{id}
 export function deleteUserApi(id) {
-    return client.delete('/user/${id}'); // http://localhost:/user/{id}
+    return client.delete(`/user/${id}`); // http://localhost:/user/{id}
 }
 export function* deleteUser(action) {
     try {
@@ -191,11 +191,12 @@ function* watchDeleteUser() {
 
 export default function* userSaga() {
     yield all([
-        // fork(watchLogin),
-        // fork(watchLogout),
+        fork(watchLogin),
+        fork(watchLogout),
         fork(watchSignUp),
-        // fork(watchLoadUsers),
-        // fork(watchUpdateNickname),
-        // fork(watchDeleteUser),
+        fork(watchLoadUsers),
+        fork(watchUpdateNickname),
+        fork(watchDeleteUser),
+        fork(watchEmailDoubleCheck)
     ]);
 }
