@@ -34,6 +34,10 @@ export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE'; // 사용자 삭제 �
 export const EMAIL_DOUBLECHECK_REQUEST = 'EMAIL_DOUBLECHECK_REQUEST';
 export const EMAIL_DOUBLECHECK_SUCCESS = 'EMAIL_DOUBLECHECK_SUCCESS';
 export const EMAIL_DOUBLECHECK_FAILURE = 'EMAIL_DOUBLECHECK_FAILURE';
+
+export const CHECK_EMAIL_REQUEST = 'CHECK_EMAIL_REQUEST';
+export const CHECK_EMAIL_SUCCESS = 'CHECK_EMAIL_SUCCESS';
+export const CHECK_EMAIL_FAILURE = 'CHECK_EMAIL_FAILURE';
 // export 다른파일에서 import 해서 쓸 수 있게 내보내기
 
 // 2. 초기상태
@@ -43,6 +47,13 @@ export const initialState = {
     isLoading: false,   // api 요청중 여부
     error: null,        // 에러메시지
     signUpDone: false,  // 회원가입 완료여부
+
+    emailCheckLoading: null,    // 이메일 중복체크 로딩
+
+    checkEmailLoading:false,    // email - api 요청중
+    checkEmailDone: false,      // 요청 끝
+    checkEmailError: null,      // 요청 에러
+    isEmailAvaliable: null,     // true: 사용가능, false: 중복 (router/user.js)
 };
 
 // 3. reducer 함수
@@ -57,6 +68,15 @@ const reducer = ( state=initialState, action )=> { // 현재상태, 요청액션
         case DELETE_USER_REQUEST:
         case EMAIL_DOUBLECHECK_REQUEST:
             return { ...state, isLoading: true, error: null }
+        // -- 이메일 중복확인요청
+        case CHECK_EMAIL_REQUEST:
+            return {
+                checkEmailLoading: true,    // email - api 요청중
+                checkEmailDone: false,      // 요청 끝
+                checkEmailError: null,      // 요청 에러
+                isEmailAvaliable: null,
+            }
+
             
         // 성공 액션 → 상태업데이트
         case LOG_IN_SUCCESS:
@@ -86,6 +106,16 @@ const reducer = ( state=initialState, action )=> { // 현재상태, 요청액션
             };
         case EMAIL_DOUBLECHECK_SUCCESS:
             return { ...state, isLoading: false, users: action.data};
+        case CHECK_EMAIL_SUCCESS:
+            return {
+                ...state,
+                checkEmailLoading: false,   // email - api 요청중
+                checkEmailDone: true,       // 요청 끝
+                isEmailAvaliable: action.data.isAvailable,  // router/user.js message
+                // isEmailAvaliable: true,                  // router/user.js message
+            }
+
+
             
         // 실패 액션 → 에러메시지 저장
         case LOG_IN_FAILURE:
@@ -96,6 +126,13 @@ const reducer = ( state=initialState, action )=> { // 현재상태, 요청액션
         case DELETE_USER_FAILURE:
         case EMAIL_DOUBLECHECK_FAILURE:
             return { ...state, isLoading: false, error: action.error?.message || action.error };
+        case CHECK_EMAIL_FAILURE:
+            return {
+                ...state,
+                checkEmailLoading: false,       // email - api 요청중
+                checkEmailError: action.error,  // 요청 끝
+                isEmailAvaliable: false,        // router/user.js message
+            }
             
         // 기본값 → 상태 변경없음
         default :

@@ -78,7 +78,7 @@ export default function LoginPage() {
                                 // console.log(e.target.value);
                                 setEmail(e.target.value); }}/>
                 </div>
-                <button type="submit" className="btn btn-seren">중복 확인</button>
+                {/* <button type="submit" className="btn btn-seren">중복 확인</button> */}
                 {/* 비밀번호 입력 */}
                 <div className="mb-3">
                     <input type="password" className="form-control"

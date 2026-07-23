@@ -217,11 +217,15 @@ router.delete('/:id'   ,   isAuthenticated   , async(req, res)=>{
  */
 router.get('/check-email', async(req, res)=> {
     try {
-        const user = await findUserByEmail(req.query.email);    // 쿼리스트링으로 이메일받음
+        const {email} = req.query;
+        const user = await findUserByEmail( email );
+        // const user = await findUserByEmail(req.query.email);    // 쿼리스트링으로 이메일받음
         if(user) {
-            return res.status(409).json({isAvailable:false, message:'이미 사용중인 이메일입니다.'});
+            return res.status(409).json({isAvailable:false,
+                                        message:'이미 사용중인 이메일입니다.'});
         }
-        return res.status(200).json({isAvailable:true, message:'사용 가능한 이메일입니다.'})
+        return res.status(200).json({isAvailable:true,
+                                    message:'사용 가능한 이메일입니다.'})
 
     } catch(err) {
         res.status(500).json({message:'서버 오류'});

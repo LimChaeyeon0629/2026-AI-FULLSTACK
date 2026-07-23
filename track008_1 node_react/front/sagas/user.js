@@ -20,7 +20,8 @@ import reducer, {
     LOAD_USERS_REQUEST, LOAD_USERS_SUCCESS, LOAD_USERS_FAILURE,
     UPDATE_NICKNAME_REQUEST, UPDATE_NICKNAME_SUCCESS, UPDATE_NICKNAME_FAILURE,
     DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE,
-    EMAIL_DOUBLECHECK_REQUEST, EMAIL_DOUBLECHECK_SUCCESS, EMAIL_DOUBLECHECK_FAILURE
+    EMAIL_DOUBLECHECK_REQUEST, EMAIL_DOUBLECHECK_SUCCESS, EMAIL_DOUBLECHECK_FAILURE,
+    CHECK_EMAIL_REQUEST, CHECK_EMAIL_SUCCESS, CHECK_EMAIL_FAILURE
 } from '../reducers/user';  // 액션 타입 불러오기
 import { func } from 'prop-types';
 
@@ -200,19 +201,39 @@ export function emailDoubleCheckApi(email) {
 }
 export function* emailDoubleCheck(action) {
     try {
-        const result = yield call( emailDoubleCheckApi, action.data.email ); // api 호출 action.data.email;
-        yield put( {type:EMAIL_DOUBLECHECK_SUCCESS, data:result.data} );
+        const result = yield call( emailDoubleCheckApi, action.data.email );    // api 호출 action.data.email;
+        yield put( {type:EMAIL_DOUBLECHECK_SUCCESS, data:result.data} );        // 성공 액션 dispatch
 
     } catch (err) {
-        yield put( {type:EMAIL_DOUBLECHECK_FAILURE, error: err.response?.data || err.message} );
+        yield put( {type:EMAIL_DOUBLECHECK_FAILURE, error: err.response?.data || err.message} );    // 실패 액션 dispatch
     }
 }
 function* watchEmailDoubleCheck() {
     yield takeLatest( EMAIL_DOUBLECHECK_REQUEST, emailDoubleCheck );
 }
 
+//////////////////////////////////////////////////////////////
+// ===== 이메일 중복확인 =====       watchCheckEmail
+// ===== 이메일 중복확인 =====       watchCheckEmail
+// get: /user/check-email?email=1@1
+export function checkEmailApi(email) {
+    return client.get(`/user/check-email?email=${email}`);
+}
+export function* checkEmail(action) {
+    try {
+        const result = yield call( checkEmailApi, action.data.email );    // api 호출 action.data.email;
+        yield put( {type: CHECK_EMAIL_SUCCESS, data:result.data} );        // 성공 액션 dispatch
 
-export default function* userSaga() {
+    } catch (err) {
+        yield put( {type: CHECK_EMAIL_FAILURE, error: err.response?.data || err.message} );    // 실패 액션 dispatch
+    }
+}
+function* watchCheckEmail() {
+    yield takeLatest( CHECK_EMAIL_REQUEST, checkEmail ); // takeLatest 가장 마지막 1개 요청처리
+}
+
+
+export default function* userSaga() {   // 비동기 실행
     yield all([
         fork(watchLogin),
         fork(watchLogout),
@@ -220,6 +241,8 @@ export default function* userSaga() {
         fork(watchLoadUsers),
         fork(watchUpdateNickname),
         fork(watchDeleteUser),
-        fork(watchEmailDoubleCheck)
+        fork(watchEmailDoubleCheck),
+
+        fork(watchCheckEmail)
     ]);
 }
