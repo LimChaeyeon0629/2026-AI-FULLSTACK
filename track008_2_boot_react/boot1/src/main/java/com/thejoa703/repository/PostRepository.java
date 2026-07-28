@@ -17,6 +17,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	List<Post> findByDeletedFalse();	// List<Post>		결과가 여러 개일 때	: List
 										// Optional<Post>	결과가 한 개일 때	: Optional
 	
+	// 오라클 네이티브페이징조회
 	// 비교 - 결과값이 1개거나 없을 때(null) - Optional 사용
 	// Optional<AppUser> findByEmail(String email);
 	@Query(value =	"SELECT * FROM ( " +

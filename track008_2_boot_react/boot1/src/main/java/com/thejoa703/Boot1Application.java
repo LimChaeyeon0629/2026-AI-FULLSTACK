@@ -11,3 +11,7 @@ public class Boot1Application {
 	}
 
 }
+
+// Run as -> spring boot app
+// http://localhost:8484/swagger-ui/index.html
+// http://localhost:8080/swagger-ui/index.html

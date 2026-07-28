@@ -22,7 +22,7 @@ public class UserDto {
 	public static class UserResponseDto {
 		private Long	id;
 		private String	email;
-		private String	password;
+//		private String	password;
 		private String	nickname;
 		private String	mobile;
 		private Integer mbtiTypeId;
