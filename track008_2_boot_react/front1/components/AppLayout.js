@@ -1,7 +1,60 @@
 // component/AppLayout.js       # 재사용 가능한 UI 컴포넌트 홀더
 //                              # 페이지 공통 레이아웃 컴포넌트
 
+// Layout: https://ant.design/components/layout 
+// Menu: https://ant.design/components/menu 
+// Input: https://ant.design/components/input 
+// Drawer: https://ant.design/components/drawer 
+// Grid(Row/Col): https://ant.design/components/grid 
+// Button: https://ant.design/components/button
 
-export default function AppLayout() {
-    return <h1>공통사용</h1>;
+// 1. require
+import { Layout, Menu, Input, Row, Col, Drawer, Button, Grid } from "antd";  
+import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
+
+import { useSelector, useDispatch } from 'react-redux';     // 전역상태, 액션스토어알림
+import { useRouter }                from 'next/router';     // 경로이동
+import { useEffect, useState }      from 'react';           // 이벤트변경감지, 변수
+import Link from 'next/link';
+
+const { Header, Content } = Layout;     // <Layout.Header> → <Header>   
+const { useBreakpoint } = Grid;
+
+// 2. 부품
+// Header / Drawer
+function AppLayout() {
+    // 코드
+    const menuItems = [
+        { key: "new",     label: <Link href="/posts/new">✏️ NEW POST</Link> },
+        { key: "profile", label: <Link href="/mypage">👤 MYPAGE </Link> },
+        { key: "home",    label: <Link href="/signup">🏠 JOIN</Link> },
+    ];
+
+    ///////////////////////////////
+    // 렌더링
+    return (<Layout>
+        {/* Header */}
+        <Header style={{display:"flex"}}>
+            <Row align="middle" justify="space-between" style={{width:"100%"}}>
+                <Col>
+                    <Link href="/">
+                        <a style={{color:"#fff", fontWeight:"bold", fontSize:"18px"}}>
+                                THEJOA703 (POST VER)
+                        </a>
+                    </Link>
+                </Col>
+                <Col flex="auto">
+                    <Menu
+                        theme="dark"
+                        mode="horizontal"
+                        items={menuItems}
+                        />
+                </Col>
+            </Row>
+        </Header>
+        <Content>121212</Content>
+    </Layout>);
 }
+
+// 3. export
+export default AppLayout;

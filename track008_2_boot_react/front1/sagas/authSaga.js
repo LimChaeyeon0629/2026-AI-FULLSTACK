@@ -10,11 +10,11 @@ const USER_API_BASE = 'http://localhost:8080/api/users';
 
 // --- 회원가입 POST /api/users ---
 export const signupApi = ( userData )=> axios.post( USER_API_BASE, userData );  // /api/users
+
 // ■ 2. signup(action) - action.payload 사용자가 입력한 값 (회원정보)
 export function* signup(action) {
-    // action = { type: signupSuccess, payload: userData }
-    //                                 payload: {email:'1@1', password:'1'} }
-    try {   //                         result = 서버에서 받아온 값
+    // action = { type: signupSuccess, payload: {email:'1@1', password:'1'} }
+    try {
         const result = yield call(signupApi, action.payload);   // ■ 3.result.data
         yield put(signupSuccess(result.data));  // 처리결과 put
         
