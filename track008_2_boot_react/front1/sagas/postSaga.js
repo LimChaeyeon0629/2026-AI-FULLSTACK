@@ -30,7 +30,7 @@ export function* fetchPosts() {
 export const fetchPostsDetailAPI = (id)=> axios.get(`${POST_API_BASE}/${id}`);
 export function* fetchPostsDetail(action) {
     try {
-        const result = yield call(fetchPostsDetailAPIl, action.payload);
+        const result = yield call(fetchPostsDetailAPI, action.payload);
         yield put(fetchPostsDetailSuccess(result.data));
 
     } catch(err) {

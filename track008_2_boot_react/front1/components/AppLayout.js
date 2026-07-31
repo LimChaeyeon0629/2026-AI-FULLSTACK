@@ -21,38 +21,65 @@ const { Header, Content } = Layout;     // <Layout.Header> → <Header>
 const { useBreakpoint } = Grid;
 
 // 2. 부품
-// Header / Drawer
-function AppLayout() {
+// Header, Drawer       // children: 각각의 부품 대체, initialUser: 초기값
+function AppLayout({ children, initialUser }) {     // ★ ({ 대체부품, 초기값 })
     // 코드
+    const [ drawerOpen, setDrawerOpen ] = useState(false);  // 변수(초기값 false), 셋팅함수
+
     const menuItems = [
         { key: "new",     label: <Link href="/posts/new">✏️ NEW POST</Link> },
         { key: "profile", label: <Link href="/mypage">👤 MYPAGE </Link> },
         { key: "home",    label: <Link href="/signup">🏠 JOIN</Link> },
     ];
 
-    ///////////////////////////////
+    ////////////////////   #1) Row(줄) - Col(칸)   /   Col
+    ////////////////////   #2) 반응형속성 (모바일:xs, sm, 태블릿:md, 컴퓨터:lg) -   24칸
+    // display:"flex"   자식요소 배치 알아서
+    // justify="space-between"  양쪽에 콘텐츠 배치
     // 렌더링
     return (<Layout>
         {/* Header */}
         <Header style={{display:"flex"}}>
             <Row align="middle" justify="space-between" style={{width:"100%"}}>
-                <Col>
+                <Col flex="none">   {/* none 고정 */}
                     <Link href="/">
                         <a style={{color:"#fff", fontWeight:"bold", fontSize:"18px"}}>
                                 THEJOA703 (POST VER)
                         </a>
                     </Link>
                 </Col>
-                <Col flex="auto">
+                {/* xs, sm(모바일): 0 숨김처리,     md(태블릿): 24칸 중에 16칸,     lg(컴퓨터): 24칸 중에 18칸 */}
+                <Col flex="auto" xs={0} sm={0} md={16} lg={18}>
                     <Menu
                         theme="dark"
                         mode="horizontal"
                         items={menuItems}
-                        />
+                    />
+                </Col>
+                {/* button 종류: primary, default(하얀색), text(없음), link(a링크형식모양) */}
+                <Col flex="none" xs={2} md={0}>         {/* 이벤트 속성 */}
+                    <Button
+                        type="text"
+                        icon={ <MenuOutlined style={{color:"white", fontSize:20}}/> }
+                        onClick={()=> setDrawerOpen(true)}>
+                    </Button>
                 </Col>
             </Row>
         </Header>
-        <Content>121212</Content>
+
+        <Drawer
+            title="MENU"
+            placement="right"
+            onClose={()=> setDrawerOpen(false)}
+            open={drawerOpen}
+        >
+        <Menu
+            mode="vertical"
+            items={menuItems}
+        />
+        </Drawer>
+
+        <Content style={{ padding:"40px" }}>{children}</Content>
     </Layout>);
 }
 
