@@ -382,6 +382,78 @@ Step5) view
 <Link href="/mypage">       mypage.js       # 마이페이지
 <Link href="/signup">       signup.js       # 회원가입
 <Link href="/posts/new">    posts/new.js    # 글쓰기 파일
+````
+
+
+## (1): 회원가입 + board (crud)
+## (2): 멤버기능 + board (이미지업로드, 해시태그, 좋아요)
+boot2  - 프로젝트만들기
+- table   → mapper      → service   → controller
+- @Entity → repository  → service   → controller
+
+1) 유저는 많은 글을 쓸 수 있다.
+<AppUser>   →   <Post>
+
+<AppUser>
+@OneToMany( mappedBy = "user" ,cascade = CascadeType.ALL, orphanRemoval = true )
+private List<Post> posts = new ArrayList<>(); 
+
+<Post>
+@ManyToOne   //1. 다대일 (테이블필드명)
+@JoinColumn(name="APP_USER_ID" , nullable = false)
+private AppUser user; 
+
+2) 글은 많은 이미지를 갖는다.
+<Post>      →   <Image>
+```
+  <Post>
+  @OneToMany
+
+  <Image>
+  @ManyToOne
+```
+
+3) 글은 많은 해시태그를 갖는다.   / 해시태그는 많은 글을 갖는다.
+  1) 다:다
+  2) 중간테이블
+<Post>      →   <Hashtag>
+@ManyToMany
+
+<Hashtag>   →   <Post>
+
+<Post>            <Hashtag>
+content           1 test123
+deleted            like
+
+      <Post_Hashtag>
+
+          1   1
+          1   2
+          2   1
+          2   2
+        1번글 test123
+        1번글 like
+
+4) 글은 많은 좋아요를 갖는다.
+<Post>                                <POST_LIKE>
+@OneToMany List<POST_LIKE> likes;     @ManyToOne AppUser user;
+@OneToMany List<POST_LIKE> likes;     @ManyToOne Post    post;
+
+
+        좋아요번호  글번호    유저번호
+        1         1         1
+        2         1         2
+        3         1         3
+        4         2         2
+        5         2         3
+
+
+5) 리트윗
+5) 팔로우
+
+
+front2 - 프로젝트복사하기
+
 
 
 
@@ -389,6 +461,15 @@ Step5) view
 ##### [실습]  5. Boot + React + 세션/쿠키  - ver2 (기본게시판 + 회원가입 + 이미지 / 해시태그 / 좋아요 / 팔로우)
 ※ entity → repository → service → controller
 
+1. boot - 두번째
+1) 포폴1 - 옮기기 (리뉴얼)
+          1. 프로젝트
+          2. 테이블구성 @Entity
+          3. repository / mybatis 셋팅
+          4. service (재활용)
+          5. RestController
+
+2) 포폴2 - 새롭게 구성되는 파트
 
 
 
