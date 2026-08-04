@@ -14,8 +14,11 @@ import com.thejoa703.entity.Post;
 @Repository										// Entity, PK-자료형
 public interface PostRepository extends JpaRepository<Post, Long> {
 	
-	List<Post> findByDeletedFalse();	// List<Post>		결과가 여러 개일 때	: List
+	List<Post>	findByDeletedFalse();	// List<Post>		결과가 여러 개일 때	: List
 										// Optional<Post>	결과가 한 개일 때	: Optional
+	
+	// 해시태그 이름으로 게시글 검색	(해시태그이름: List<Hashtag>	hashtags 필드 name
+	List<Post>	findByHashtags_NameAndDeletedFalse(String name);
 	
 	// 오라클 네이티브페이징조회
 	// 비교 - 결과값이 1개거나 없을 때(null) - Optional 사용
@@ -27,9 +30,57 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             		"WHERE rnum BETWEEN :start AND :end",
             		nativeQuery=true
     )
+	List<Post> findPostsWithPaging(	@Param("start") int start, @Param("end") int end); 
 	
-	List<Post> findPostsWithPaging(	@Param("start") int start,
-									@Param("end") int end); 
+	
+	// 특정유저가 좋아요한 게시물
+	@Query(
+		value = 
+				"SELECT * FROM ( " +
+				"SELECT p.*, ROWNUM AS rnum " +
+				"FROM ( " +
+				"   SELECT po.* " +
+				"   FROM POSTS po " +
+				"   WHERE po.ID IN ( " +
+				"       SELECT DISTINCT pl.POST_ID " +
+				"       FROM POST_LIKES pl " +
+				"       WHERE pl.APP_USER_ID = :userId " +
+				"   ) AND po.DELETED = 0 " +  
+				"   ORDER BY po.CREATED_AT DESC " +  
+				") p " +
+				") " +
+				"WHERE rnum BETWEEN :start AND :end",
+				nativeQuery = true
+	)
+	List<Post>	findByLikedPostsWithPaging( @Param("userId") Long userId,
+											@Param("start") int start, @Param("end") int end);
+	
+	// 내가 쓴 글 + 내가 리트윗한 글 (합쳐서 조회)
+	@Query(
+		value =
+				"SELECT * FROM ( " +
+				"	SELECT p.*, ROWNUM AS rnum " +
+				"	FROM ( " +
+				"   	SELECT po.ID, po.CONTENT, po.CREATED_AT, po.DELETED, po.UPDATED_AT, po.APP_USER_ID " +  
+				"   	FROM POSTS po " +
+				"   	WHERE po.APP_USER_ID = :userId AND po.DELETED = 0 " +
+				"   	UNION ALL " +
+				"   	SELECT po.ID, po.CONTENT, po.CREATED_AT, po.DELETED, po.UPDATED_AT, po.APP_USER_ID " + 
+				"   	FROM POSTS po " +
+				"   	WHERE po.ID IN ( " +
+				"       	SELECT DISTINCT r.ORIGINAL_POST_ID " +
+				"       	FROM RETWEETS r " +
+				"       	WHERE r.APP_USER_ID = :userId " +
+				"   	) AND po.DELETED = 0 " +
+				"   	ORDER BY CREATED_AT DESC " +  
+				"	) p " +
+				") " +
+				"WHERE rnum BETWEEN :start AND :end",
+				nativeQuery = true
+	)
+	List<Post>	findByMyPostsAndRetweetsWithPaging( @Param("userId") Long userId,
+													@Param("start") int start, @Param("end") int end);
+	
 }
 
 /*	(1) 사용할 수 있는 기본 SQL

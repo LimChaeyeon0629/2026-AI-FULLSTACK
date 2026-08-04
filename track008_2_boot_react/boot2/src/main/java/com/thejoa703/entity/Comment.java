@@ -57,8 +57,6 @@ public class Comment {
 	}
 }
 
-
-
 //String content;
 //AppUser user;		@ManyToOne	/	@OneToMany AppUser user
 //Post post;		@ManyToOne	/	@OneToMnay Post post

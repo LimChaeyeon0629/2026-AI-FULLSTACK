@@ -1,7 +1,5 @@
 package com.thejoa703.entity;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +21,7 @@ public class Image {
 	@SequenceGenerator(name = "image_seq", sequenceName = "IMAGE_SEQ", allocationSize = 1)
 	private Long Id;
 	
-	@Column(length=200, nullable=false)
+	@Column(length=200, nullable = false)
 	private String src;
 	
 	@ManyToOne	// 하나의 글은 여러 이미지를 갖는다.

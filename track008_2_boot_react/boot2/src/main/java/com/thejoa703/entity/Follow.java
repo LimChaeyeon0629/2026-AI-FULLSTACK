@@ -48,8 +48,8 @@ public class Follow {
 
 	public Follow(AppUser follower, AppUser followee) {
 		super();
-		this.follower = follower;
-		this.followee = followee;
+		this.follower = follower;	// 팔로우한 사람
+		this.followee = followee;	// 팔로우당한 사람
 	}
 }
 

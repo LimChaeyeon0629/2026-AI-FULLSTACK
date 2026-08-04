@@ -1,6 +1,5 @@
 package com.thejoa703.entity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +19,11 @@ import lombok.Setter;
 @Getter @Setter
 public class Hashtag {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Hashtag_seq")
-	@SequenceGenerator(name = "Hashtag_seq", sequenceName = "HASHTAG_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hashtag_seq")
+	@SequenceGenerator(name = "hashtag_seq", sequenceName = "HASHTAG_SEQ", allocationSize = 1)
 	private Long Id;
 	
-	@Column(length=200, nullable=false)
+	@Column(length=200, nullable = false, unique = true)
 	private String name;
 	
 	// 다대다

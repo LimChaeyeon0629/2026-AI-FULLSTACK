@@ -11,6 +11,18 @@ import com.thejoa703.entity.AppUser;
 public interface AppUserRepository extends JpaRepository<AppUser, Long>{
 	
 	Optional<AppUser> findByEmail(String email);
+	
+	// 단건조회 : email과 provider로 단건조회
+	Optional<AppUser>	findByEmailAndProvider(String email, String provider);
+	
+	// 닉네임으로 조회
+	Optional<AppUser>	findByNickname(String nickname);
+	
+	// 닉네임 중복여부 (existsBy 결과가 존재하는지만 확인)
+	boolean existsByNickname(String nickname);
+	
+	// 이메일 중복여부
+	boolean existsByEmail(String email);
 }
 
 // create	- save			: insert into app_user (컬럼,,,) values (?, ?, ?,,,)
