@@ -1,14 +1,12 @@
 package com.thejoa703.repository;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.thejoa703.entity.AppUser;
 import com.thejoa703.entity.Post;
 
 @Repository										// Entity, PK-자료형
@@ -52,7 +50,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 				"WHERE rnum BETWEEN :start AND :end",
 				nativeQuery = true
 	)
-	List<Post>	findByLikedPostsWithPaging( @Param("userId") Long userId,
+	List<Post>	findLikedPostsWithPaging( @Param("userId") Long userId,
 											@Param("start") int start, @Param("end") int end);
 	
 	// 내가 쓴 글 + 내가 리트윗한 글 (합쳐서 조회)
@@ -78,7 +76,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 				"WHERE rnum BETWEEN :start AND :end",
 				nativeQuery = true
 	)
-	List<Post>	findByMyPostsAndRetweetsWithPaging( @Param("userId") Long userId,
+	List<Post>	findMyPostsAndRetweetsWithPaging( @Param("userId") Long userId,
 													@Param("start") int start, @Param("end") int end);
 	
 }

@@ -9,8 +9,8 @@ import com.thejoa703.entity.AppUser;
 
 @Repository											  // Entity, PK-자료형
 public interface AppUserRepository extends JpaRepository<AppUser, Long>{
-	
-	Optional<AppUser> findByEmail(String email);
+	// 이메일로 조회
+	Optional<AppUser>	findByEmail(String email);
 	
 	// 단건조회 : email과 provider로 단건조회
 	Optional<AppUser>	findByEmailAndProvider(String email, String provider);

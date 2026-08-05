@@ -31,6 +31,8 @@ import com.thejoa703.repository.ImageRepository;
 import com.thejoa703.repository.PostLikeRepository;
 import com.thejoa703.repository.PostRepository;
 
+import jakarta.persistence.EntityManager;
+
 @SpringBootTest
 @Transactional
 class Boot2ApplicationTest {
@@ -55,6 +57,9 @@ class Boot2ApplicationTest {
     // Mapper
     @Autowired
     private DeptUserMapper deptUserMapper;
+    @Autowired
+    private jakarta.persistence.EntityManager entityManager;
+    
 
     // 테스트 공통 데이터: 사용자 2명 + 게시글 1개
     private AppUser user1;
@@ -248,8 +253,10 @@ class Boot2ApplicationTest {
     	// Q1. repository 간단한 crud 이용	- insert
     	deptUserRepository.save(dept1);
     	deptUserRepository.save(dept2);
+    	entityManager.flush();
+    	entityManager.clear();
     	
-    	// Q2. mapper에 있는 찾기 메서드		findByNameKeyword("영업");
+    	// Q2. mapper에 있는 찾기 메서드	 -	findByNameKeyword("영업");
     	List<DeptUser> lists = deptUserMapper.findByNameKeyword("영업");
 //    	List<DeptUser> found = deptUserMapper.findByNameKeyword("영업");
     	

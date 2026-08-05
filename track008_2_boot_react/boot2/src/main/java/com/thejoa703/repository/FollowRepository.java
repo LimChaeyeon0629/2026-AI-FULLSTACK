@@ -28,8 +28,8 @@ public interface FollowRepository extends JpaRepository<Follow, Long>{
 	List<Follow> findByFollowee_Id(Long followeeId);
 	
 	// 팔로잉 수 집계		→ AppUser(엔티티) follower(필드)	id 찾기
-	long countByFollwer_Id(Long followerId);
+	long countByFollower_Id(Long followerId);
 	
 	// 팔로워 수 집계		→ AppUser(엔티티) followee(필드)	id 찾기
-	long countByFollwee_Id(Long followeeId);
+	long countByFollowee_Id(Long followeeId);
 }

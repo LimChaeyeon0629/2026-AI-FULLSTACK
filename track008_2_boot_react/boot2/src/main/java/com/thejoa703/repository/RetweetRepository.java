@@ -29,7 +29,7 @@ public interface RetweetRepository extends JpaRepository<Retweet, Long> {
 	// 특정유저 리트윗한글 id 목록 조회 @Query
 	//		"SELECT r.originalPost.id	FROM Retweet r		WHERE r.user.id = :userId"
 	@Query("SELECT r.originalPost.id	FROM Retweet r		WHERE r.user.id = :userId")
-	List<Long>	findByOriginalPostIdByUserId( @Param("userId") Long userId );
+	List<Long>	findOriginalPostIdByUserId( @Param("userId") Long userId );
 	
 	// 내가 리트윗한 글 페이징 조회 ( nativeQuery = true	→	실제 테이블명 - POSTS )
 	@Query(
@@ -43,7 +43,7 @@ public interface RetweetRepository extends JpaRepository<Retweet, Long> {
 	            + "OFFSET :offset ROWS FETCH FIRST :size ROWS ONLY",
 	            nativeQuery = true
 	)
-	List<Post> findByRetweetPostsWithPaging(@Param("userId") Long userId,
+	List<Post> findRetweetPostsWithPaging( @Param("userId") Long userId,
 											@Param("offset") int offset, @Param("size") int size);
 	
 	

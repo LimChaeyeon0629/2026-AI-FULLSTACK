@@ -32,7 +32,6 @@ import lombok.RequiredArgsConstructor;
 public class PostUserController {
 
     private final PostRepository postRepository;
-	
 	private final PostService postService;
 
 	// 게시글 단건조회
