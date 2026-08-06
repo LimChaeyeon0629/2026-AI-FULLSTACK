@@ -48,5 +48,5 @@ mybatis:
 file:
   upload-dir: uploads
 
-server:
-  port: 8484
+#server:
+#  port: 8484

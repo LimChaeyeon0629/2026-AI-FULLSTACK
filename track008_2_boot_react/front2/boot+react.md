@@ -503,11 +503,6 @@ npm init
 npm install
 ```
 
-3. 개발
-1) reducer
-2) saga
-3) page
-
 
 
 ##### [실습]  5. Boot + React + 세션/쿠키  - ver2 (기본게시판 + 회원가입 + 이미지 / 해시태그 / 좋아요 / 팔로우)
