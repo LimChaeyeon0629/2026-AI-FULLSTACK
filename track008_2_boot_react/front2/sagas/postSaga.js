@@ -8,8 +8,9 @@ import  {
     createPostRequest, createPostSuccess, createPostFailure,
     updatePostRequest, updatePostSuccess, updatePostFailure,
     deletePostRequest, deletePostSuccess, deletePostFailure,
-    resetUserState
+    resetPostState  // 초기화
 } from '../reducers/postReducer';
+import { Form } from 'antd';
 
 
 const POST_API_BASE = 'http://localhost:8080/api/posts';
@@ -39,10 +40,29 @@ export function* fetchPostsDetail(action) {
 }
 
 // watchCreatePost          - POST      /api/posts        게시글 작성
-export const createPostAPI = (postData)=> axios.post(POST_API_BASE, postData);
+export const createPostAPI = (payload)=> {
+    const { userId, dto, files } = payload;         // 1. boot의 컨트롤러 - postController return 값
+    const formData = new FormData();                // 2. form 만들기
+
+    Object.entries(dto || {}).forEach(([k, v]) => { // 3. dto - content / hashtags
+        if (v !== undefined && v !== null) {
+            formData.append(k, v);
+        }
+    });
+
+    if (files && files.length > 0) {                // 4. 이미지 파일들
+        files.forEach((f) => formData.append('files', f));
+    }
+
+    // POST_API_BASE =  http://localhost:8080/api/posts
+    //                  http://localhost:8080/api/posts?userId
+    return axios.post(`${POST_API_BASE}?userId=${userId}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+}
 export function* createPost(action) {
     try {
-        const result = yield call(createPostAPI, action.payload);
+        const result = yield call(createPostAPI, action.payload);   // action.payload 사용자가 넘겨준 값
         yield put(createPostSuccess(result.data));
         
     } catch(err) {
@@ -50,10 +70,30 @@ export function* createPost(action) {
     }
 }
 
-// watchUpdatePost          - PUT       /api/posts/{id}   게시글 수정
+// watchUpdatePost          - PATCH       /api/posts/{id}   게시글 수정
 // export const updatePostAPI = (id, postData)=> axios.put(`${POST_API_BASE}/${id}`, postData);
 // ...화살표 함수(=>) 줄바꿈 오류
-export const updatePostAPI = ({postId, dto})=> axios.put(`${POST_API_BASE}/${postId}`, dto);
+export const updatePostAPI = (payload)=> {
+    const { userId, postId, dto, files } = payload;     // 1. boot의 컨트롤러 - postController return 값
+    const formData = new FormData();                    // 2. form 만들기
+    
+    Object.entries(dto || {}).forEach(([k, v]) => {     // 3. dto - content / hashtags
+        if (v !== undefined && v !== null) {
+            formData.append(k, v);
+        }
+    });
+
+    if (files && files.length > 0) {                    // 4. 이미지 파일들
+        files.forEach((f) => formData.append('files', f));
+    }
+    
+    // POST_API_BASE =  http://localhost:8080/api/posts
+    //                  http://localhost:8080/api/posts/${postId}?userId=1
+    return axios.patch(`${POST_API_BASE}/${postId}?userId=${userId}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+}
+    
 export function* updatePost(action) {
     try {
         const result = yield call(updatePostAPI, action.payload);

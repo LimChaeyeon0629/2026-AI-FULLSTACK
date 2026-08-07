@@ -67,7 +67,7 @@ export function* logout() {
 // --- 닉네임 수정 Patch ---
 // PATCH :       /auth/{userId}/nickname,   params를 통해서 닉네임넘기기
 export const updateNicknameApi = ( {userId, nickname} )=>
-    axios.post(`${USER_API_BASE}/${userId}/nickname`, null, {params:{nickname}});
+    axios.patch(`${USER_API_BASE}/${userId}/nickname`, null, {params:{nickname}});
 
 export function* updateNickname(action) {
     try {
@@ -85,11 +85,10 @@ export function updateProfileImageApi( {userId, file} ) {
     const formData = new FormData();
     formData.append("ufile", file);
 
-    return axios.post(`${USER_API_BASE}/${userId}/profile-image`, formData,
+    return axios.patch(`${USER_API_BASE}/${userId}/profile-image`, formData,
         { headers: {"Content-Type": "multipart/form-data"} }
     )
 }
-
 export function* updateProfileImage(action) {
     try {
         const result = yield call(updateProfileImageApi, action.payload);

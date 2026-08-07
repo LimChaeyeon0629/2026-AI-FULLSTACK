@@ -11,24 +11,36 @@ import EditPostModal from "../components/EditPostModal";
 export default function Home() {
     const dispatch = useDispatch();
     // 1. 유저 정보 가져오기 - state.auth
-    // const { user } = useSelector((state)=> state.auth);
+    const { user } = useSelector((state)=> state.auth);     // ###
     // 2. 게시글 정보 가져오기 - state.post
     const { posts, loading, error } = useSelector((state)=> state.post);
     
     // useState 는 []
     // 수정모달: isEditModalVisible, setIsEditModalVisible
     const [ isEditModalVisible, setIsEditModalVisible ] = useState(false);
+    const [ uploadFiles, setUploadFiles ] = useState([]);   // ###
     // 수정할글: editPost, setEditPost
     const [ editPost, setEditPost ] = useState(false);
     // 수정기능: handleEditSubmit
     const handleEdit = (post)=> {
-        setEditPost(post);  // 수정글셋팅
-        setIsEditModalVisible(true);
+        setEditPost(post);              // 수정글셋팅
+        setIsEditModalVisible(true);    // 수정화면보이기
+        setUploadFiles([]);             // 업로드파일 초기값 []
     };
+
+    // ##2. saga 넘기는 데이터 확인 (userId, postId, dto, files)
     const handleEditSubmit = (values)=> {
         dispatch(   // 수정기능 후
             updatePostRequest({
-                postId: editPost.id, dto: {content: values.content}
+                userId: user?.id,
+                postId: editPost.id,
+                dto:{
+                    content: values.content,
+                    hashtags: Array.isArray(values.hashtags)
+                        ? values.hashtags.join(",")
+                        : values.hashtags,
+                },
+                files: uploadFiles
             })
         );
         setIsEditModalVisible(false);   // 화면 안 보이기
@@ -56,11 +68,14 @@ export default function Home() {
                 handleDelete = {handleDelete}
                 
             />
+            {/* ### 3. Edit 수정파라미터 추가 */}
             <EditPostModal 
                 visible={isEditModalVisible}
                 onCancel={()=> setIsEditModalVisible(false)}
                 editPost={editPost}
                 onSubmit={handleEditSubmit}
+                uploadFiles={uploadFiles}
+                setUploadFiles={setUploadFiles}
             />
         </>
     );

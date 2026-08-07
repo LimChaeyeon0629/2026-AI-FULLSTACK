@@ -15,19 +15,25 @@ const postReducer = createSlice({
     name: "post",
     initialState,
     reducers: {
+
+        // --- 상태 초기화 ---
+        resetPostState: (state)=> {
+            state.loading = false;
+            state.success = false;
+            state.error = null;
+        },
+
         // --- 전체 게시글 ---
         fetchPostsRequest: (state)=> {
             state.loading = true;
             state.success = false;
             state.error = null;
         },
-        
         fetchPostsSuccess: (state, action)=> {
             state.loading = false;
             state.success = true;
             state.posts = action.payload;   // 전체게시글 목록
         },
-        
         fetchPostsFailure: (state, action)=> {
             state.loading = false;
             state.success = false;
@@ -40,13 +46,11 @@ const postReducer = createSlice({
             state.success = false;
             state.error = null;
         },
-        
         fetchPostsDetailSuccess: (state, action)=> {
             state.loading = false;
             state.success = true;
             state.currentPost = action.payload;  // 단건 조회된 상세 게시글
         },
-        
         fetchPostsDetailFailure: (state, action)=> {
             state.loading = false;
             state.success = false;
@@ -59,13 +63,14 @@ const postReducer = createSlice({
             state.success = false;
             state.error = null;
         },
-        
         createPostSuccess: (state, action)=> {
             state.loading = false;
             state.success = true;
-            state.posts = [action.payload, ...state.posts];  // 새 글을 목록상단추가
+            // ver-1) (덮어쓰기) 새 글을 목록 맨앞으로 추가
+            // state.posts = [action.payload, ...state.posts];
+            // ver-2) (새로추가) action.payload - 새로 작성된게시글 / unshift 배열의 맨앞에 새 요소추가 (직접 배열수정)
+            state.posts.unshift( action.payload );
         },
-        
         createPostFailure: (state, action)=> {
             state.loading = false;
             state.success = false;
@@ -78,7 +83,6 @@ const postReducer = createSlice({
             state.success = false;
             state.error = null;
         },
-        
         updatePostSuccess: (state, action)=> {
             state.loading = false;
             state.success = true;
@@ -88,7 +92,6 @@ const postReducer = createSlice({
                 post.id === action.payload.id ? action.payload : post
             );
         },
-        
         updatePostFailure: (state, action)=> {
             state.loading = false;
             state.success = false;
@@ -101,7 +104,6 @@ const postReducer = createSlice({
             state.success = false;
             state.error = null;
         },
-        
         deletePostSuccess: (state, action)=> {
             state.loading = false;
             state.success = true;
@@ -110,19 +112,13 @@ const postReducer = createSlice({
                 post.id !== action.payload
             );
         },
-        
         deletePostFailure: (state, action)=> {
             state.loading = false;
             state.success = false;
             state.error = action.payload;
         },
         
-        // --- 상태 초기화 ---
-        resetUserState: (state)=> {
-            state.loading = false;
-            state.success = false;
-            state.error = null;
-        },
+        
     }
 });
 
@@ -132,7 +128,7 @@ export const {
     createPostRequest, createPostSuccess, createPostFailure,
     updatePostRequest, updatePostSuccess, updatePostFailure,
     deletePostRequest, deletePostSuccess, deletePostFailure,
-    resetUserState
+    resetPostState
 } = postReducer.actions;
 
 export default postReducer.reducer;

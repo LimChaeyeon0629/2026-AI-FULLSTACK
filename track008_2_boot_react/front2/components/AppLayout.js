@@ -37,9 +37,9 @@ function AppLayout({ children, initialUser }) {     // ★ ({ 대체부품, 초�
         // 로그인 했니? // ... 전개연산자
         ...( user && user.nickname
         ? [
-            { key: "new",     label: <Link href="/posts/new">✏️ NEW POST</Link> },
-            { key: "profile", label: <Link href="/mypage">👤 MYPAGE </Link> },
-            { key: "logout",    label: <a onClick={handleLogout} style={{cursor:"pointer"}}>🔓 로그아웃</a> },
+            { key: "new",      label: <Link href="/posts/new">✏️ NEW POST</Link> },
+            { key: "profile",  label: <Link href="/mypage">👤 MYPAGE </Link> },
+            { key: "logout",   label: <a onClick={handleLogout} style={{cursor:"pointer"}}>🔓 로그아웃</a> },
         ]
         : [
             { key: "login",    label: <Link href="/login">🔓 Login</Link> },
