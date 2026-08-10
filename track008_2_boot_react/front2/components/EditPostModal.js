@@ -1,5 +1,6 @@
 // components/EditPostModal
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Modal, Form, Input, Button, Select, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -8,15 +9,19 @@ export default function EditPostModal({visible, onCancel, editPost, onSubmit, up
     // Redux에서 회원가입 시 저장된 사용자 정보 가져오기 - user
     const { user } = useSelector((state)=> state.auth);
 
+    const [form] = Form.useForm();
     const [fileList, setFileList] = useState([]);
 
-    console.log("🔥 fileList:", fileList);
-    console.log("🔥 editPost.images:", editPost?.images);
+
+
+    // console.log("🔥 fileList:", fileList);
+    // console.log("🔥 editPost.images:", editPost?.images);
 
     ///////////////////////////////////
     return (
         <Modal title="글 수정" open={visible} onCancel={onCancel} footer={null}>
             <Form 
+                // form={form}
                 initialValues={{
                     content: editPost?.content,
                     hashtags: editPost?.hashtags,
@@ -40,12 +45,12 @@ export default function EditPostModal({visible, onCancel, editPost, onSubmit, up
                         multiple
                         beforeUpload={()=> false}
                         fileList={fileList}
-                        // onChange={({fileList})=>
-                        //     setFileList(fileList)
-                        // }
                         onChange={({fileList})=>
-                            setFileList(fileList.map((f)=> f.originFileObj))
+                            setFileList(fileList)
                         }
+                        // onChange={({fileList})=>
+                        //     setFileList(fileList.map((f)=> f.originFileObj))
+                        // }
                     >
                         <Button
                             type="primary"

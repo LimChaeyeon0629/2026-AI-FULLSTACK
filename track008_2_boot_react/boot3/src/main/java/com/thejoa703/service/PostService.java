@@ -155,9 +155,14 @@ public class PostService {
 	
 	// 6. 게시글삭제 (delete)
 	@Transactional	// postRepository 틀리면 rollback
-	public void deletePost(Long postId) {
+	public void deletePost(Long userId, Long postId) {	// 어떤 유저가 어떤 글 삭제
 		Post post = postRepository.findById(postId)
 				.orElseThrow(()-> new IllegalArgumentException("게시글삭제(단건조회) 오류! 존재하지 않는 게시글! postId: " + postId));
+		
+		// 유저 id가 어떤 post와 다를 때
+		if( !post.getUser().getId().equals(post) ) {
+			throw new SecurityException("본인 글만 삭제할 수 있습니다.");
+		}
 		
 //		postRepository.delete(post);	// 물리삭제
 		post.setDeleted(true);			// 논리삭제 - 저장메서드를 따로 호출하지 않아도 delete 쿼리 반영

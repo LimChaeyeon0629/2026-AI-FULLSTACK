@@ -26,6 +26,17 @@ export default function Home() {
         setEditPost(post);              // 수정글셋팅
         setIsEditModalVisible(true);    // 수정화면보이기
         setUploadFiles([]);             // 업로드파일 초기값 []
+
+        // 기존 이미지 표시용
+        // const oldImages = post.imageUrls?.map((url,index)=>({
+        //     uid:`old-${index}`,
+        //     name:url.split("/").pop(),
+        //     status:"done",
+        //     url:`http://localhost:8080/${url}`,
+        //     old:true
+        // })) || [];
+        
+        // setUploadFiles(oldImages);
     };
 
     // ##2. saga 넘기는 데이터 확인 (userId, postId, dto, files)

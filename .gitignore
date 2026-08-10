@@ -9,6 +9,7 @@ eclipse/
 portfolio/
 track005_jsp/tomcat9.0/
 track005_jsp/Servers/
+application-oauth.yml
 
 # Node.js 관련
 # **/node_modules/

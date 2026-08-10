@@ -522,4 +522,6 @@ npm install
 
 
 
+
+
 ##### [실습]  6. Boot + React + jwt + security + redis  - ver3 (기본게시판 + 회원가입 + 이미지 / 해시태그 / 좋아요 / 팔로우)
