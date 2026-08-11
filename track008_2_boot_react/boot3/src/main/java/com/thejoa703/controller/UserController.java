@@ -116,6 +116,7 @@ public class UserController {
                 .maxAge(props.getRefreshTokenExpSeconds())	// 만료시간설정
                 .build();
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString()); 
+        
         // 4. 사용자 정보 반환
         return ResponseEntity.ok(Map.of(
                 "accessToken", accessToken,
@@ -126,12 +127,12 @@ public class UserController {
 //	@PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 //	public ResponseEntity<UserResponseDto> login(	@RequestBody LoginRequest request,
 //													HttpSession session ) { // import jakarta.servlet.http.HttpSession;
-////		Long userId = (Long)session.getAttribute("LOGIN_USER_ID");
-////		if( userId == null ) {
-////			return ResponseEntity.status(401).build();	// 권한없음
-////		}
+//		// Long userId = (Long)session.getAttribute("LOGIN_USER_ID");
+//		// if( userId == null ) {
+//		// 	return ResponseEntity.status(401).build();	// 권한없음
+//		// 	}
 //		
-////		return ResponseEntity.ok( userService.getUser(userId) );
+//		// 	return ResponseEntity.ok( userService.getUser(userId) );
 //		UserResponseDto user = userService.login(request);
 //		session.setAttribute("LOGIN_USER_ID", user.getId());	// 세션셋팅
 //		
@@ -143,7 +144,7 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(
           @CookieValue(name = "refreshToken", required = false) String refreshToken,
-                                       HttpServletResponse response) {
+                                       HttpServletResponse response ) {
         var claims = jwtProvider.parse(refreshToken).getBody();
         String userId = claims.getSubject();
 
@@ -177,6 +178,7 @@ public class UserController {
         try { 
             // AUTHORIZATION 헤더에서 AccessToken 확인
             String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+            
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
                 String token = authHeader.substring(7);  			// Bearer 제거
                 var claims = jwtProvider.parse(token).getBody();  	// 토큰 파싱
@@ -184,6 +186,7 @@ public class UserController {
                 UserResponseDto user = userService.getUser(Long.valueOf(userId));	// 사용자 조회
                 return ResponseEntity.ok(user);	// 사용자 반환
             }  
+            
             if (refreshToken != null) {	// 장기 사용자인지 확인
                 var claims = jwtProvider.parse(refreshToken).getBody();
                 String userId = claims.getSubject();	// 사용자 id 추출
@@ -270,7 +273,8 @@ public class UserController {
 
         String stored = tokenStore.getRefreshToken(userId);
         if (stored == null || !stored.equals(refreshToken)) {
-            return ResponseEntity.status(401).body(Map.of("error", "Invalid refresh token"));
+            return ResponseEntity.status(401)
+            		.body(Map.of("error", "Invalid refresh token"));
         }
 
         String role = userService.findRoleByUserId(Long.valueOf(userId));

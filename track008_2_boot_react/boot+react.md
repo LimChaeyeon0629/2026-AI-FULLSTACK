@@ -511,6 +511,8 @@ npm install
 
 
 ##### [실습]  5. Boot + React + 세션/쿠키  - ver2 (기본게시판 + 회원가입 + 이미지 / 해시태그 / 좋아요 / 팔로우)
+
+
 ※ entity → repository → service → controller
 
 1. boot - 두번째
@@ -527,6 +529,7 @@ npm install
 
 
 
+##### [실습]  6. Boot + React + jwt + security + redis  - ver3 (기본게시판 + 회원가입 + 이미지 / 해시태그 / 좋아요 / 팔로우)
 
 STEP1)
 ```
@@ -625,10 +628,14 @@ STEP3)
 ```json
    HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
 ```
-1) 부분수정 > 지난시간
-2) 게시판리스트 > boot - List<PostResponseDto>
-3) 이미지-캐로셀 >
-4) 해시태그 >
+
+
+
+
+  1) 부분수정 > 지난시간
+  2) 게시판리스트 > boot - List<PostResponseDto>
+  3) 이미지-캐로셀 >
+  4) 해시태그 >
 
 4. 보안 + 시큐리티
 1) 설정파일: build.gradle 시큐리티 / .env (필요한 설정파일)
@@ -654,10 +661,29 @@ STEP3)
 5) controller
     ㄴ UserController (로그인 시 - access Token, refresh Token / cookie 설정)
     ㄴ post에서 AuthUserJwtService 활용해서 가져오기
+
 6) react
+  1) 폴더만들기
+  2) 프로젝트 설치
+  3) reducer → saga → page
+  4) ssr (server side rendering)
+  4) jwt 사용
+  front3
+    ㄴ api/axios.js
+    ㄴ pages
+        ㄴ signup.js
+        ㄴ login.js
+        ㄴ mypage.js
+
+3. social 개발자 사이트 - 키 찾기
+> kakao 개발자, google 개발자, naver 개발자
+> boot의 .env 파일 바꾸기
 
 
+  ```
+  mkdir front3      -- 폴더만들기
+  cd    front3      -- 폴더이동
 
-
-
-##### [실습]  6. Boot + React + jwt + security + redis  - ver3 (기본게시판 + 회원가입 + 이미지 / 해시태그 / 좋아요 / 팔로우)
+  front2 프로젝트 .next / node_module 빼고 안에 콘텐츠 넣기
+  npm install
+  ```
