@@ -89,6 +89,7 @@ public class UserService {
 	}
 	
 	// #### saveSocialUser
+	@Transactional	// ###### social - insert
 	public AppUser saveSocialUser( String email, String provider, String providerId, String nickname, String image) {
 	   AppUser user  = AppUser.builder()
 			   			.email(email)
@@ -96,6 +97,8 @@ public class UserService {
                         .providerId(providerId)
                         .nickname(nickname)
                         .ufile(image)
+                        // 비밀번호 칸이 비어 있지 않도록 임시 비밀번호 "thejoa703"을 암호화해서 넣기
+                        .password(passwordEncoder.encode("thejoa703"))	// ## social + security)
                         .role("ROLE_USER")
                         .build();
 	   return appUserRepository.save(user);  

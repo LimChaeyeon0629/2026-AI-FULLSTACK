@@ -108,13 +108,17 @@ export const logoutApi = ()=> api.post(`${USER_API_BASE}/logout`);
 
 export function* logout() {
     try {
+        // 백엔드 로그아웃
         yield call(logoutApi);
         
+        // 브라우저에 저장된 accessToken 삭제
         if(typeof window != "undefined") {
-            localStorage.removeItem("accessToken", accessToken); // JWT remove
-            Cookies.remove("accessToken", accessToken); // 쿠키에도 remove
+            localStorage.removeItem("accessToken"); // JWT remove
+            Cookies.remove("accessToken"); // 쿠키에도 remove
+            // localStorage.removeItem("accessToken", accessToken); // JWT remove
+            // Cookies.remove("accessToken", accessToken); // 쿠키에도 remove
         }
-
+        // Redux 로그인 정보 삭제
         yield put(logoutSuccess());
         
     } catch(err) {

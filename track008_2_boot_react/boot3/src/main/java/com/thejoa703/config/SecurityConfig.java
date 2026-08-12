@@ -80,7 +80,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
-            throws Exception {
+    		throws Exception {
         return configuration.getAuthenticationManager();
     }
 

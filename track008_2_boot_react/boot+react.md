@@ -679,6 +679,21 @@ STEP3)
 > kakao 개발자, google 개발자, naver 개발자
 > boot의 .env 파일 바꾸기
 
+■ boot3
+  ㄴ service : public AppUser saveSocialUser() - @더티체크/Security처리
+
+■ front3
+  ㄴ public
+      ㄴ images
+        이미지 파일들 
+
+  ㄴ pages
+      ㄴ oauth2
+          ㄴ callback.js
+            String targetUrl = redirectUrl + "?accessToken=" + access;
+            ( Spring boot3 - OAuth2SuccessHandler )
+
+
 
   ```
   mkdir front3      -- 폴더만들기
