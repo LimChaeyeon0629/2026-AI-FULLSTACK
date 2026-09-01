@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521/XE
+    url: jdbc:oracle:thin:@localhost:1522/XE
     username: boot
     password: react
     driver-class-name: oracle.jdbc.OracleDriver

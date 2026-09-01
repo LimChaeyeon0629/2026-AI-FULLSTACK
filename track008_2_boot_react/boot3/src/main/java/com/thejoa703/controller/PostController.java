@@ -47,11 +47,8 @@ public class PostController {
 	@PostMapping( consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
 	public ResponseEntity<PostResponseDto> createPost(
 			Authentication	authentication,
-			
 			@Parameter(description = "작성자 사용자 ID") @RequestParam("userId") Long userId,
-			
-			@ModelAttribute PostRequestDto dto,						// multipart/form-data
-			
+			@ModelAttribute PostRequestDto dto,					// multipart/form-data
 			@Parameter(description = "업로드할 이미지 파일 리스트")		// swagger
 				@RequestPart(name="files", required=false) List<MultipartFile> files
 	) {
