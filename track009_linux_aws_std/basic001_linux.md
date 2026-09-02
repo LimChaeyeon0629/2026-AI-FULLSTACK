@@ -386,7 +386,7 @@ chmod -x hello.sh
 ./hello.sh
 ```
 
-Q1. 현재시간출력 쉘스크립트작성 > date_log.sh
+Q1. 현재시간출력 쉘스크립트작성 > date_log.sh > date.sh
 (vi date.sh)
 #!/bin/bash
 date
@@ -403,5 +403,30 @@ Q3. 실행 및 확인
 -rw-r--r-- 1 root   root     56 Sep  1 07:04 date.sh
 -rwxr-xr-x 1 root   root     56 Sep  1 07:04 date.sh
 
+root@da857a61e447:/home# cat date.sh
+#!/bin/bash
+date
+date > log.txt
+echo "log.txt done"
+
+root@da857a61e447:/home# ./date.sh
+Tue Sep  1 07:12:03 UTC 2026
+log.txt done
+
+root@da857a61e447:/home# cat log.txt
+Tue Sep  1 07:12:03 UTC 2026
+
+
+
 
 ## Part002. AWS
+■ step0. 회원가입 / 로그인
+
+■ step1. EC2
+ssh 클라이언트
+
+■ step2. GITHUB
+
+...............................
+
+■ step3. HTTPS + DOMAIN
