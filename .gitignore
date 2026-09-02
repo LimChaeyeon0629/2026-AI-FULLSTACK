@@ -38,3 +38,7 @@ Thumbs.db
 track007_boot_api/boot1/src/main/resources/application-oauth.properties
 thejoa703.pem
 ```
+
+*.csv
+# thejoa703_accessKeys.csv
+track009_linux_aws_std/thejoa703_accessKeys.csv
