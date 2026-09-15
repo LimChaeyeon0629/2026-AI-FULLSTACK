@@ -1,191 +1,149 @@
-# 🚀 임채연 | 사용자 화면부터 DB 저장까지 연결하는 풀스택 개발자
+# 📚 2026 AI Full-Stack Bootcamp
 
-> 완벽보다 완성을.
-> **기획부터 배포까지, 사용자 흐름과 데이터 흐름을 끝까지 연결하는 개발자입니다.**
+> **Java 웹 개발부터 Python·Django까지,
+> 6개월간의 학습 과정과 실습 코드를 기록하는 저장소입니다.**
 
-단순히 기능을 구현하는 데서 그치지 않고,
-**화면에서 발생한 요청이 API와 서비스 로직을 거쳐
-데이터베이스에 정확하게 반영되는 전체 흐름을 고민합니다.**
+이 저장소는 부트캠프에서 학습한 내용을
+기술별·과정별로 정리하고 복습하기 위해 만들었습니다.
 
-MOIT 팀 프로젝트에서 사용자 신고 및 관리자 신고 처리 기능을 담당하며
-데이터 정합성, 중복 처리, 권한 검증, 비동기 처리와 실제 배포 환경까지 경험했습니다.
-
-<br/>
-<br/>
-
-### 📌 Contact & Links
-
----
-
-<img style="width:80px" alt="lcy" src="https://github.com/user-attachments/assets/2adf117f-a8ac-489e-b0f8-b36112c4481f" />
-
-
-| NAME      | 임채연                                             |
-| --------- | ----------------------------------------------- |
-| EMAIL     | [ssjm0629@gmail.com](mailto:ssjm0629@gmail.com) |
-| GITHUB    | https://github.com/LimChaeyeon0629              |
-| PORTFOLIO | https://github.com/LimChaeyeon0629/moitreport   |
-
----
-
-### 📌 Goals
-
-* 사용자 화면부터 API, 서비스, DB까지 이어지는 **전체 데이터 흐름 설계**
-* 예외 상황과 동시 요청을 고려한 **안정적인 백엔드 기능 구현**
-* GitHub 브랜치와 Pull Request를 활용한 **팀 협업 경험 강화**
-* AWS 환경에 직접 서비스를 배포하고 운영하며 **문제 해결 역량 향상**
-
-| 기술스택                        | 연결된 CS 역량 및 실무 활용 능력                                                   |
-| --------------------------- | ---------------------------------------------------------------------- |
-| **JAVA**                    | 객체지향 원칙을 기반으로 역할과 책임을 분리하고, 예외 처리와 컬렉션을 활용한 서버 로직 구현                   |
-| **JSP / THYMELEAF**         | 서버 사이드 렌더링과 MVC 구조를 활용한 사용자 화면 및 관리자 화면 구현                             |
-| **SPRING / SPRING BOOT**    | IoC·DI와 계층형 구조를 기반으로 Controller, Service, Repository의 책임을 분리한 웹 서비스 개발 |
-| **SPRING SECURITY / JWT**   | 무상태 인증과 역할 기반 접근 제어를 적용하고, SecurityContext를 활용한 사용자 식별 및 IDOR 방지       |
-| **ORACLE / MYSQL**          | 테이블 관계와 제약조건을 설계하고, CRUD·JOIN·페이징·검색 쿼리 작성                             |
-| **MYBATIS / JPA**           | SQL 중심 데이터 접근과 ORM 방식을 함께 경험하고, 프로젝트 요구사항에 따라 적절한 접근 방식 적용             |
-| **TRANSACTION / REDIS**     | 여러 DB 변경 작업의 원자성을 보장하고, Redis Lock과 상태 재검증을 통해 중복 처리 방지                |
-| **REACT / NEXT.JS**         | 컴포넌트 기반 사용자·관리자 화면 구현과 상태 변화에 따른 조건부 UI 처리                             |
-| **REDUX-SAGA**              | API 호출과 비동기 상태를 분리하고, 성공·실패 흐름에 따른 화면 상태 및 오류 메시지 처리                   |
-| **HTML / CSS / JAVASCRIPT** | 웹 표준 구조를 기반으로 사용자 입력 폼, 반응형 화면, 이벤트 및 비동기 통신 구현                        |
-| **LINUX / AWS EC2**         | Linux 서버에서 백엔드·프론트엔드 프로세스를 관리하고 Nginx, PM2, Docker를 활용해 서비스 배포         |
-| **GIT / GITHUB**            | 기능별 브랜치 작업, 커밋 관리, rebase 및 충돌 해결을 통한 팀 협업 경험                          |
-| **PYTHON / DJANGO**         | Python 기본 문법과 데이터 분석 라이브러리를 학습하고, Django MTV 구조와 관리자 기능 실습             |
-
----
-
-### 📌 6개월 학습 여정
-
-* **6개월차**
-
-  * Python 기본 문법과 NumPy·Pandas를 활용한 데이터 처리 학습
-  * Django 프로젝트 구조와 MTV 패턴, ORM, 관리자 페이지 실습
-  * 기존 프로젝트와 포트폴리오를 정리하며 취업 준비 진행
-
-      <br/>
-
-* **5개월차**
-
-  * React·Next.js와 Redux-Saga를 활용한 사용자 및 관리자 화면 구현
-  * Spring Security와 JWT 기반 무상태 인증 및 권한별 접근 제어 적용
-  * Redis Lock, Audit Log, 비동기 이메일과 신뢰도 점수 연동 기능 구현
-  * AWS EC2, Nginx, PM2, Docker를 활용한 팀 프로젝트 배포
-
-      <br/>
-
-* **4개월차**
-
-  * Spring Boot 기반 REST API와 계층형 아키텍처 학습
-  * 사용자 신고 CRUD 및 관리자 신고 승인·반려·삭제 기능 구현
-  * OpenAI API를 활용한 신고 작성 및 관리자 판단 보조 기능 적용
-
-      <br/>
-
-* **3개월차**
-
-  * MyBatis와 JPA를 활용한 데이터 접근 계층 구현
-  * Oracle 데이터베이스 테이블 설계 및 검색·페이징 쿼리 작성
-  * 트랜잭션을 활용해 여러 데이터 변경 작업의 정합성 보장
-
-      <br/>
-
-* **2개월차**
-
-  * JSP와 Spring MVC를 활용한 동적 웹 애플리케이션 개발
-  * Oracle·MySQL 기반 CRUD, JOIN, 서브쿼리 등 SQL 학습
-  * 사용자 요청부터 DB 저장까지 이어지는 웹 애플리케이션 흐름 이해
-
-      <br/>
-
-* **1개월차**
-
-  * Git과 GitHub를 활용한 버전 관리 및 협업 흐름 학습
-  * Java 객체지향 프로그래밍, 컬렉션, 예외 처리 학습
-  * HTML·CSS·JavaScript를 활용한 웹 화면 및 DOM 이벤트 구현
-
-      <br/>
-
----
-
-### 📌 프로젝트 경험
-
-* **6개월차**
-
-  * **Python 데이터 분석 실습** → NumPy·Pandas를 활용한 데이터 처리 및 분석 기초 학습
-  * **Django 웹 프로젝트 실습** → MTV 패턴, URL 라우팅, ORM, 관리자 계정과 Admin 페이지 구성
-  * **개인 포트폴리오 정리** → MOIT 담당 기능과 문제 해결 경험을 GitHub 및 포트폴리오 문서로 정리
-
-      <br/>
-
-* **5개월차**
-
-  * **MOIT v3 프론트엔드 구현** → React·Next.js·Redux-Saga를 활용한 사용자 신고 화면과 관리자 신고 관리 화면 개발
-  * **신고 처리 안정성 강화** → Redis Lock과 처리 전 상태 재검증을 적용해 다중 요청에 의한 중복 승인 방지
-  * **회원 신뢰도 연동** → 신고 승인 시 회원 신뢰도 점수를 즉시 반영하고 상태 및 배지 UI와 연결
-  * **AWS 배포** → EC2에서 Nginx, PM2, Docker를 구성하고 프론트엔드·백엔드·Oracle·Redis 실행 환경 구축
-
-      <br/>
-
-* **4개월차**
-
-  * **MOIT v2 신고 기능 개발** → 사용자 신고 CRUD와 관리자 목록·검색·페이징·상세·승인·반려·삭제 기능 구현
-  * **신고 예외 처리** → 본인 신고와 중복 신고를 제한하고 유효하지 않은 요청에 대한 오류 메시지 처리
-  * **OpenAI API 연동** → 사용자 신고 내용 작성과 관리자 판단을 보조하는 AI 기능 구현
-  * **이메일 알림 구현** → 신고 처리 결과와 만족도 안내 메일 발송 기능 개발
-
-      <br/>
-
-* **3개월차**
-
-  * **MOIT 데이터베이스 설계** → 신고, 회원 신고 상태, 신뢰도 점수, 관리자 처리 이력 테이블 구조 설계
-  * **관리자 신고 검색 및 페이징** → 닉네임과 신고 사유를 기준으로 데이터를 검색하고 페이지 단위로 조회
-  * **트랜잭션 적용** → 신고 상태 변경, 신뢰도 점수 반영, Audit Log 저장을 하나의 작업 단위로 처리
-
-      <br/>
-
-* **2개월차**
-
-  * **MOIT v1 JSP 프로젝트** → 사용자 신고 등록·조회·수정·삭제와 관리자 신고 처리 기능 구현
-  * **Spring MVC 웹 애플리케이션** → Controller·Service·DAO·Mapper 구조를 적용해 요청과 데이터 처리 역할 분리
-  * **Oracle/MySQL 실습** → 관계형 데이터베이스 기반 CRUD와 테이블 관계 구성 경험
-
-      <br/>
-
-* **1개월차**
-
-  * **GitHub 협업 실습** → 기능별 브랜치 생성, 커밋, 병합 및 충돌 해결 경험
-  * **Java 콘솔 프로그램** → 객체지향 설계와 컬렉션을 활용한 데이터 처리 기능 구현
-  * **HTML·CSS·JavaScript 웹 페이지** → 사용자 입력과 DOM 이벤트를 활용한 동적 화면 구현
-
-      <br/>
-
----
-
-## 📌 성장 포인트
-
-* 단순 CRUD 구현 → **동시 요청과 예외 상황까지 고려하는 기능 설계**
-* 개별 화면 구현 → **React부터 API, Service, DB까지 이어지는 전체 흐름 이해**
-* 단순 상태 변경 → **트랜잭션과 상태 검증을 통한 데이터 정합성 확보**
-* 기본 인증 처리 → **JWT·RBAC·SecurityContext 기반 접근 제어와 IDOR 방지**
-* 동기식 부가 기능 → **AFTER_COMMIT과 비동기 이벤트 기반 이메일 처리**
-* 로컬 실행 중심 → **AWS EC2·Nginx·PM2·Docker를 활용한 실제 서비스 배포**
-* 개인 작업 중심 → **Git 브랜치, rebase, 충돌 해결을 경험하며 팀 협업 역량 강화**
+완성된 결과만 기록하기보다, 오류를 해결하고 코드를 개선해 나간 과정까지 남기며
+**사용자 화면부터 서버와 데이터베이스까지 연결되는 웹 개발 흐름**을 학습하고 있습니다.
 
 <br/>
 
 ---
 
-## 📌 앞으로의 목표
+## 👩‍💻 Trainee
 
-* 테스트 코드를 통해 동시성 제어와 예외 처리 로직을 객관적으로 검증
-* CI/CD 파이프라인을 구축해 빌드와 배포 과정 자동화
-* Spring Boot와 React 기반 서비스의 설계 및 운영 역량 강화
-* AI 기능을 사용자 경험과 실제 서비스 문제 해결에 연결하는 프로젝트 진행
+<img style="width:80px" alt="임채연" src="https://github.com/user-attachments/assets/2adf117f-a8ac-489e-b0f8-b36112c4481f" />
 
-<br/>
+|            |                                                       |
+| ---------- | ----------------------------------------------------- |
+| **NAME**   | 임채연                                                   |
+| **EMAIL**  | [1023jsm@naver.com](mailto:1023jsm@naver.com)         |
+| **GITHUB** | [LimChaeyeon0629](https://github.com/LimChaeyeon0629) |
+| **COURSE** | AI 활용 풀스택 부트캠프                                        |
+| **PERIOD** | 2026.03.26 ~ 2026.10.13                               |
 
 ---
 
-## 📌 감사합니다
+## 🎯 Repository Purpose
 
-제 포트폴리오를 읽어주셔서 감사합니다.
-사용자에게 보이는 화면뿐 아니라 그 뒤에서 데이터가 안전하게 처리되는 과정까지 고민하며, 맡은 기능을 끝까지 책임지는 개발자가 되겠습니다.
+* 수업에서 작성한 예제와 실습 코드 기록
+* 기술별 핵심 개념과 문법 복습
+* 오류의 원인과 해결 과정 문서화
+* Git과 GitHub를 활용한 버전 관리 습관 형성
+* 프론트엔드부터 백엔드·DB까지 이어지는 웹 개발 흐름 이해
+* 팀 프로젝트를 통한 협업 및 통합 개발 경험 축적
+
+---
+
+## 🗺️ Learning Roadmap
+
+| STEP   | TRACK       | 주요 학습 내용                           |
+| ------ | ----------- | ---------------------------------- |
+| **01** | Web Basic   | HTML, CSS, JavaScript, DOM, 이벤트 처리 |
+| **02** | Java        | 객체지향 프로그래밍, 컬렉션, 예외 처리, JDBC       |
+| **03** | Database    | Oracle, MySQL, SQL, 데이터 모델링        |
+| **04** | Java Web    | Servlet, JSP, Spring MVC, MyBatis  |
+| **05** | Spring Boot | REST API, JPA, Security, Thymeleaf |
+| **06** | Frontend    | React, Next.js, Redux-Saga         |
+| **07** | Deployment  | Linux, AWS EC2, Nginx, PM2, Docker |
+| **08** | Python      | Python 문법, NumPy, Pandas, 데이터 분석   |
+| **09** | Django      | MTV 패턴, ORM, URL Routing, Admin    |
+| **10** | Flutter     | Dart, Widget, 상태 관리, 크로스 플랫폼 앱 개발  |
+
+---
+
+# 🧩 Curriculum
+
+
+
+# 📆 6-Month Journey
+
+## 1개월차 — 웹과 Java 기본기
+
+* Git과 GitHub를 활용한 버전 관리
+* HTML·CSS·JavaScript 웹 페이지 구현
+* Java 문법과 객체지향 프로그래밍 학습
+
+## 2개월차 — 데이터베이스와 Java Web
+
+* Oracle·MySQL 기반 SQL 작성
+* Servlet과 JSP를 활용한 동적 웹 구현
+* MVC 구조와 CRUD 흐름 이해
+
+## 3개월차 — Spring Framework
+
+* Spring MVC와 MyBatis 연동
+* Controller·Service·DAO 계층 분리
+* 검색, 페이징과 사용자 입력 처리
+
+## 4개월차 — Spring Boot
+
+* Spring Boot 기반 REST API 구현
+* JPA·MyBatis 데이터 접근
+* Security·JWT 인증 및 권한 관리
+* Swagger를 활용한 API 테스트
+
+## 5개월차 — React와 배포
+
+* React·Next.js 기반 화면 구현
+* Redux-Saga 비동기 상태 관리
+* 프론트엔드와 백엔드 API 연동
+* AWS EC2·Nginx·PM2·Docker 배포 실습
+
+## 6개월차 — Python과 Django
+
+* Python 문법과 가상환경 구성
+* NumPy·Pandas 데이터 처리
+* Django MTV 패턴과 ORM
+* Django Admin 및 웹 기능 실습
+* Flutter 크로스 플랫폼 개발 학습
+
+---
+
+# 👥 Team Project
+
+부트캠프에서 학습한 Java 웹 기술을 단계적으로 적용하며
+하나의 서비스를 세 가지 버전으로 발전시키는 팀 프로젝트를 진행했습니다.
+
+| VERSION     | 주요 기술                                                |
+| ----------- | ---------------------------------------------------- |
+| **MOIT v1** | Spring MVC, JSP, MyBatis, MySQL                      |
+| **MOIT v2** | Spring Boot, Thymeleaf, MyBatis, Oracle              |
+| **MOIT v3** | Spring Boot, React, Next.js, JPA, Oracle, Redis, AWS |
+
+프로젝트의 상세 기능과 버전별 구현 내용은 별도의 저장소에서 확인할 수 있습니다.
+
+🔗 [MOIT 프로젝트 저장소](https://github.com/LimChaeyeon0629/moitreport)
+
+---
+
+# 🌱 What I Learned
+
+* 웹 화면과 서버, 데이터베이스가 연결되는 전체 흐름
+* 기능을 역할에 따라 분리하고 관리하는 계층형 구조
+* 오류 메시지와 로그를 바탕으로 원인을 추적하는 방법
+* 로컬 환경과 실제 배포 환경의 차이
+* Git 브랜치를 활용한 팀 협업과 충돌 해결
+* 새로운 기술을 실습하고 기록하며 익히는 학습 방법
+
+---
+
+# 🎯 Next Step
+
+* Python과 Django 학습 내용 정리
+* Flutter 기반 크로스 플랫폼 앱 개발
+* 부족한 CS 개념과 알고리즘 보완
+* 테스트 코드 작성 경험 확대
+* GitHub 학습 기록 지속 관리
+
+---
+
+## 🙌 감사합니다
+
+이 저장소는 6개월간의 부트캠프 수업과 실습 내용을 기록한 공간입니다.
+
+배운 내용을 단순히 따라 작성하는 데서 끝내지 않고,
+직접 실행하고 오류를 해결하며 제 것으로 만들어가겠습니다.
