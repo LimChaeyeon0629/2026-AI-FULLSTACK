@@ -15,7 +15,7 @@
 
 ## 👩‍💻 Trainee
 
-<img style="width:80px" alt="임채연" src="https://github.com/user-attachments/assets/2adf117f-a8ac-489e-b0f8-b36112c4481f" />
+<img style="width:100px" alt="임채연" src="https://github.com/user-attachments/assets/2adf117f-a8ac-489e-b0f8-b36112c4481f" />
 
 |            |                                                       |
 | ---------- | ----------------------------------------------------- |
