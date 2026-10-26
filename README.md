@@ -15,12 +15,10 @@
 
 ## 👩‍💻 Trainee
 
-<img style="width:100px" alt="임채연" src="https://github.com/user-attachments/assets/2adf117f-a8ac-489e-b0f8-b36112c4481f" />
-
 |  |  |
 | ---------- | ----------------------------------------------------- |
 | **NAME**   | 임채연                                                   |
-| **EMAIL**  | [1023jsm@naver.com](mailto:1023jsm@naver.com)         |
+| **EMAIL**  |      |
 | **GITHUB** | [LimChaeyeon0629](https://github.com/LimChaeyeon0629) |
 | **COURSE** | AI 활용 풀스택 부트캠프                                        |
 | **PERIOD** | 2026.03.26 ~ 2026.10.13                               |
